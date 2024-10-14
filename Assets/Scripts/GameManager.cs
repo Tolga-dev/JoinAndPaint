@@ -15,7 +15,9 @@ public class GameManager : MonoBehaviour
     public Transform targetA;
     public Transform targetB;
     public Transform playerInitialPosition;
-
+    // spawn boss ground
+    public GameObject bossPrefab;
+    
 
     public void Start()
     {
@@ -23,6 +25,7 @@ public class GameManager : MonoBehaviour
         {
             Instantiate(groundPrefab, offset * i, Quaternion.identity);
         }
+        Instantiate(bossPrefab, offset * spawnAmount, Quaternion.identity);
     }
 
     private void Update()
