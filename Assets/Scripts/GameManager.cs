@@ -1,6 +1,8 @@
+using Core;
+using Save;
 using UnityEngine;
  
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
     // player
     public PlayerManager playerManager;
@@ -13,6 +15,10 @@ public class GameManager : MonoBehaviour
     // spawn boss ground
     public GameObject bossPrefab;
     
+    [Header("Game Save")]
+    public GamePropertiesInSave gamePropertiesInSave;
+
+    public int score;
 
     public void Start()
     {
@@ -27,4 +33,18 @@ public class GameManager : MonoBehaviour
     {
         playerManager.UpdatePlayer();
     }
+
+    public void PlayASound(AudioClip audioClip)
+    {
+        if (gamePropertiesInSave.isGameSoundOn == false)
+            return;
+
+        var tempSoundPlayer = new GameObject("TempSoundPlayer");
+        var audioSource = tempSoundPlayer.AddComponent<AudioSource>();
+        audioSource.clip = audioClip;
+        audioSource.volume = gamePropertiesInSave.gameSoundVolume;
+        audioSource.PlayOneShot(audioClip);
+        Destroy(tempSoundPlayer, audioClip.length);
+    }
+
 }

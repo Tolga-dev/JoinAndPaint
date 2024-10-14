@@ -205,6 +205,75 @@ MonoBehaviour:
   CameraRadius: 0.2
   DampingIntoCollision: 0
   DampingFromCollision: 2
+--- !u!1001 &138356410
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2100752891099439714, guid: 5929c7bc20cc082e59472071a93e1d9d, type: 3}
+      propertyPath: m_Name
+      value: PaintingWall
+      objectReference: {fileID: 0}
+    - target: {fileID: 3743435348151224806, guid: 5929c7bc20cc082e59472071a93e1d9d, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 1257897972}
+    - target: {fileID: 3743435348151224806, guid: 5929c7bc20cc082e59472071a93e1d9d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3743435348151224806, guid: 5929c7bc20cc082e59472071a93e1d9d, type: 3}
+      propertyPath: CamTransform
+      value: 
+      objectReference: {fileID: 1257897973}
+    - target: {fileID: 7075307068860592210, guid: 5929c7bc20cc082e59472071a93e1d9d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7075307068860592210, guid: 5929c7bc20cc082e59472071a93e1d9d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7075307068860592210, guid: 5929c7bc20cc082e59472071a93e1d9d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 311.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7075307068860592210, guid: 5929c7bc20cc082e59472071a93e1d9d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7075307068860592210, guid: 5929c7bc20cc082e59472071a93e1d9d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7075307068860592210, guid: 5929c7bc20cc082e59472071a93e1d9d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7075307068860592210, guid: 5929c7bc20cc082e59472071a93e1d9d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7075307068860592210, guid: 5929c7bc20cc082e59472071a93e1d9d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7075307068860592210, guid: 5929c7bc20cc082e59472071a93e1d9d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7075307068860592210, guid: 5929c7bc20cc082e59472071a93e1d9d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 180
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5929c7bc20cc082e59472071a93e1d9d, type: 3}
 --- !u!1 &150374410
 GameObject:
   m_ObjectHideFlags: 0
@@ -2363,6 +2432,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BossGround
       objectReference: {fileID: 0}
+    - target: {fileID: 4572478755700786970, guid: d1fa2dae42ecf74d0891b645746fdce5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -2422,3 +2495,4 @@ SceneRoots:
   - {fileID: 876123188}
   - {fileID: 930526169}
   - {fileID: 4504063310477269138}
+  - {fileID: 138356410}

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using GameObjects.Prizes;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -20,7 +21,10 @@ public class PlayerManager : MonoBehaviour
 
     public List<Recruitment> members = new List<Recruitment>();
     public Vector3 direction;
-    
+    public Transform prizeEffectSpawnPoint;
+    public Transform canvasSpawnPoint;
+    public Chest foundChest;
+
     private void Start()
     {
         members.Add(recruitment);
@@ -123,4 +127,8 @@ public class PlayerManager : MonoBehaviour
     }
 
 
+    public void GotHitReaction()
+    {
+        Debug.Log("die");
+    }
 }
