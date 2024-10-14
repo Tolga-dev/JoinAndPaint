@@ -17,21 +17,12 @@ public class PlayerManager : MonoBehaviour
     public float zSpeed = 10f;
     public float rotationSpeed;
 
-    private float _minBorder;
-    private float _maxBorder;
 
     public List<Recruitment> members = new List<Recruitment>();
     public Vector3 direction;
     
-    private bool IsWithinBounds(Vector3 newPosition)
-    {
-        return newPosition.x >= _minBorder && newPosition.x <= _maxBorder;
-    }
     private void Start()
     {
-        _minBorder = gameManager.targetA.position.x;
-        _maxBorder = gameManager.targetB.position.x;
-
         members.Add(recruitment);
     }
 

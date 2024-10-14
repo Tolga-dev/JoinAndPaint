@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
  
 public class GameManager : MonoBehaviour
@@ -12,8 +9,6 @@ public class GameManager : MonoBehaviour
     public GameObject groundPrefab;
     public Vector3 offset;
     public int spawnAmount;
-    public Transform targetA;
-    public Transform targetB;
     public Transform playerInitialPosition;
     // spawn boss ground
     public GameObject bossPrefab;
