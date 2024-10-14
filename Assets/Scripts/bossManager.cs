@@ -69,7 +69,7 @@ namespace OuterAssets.Assets.Scripts
               //  transform.rotation = Quaternion.Slerp(transform.rotation,quaternion.LookRotation(bossRotation,Vector3.up), 10f * Time.deltaTime );
 
                 for (int i = 0; i < Enemies.Count; i++)
-                    if (!Enemies.ElementAt(i).GetComponent<memeberManager>().member)
+                    if (!Enemies.ElementAt(i).GetComponent<MemberManager>().member)
                         Enemies.RemoveAt(i);
             
             }

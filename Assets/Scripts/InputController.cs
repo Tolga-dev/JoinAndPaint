@@ -7,7 +7,7 @@ public class InputController
 {
     public bool isMouseDown;
     public bool canMove;
-
+    
 #if UNITY_EDITOR
     private bool IsMouseButtonDown() => Input.GetMouseButtonDown(0);
     private bool IsMouseHeld() => Input.GetMouseButton(0);

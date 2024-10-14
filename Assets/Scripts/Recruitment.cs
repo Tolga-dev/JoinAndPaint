@@ -1,33 +1,20 @@
-using System.Linq;
+using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Recruitment : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision other)
+    public SkinnedMeshRenderer skinnedMeshRenderer;
+    public PlayerAnimationController playerAnimationController;
+    public Rigidbody rb;
+    public void StartPlayer(PlayerManager playerManager)
     {
-        if (other.collider.CompareTag("add"))
-        {
-            /*
-            other.gameObject.tag = "Finish";
-            PlayerManager.PlayerManagerCls.rbList.Add(other.collider.GetComponent<Rigidbody>());
+        skinnedMeshRenderer.material = playerManager.recruitment.skinnedMeshRenderer.material;
+        playerAnimationController.StartRunner();
+    }
 
-            other.transform.parent = null;
-
-            other.transform.parent = PlayerManager.PlayerManagerCls.transform;
-
-            other.gameObject.GetComponent<memeberManager>().member = true;
-
-            if (!other.collider.gameObject.GetComponent<Recruitment>())
-            {
-                other.collider.gameObject.AddComponent<Recruitment>();
-            }
-
-            other.collider.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material =
-                PlayerManager.PlayerManagerCls.rbList.ElementAt(0).transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material;
-                */
-            
-            
-            
-        }
+    public void OnTriggerEnter(Collider other)
+    {
+        
     }
 }

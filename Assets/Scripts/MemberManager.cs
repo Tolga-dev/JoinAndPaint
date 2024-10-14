@@ -6,7 +6,7 @@ using OuterAssets.Assets.Scripts;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class memeberManager : MonoBehaviour
+public class MemberManager : MonoBehaviour
 {
     public Animator character_animator;
     public GameObject Particle_Death;
@@ -16,8 +16,9 @@ public class memeberManager : MonoBehaviour
     public bool fight,member;
     private Rigidbody rb;
     private CapsuleCollider _capsuleCollider;
-    
-    void Start()
+
+    public GameManager gameManager;
+    /*void Start()
     {
         character_animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
@@ -28,12 +29,20 @@ public class memeberManager : MonoBehaviour
         Health = 5;
 
         
+    }*/
+    
+    public void AddNewMember(Transform otherTransform)
+    {
+        var playerManager = gameManager.playerManager;
+        var recruitment = otherTransform.GetComponent<Recruitment>();
+        
+        recruitment.StartPlayer(playerManager);
+        playerManager.members.Add(recruitment);
     }
     
- 
     void Update()
     {
-        var bossDistance = Boss.position - transform.position;
+    //    var bossDistance = Boss.position - transform.position;
 
         /*if (!fight)
         {
@@ -78,6 +87,7 @@ public class memeberManager : MonoBehaviour
         }*/
     }
 
+    /*
     public void ChangeTheAttackMode()
     {
         character_animator.SetFloat("attackmode",Random.Range(0,3));
@@ -117,7 +127,7 @@ public class memeberManager : MonoBehaviour
                         break;
                     }
                 }
-                */
+                #1#
                 
                 bossManager.BossManagerCls.LockOnTarget = false;
             }
@@ -154,7 +164,10 @@ public class memeberManager : MonoBehaviour
                 PlayerManager.PlayerManagerCls.rbList.ElementAt(0).gameObject.SetActive(false);
                 
                 // show the retry button or lose menu
-            }*/
+            }#1#
         }
     }
+    */
+
+    
 }

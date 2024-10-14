@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     // player
     public PlayerManager playerManager;
-    
+    public MemberManager memberManager;
     // spawn ground prefab
     public GameObject groundPrefab;
     public Vector3 offset;
