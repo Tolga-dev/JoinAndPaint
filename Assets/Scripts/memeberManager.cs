@@ -35,7 +35,7 @@ public class memeberManager : MonoBehaviour
     {
         var bossDistance = Boss.position - transform.position;
 
-        if (!fight)
+        /*if (!fight)
         {
             if (bossDistance.sqrMagnitude <= MaxDistanceOfEnemy * MaxDistanceOfEnemy)
             {
@@ -75,7 +75,7 @@ public class memeberManager : MonoBehaviour
         else
         {
             fight = false;
-        }
+        }*/
     }
 
     public void ChangeTheAttackMode()
@@ -92,6 +92,7 @@ public class memeberManager : MonoBehaviour
 
             if (Health <= 0)
             {
+                /*
                 Instantiate(Particle_Death, transform.position, Quaternion.identity);
 
                 if (gameObject.name != PlayerManager.PlayerManagerCls.rbList.ElementAt(0).name)
@@ -116,6 +117,7 @@ public class memeberManager : MonoBehaviour
                         break;
                     }
                 }
+                */
                 
                 bossManager.BossManagerCls.LockOnTarget = false;
             }

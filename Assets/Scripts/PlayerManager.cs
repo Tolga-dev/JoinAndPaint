@@ -1,107 +1,116 @@
-using System.Collections.Generic;
-using OuterAssets.Assets.Scripts;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public class PlayerManager : MonoBehaviour
 {
-    public InputController inputController;
-    public GameManager gameManager;
-    
-    
-    public List<Rigidbody>  rbList = new List<Rigidbody>();
-    
-    public bool MoveByTouch, gameState, attackToTheBoss;
-    private Vector3 Direction;
-    [SerializeField] private float runSpeed, velocity, swipeSpeed, roadSpeed;
-  //  public Transform road;
-    public static PlayerManager PlayerManagerCls;
-    
-    private void Start()
-    {
-        PlayerManagerCls = this;
-        rbList.Add(transform.GetChild(0).GetComponent<Rigidbody>());
-    }
-    
-    private void Update()
-    {
-        inputController.HandleMouseInput();
+    [Header("Managers")] 
+        public GameManager gameManager;
         
-        if (gameState)
+        [Header("Components")]
+        public CharacterController controller;
+        
+        [Header("Controllers")]
+        public InputController inputController;
+        public PlayerAnimationController animationController;
+        [Header("Visual")] 
+        public Transform visual;
+
+        [Header("Parameters")]
+        public float xSpeed = 15f;
+        public float zSpeed = 10f;
+
+        public float minRotation = -15;
+        public float maxRotation = 15;
+
+        private float _minBorder;
+        private float _maxBorder; 
+    
+        private void Start()
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                MoveByTouch = true;
-            }
-        
-            if (Input.GetMouseButtonUp(0))
-            {
-                MoveByTouch = false;
-            }
-        
-            if (MoveByTouch)
-            { 
+            _minBorder = gameManager.targetA.position.x;
+            _maxBorder = gameManager.targetB.position.x;
             
-                Direction.x = Mathf.Lerp(Direction.x,Input.GetAxis("Mouse X"), Time.deltaTime * runSpeed);
-           
-                Direction = Vector3.ClampMagnitude(Direction,1f);
-           
-              //  road.position = new Vector3(0f,0f,Mathf.SmoothStep(road.position.z,-100f,Time.deltaTime * roadSpeed));
-
-                foreach (var stickman_Anim in rbList)
-                    stickman_Anim.GetComponent<Animator>().SetFloat("run",1f);
-            }
-        
-            else
-            {
-                foreach (var stickman_Anim in rbList)
-                    stickman_Anim.GetComponent<Animator>().SetFloat("run",0f);
-            }
-
-            foreach (var stickManRb in rbList)
-            {
-                if (stickManRb.velocity.magnitude > 0.5f)
-                {
-                    stickManRb.rotation = Quaternion.Slerp(stickManRb.rotation,Quaternion.LookRotation(stickManRb.velocity), Time.deltaTime * velocity );
-                }
-                else
-                {
-                    stickManRb.rotation = Quaternion.Slerp(stickManRb.rotation,Quaternion.identity, Time.deltaTime * velocity );
-                }
-            }
         }
-        else
+
+        public void UpdatePlayer()
         {
-            /*if (!bossManager.BossManagerCls.BossIsAlive)
+            inputController.HandleMouseInput();
+            
+            MovePlayer();
+        }
+        
+        private void MovePlayer()
+        {
+            if (inputController.canMove == false)
             {
-                foreach (var stickMan in rbList)
-                {
-                    stickMan.GetComponent<Animator>().SetFloat("attackmode",4);
-                }
+                animationController.SetPlayerIdle();
+                return;
+            }
+            
+            StartRunning();
+            
+            
+            var moveX = controller.transform.right * (inputController.IsMouseX() * xSpeed);
+            var moveZ = controller.transform.forward * zSpeed;
+            var move = moveX + moveZ;
+
+            controller.Move(move * Time.deltaTime);
+
+ 
+            var newRot = Quaternion.Slerp(visual.rotation, controller.velocity.magnitude > 0.5f ?
+                Quaternion.LookRotation(controller.velocity) : 
+                Quaternion.identity, Time.deltaTime * controller.velocity.magnitude);
+            
+            newRot.x = Mathf.Clamp(visual.rotation.x, minRotation, maxRotation);
+            visual.rotation = newRot;
+
+            ClampPosition();
+        }
+
+        private void ClampPosition()
+        {
+            var clampedPosition = controller.transform.localPosition;
+            clampedPosition.x = Mathf.Clamp(clampedPosition.x, _minBorder, _maxBorder);
+            controller.transform.localPosition = clampedPosition;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            
+        }
+
+        public void ResetPlayer()
+        {
+            ResetPos();
+            animationController.Reset();
+            ResetInput();
+        }
+        private void ResetInput()
+        {
+            inputController.isMouseDown = false;
+            inputController.canMove = false;
+        }
+
+        public void ResetPos()
+        {
+            var initPos = gameManager.playerInitialPosition;
+            transform.position = initPos.position;
+        }
+        public void StartRunning()
+        {
+            animationController.StartRunner();
+        }
+        public void SetWin()
+        {
+            animationController.StartWinner();
+            /*gameManager.SwitchToWinCam();
+            gameManager.playingState.isGameWon = true;
+
+            if (gameManager.playingState.score > 0)
+            {
+                gameManager.gamePropertiesInSave.currenLevel++;
             }*/
         }
         
-           
-        
-    }
-    
-    private void FixedUpdate()
-    {
-        if (gameState)
-        {
-            if (MoveByTouch)
-            {
-                Vector3 displacement = new Vector3(Direction.x,0f,0f) * Time.fixedDeltaTime;
-            
-                foreach (var stickman_rb in rbList)
-                    stickman_rb.velocity = new Vector3(Direction.x * Time.fixedDeltaTime * swipeSpeed,0f,0f) + displacement;
-            }
-            else
-            {
-                foreach (var stickman_rb in rbList)
-                    stickman_rb.velocity = Vector3.zero;
-            }
-        }
-        
-    }
+
 }

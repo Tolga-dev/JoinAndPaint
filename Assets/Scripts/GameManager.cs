@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,8 +12,11 @@ public class GameManager : MonoBehaviour
     public GameObject groundPrefab;
     public Vector3 offset;
     public int spawnAmount;
-     
-    
+    public Transform targetA;
+    public Transform targetB;
+    public Transform playerInitialPosition;
+
+
     public void Start()
     {
         for (int i = 0; i < spawnAmount; i++)
@@ -20,6 +24,9 @@ public class GameManager : MonoBehaviour
             Instantiate(groundPrefab, offset * i, Quaternion.identity);
         }
     }
-    
- 
+
+    private void Update()
+    {
+        playerManager.UpdatePlayer();
+    }
 }

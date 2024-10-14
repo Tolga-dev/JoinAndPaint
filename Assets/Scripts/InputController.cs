@@ -13,30 +13,22 @@ public class InputController
     private bool IsMouseHeld() => Input.GetMouseButton(0);
     private bool IsMouseButtonUp() => Input.GetMouseButtonUp(0);
     public float IsMouseX() => Input.GetAxis("Mouse X");
-    
 #else
     private bool IsMouseButtonDown(Touch touch) => touch.phase == TouchPhase.Began;
     private bool IsMouseHeld(Touch touch) => touch.phase == TouchPhase.Moved;
     private bool IsMouseButtonUp(Touch touch) => touch.phase == TouchPhase.Ended;
     public float IsMouseX(Touch touch) => touch.deltaPosition.x;
+
+    public Touch GetTouch() => Input.GetTouch(0);
 #endif
 
     public void HandleMouseInput()
     {
 #if UNITY_EDITOR
-        EditorInput();
-#else
-       AndroidInput();
-#endif
-    }
-    
-#if UNITY_EDITOR
-    private void EditorInput()
-    {
-        // Handle mouse input for the editor
-        if (IsPointerOverUIElement())
+        if (IsPointerOverUIElement()) // PC handling UI check
         {
             canMove = false;
+            isMouseDown = false;
             return;
         }
 
@@ -56,18 +48,11 @@ public class InputController
             canMove = false;
             isMouseDown = false;
         }
-    }
-
 #else
-
-    public void AndroidInput()
-    {
-        // Handle touch input for mobile devices
         if (Input.touchCount == 0) return;
+        var touch = GetTouch();
 
-        var touch = Input.GetTouch(0);
-
-        if (IsPointerOverUIElement(touch))
+        if (IsPointerOverUIElement(touch)) // Mobile UI check
         {
             canMove = false;
             isMouseDown = false;
@@ -90,21 +75,19 @@ public class InputController
             canMove = false;
             isMouseDown = false;
         }
+#endif
+    }
+
+#if UNITY_EDITOR
+    private bool IsPointerOverUIElement()
+    {
+        return EventSystem.current.IsPointerOverGameObject(); // Check for UI element under mouse in editor
+    }
+#else
+    private bool IsPointerOverUIElement(Touch touch)
+    {
+        return EventSystem.current.IsPointerOverGameObject(touch.fingerId); // Check for UI element under touch on mobile
     }
 #endif
 
-#if UNITY_EDITOR
-// This method will check if the mouse is over a UI element in the editor
-    private bool IsPointerOverUIElement()
-    {
-        return EventSystem.current.IsPointerOverGameObject();
-    }
-#else
-    // This method checks if a touch is over a UI element on mobile devices
-    private bool IsPointerOverUIElement(Touch touch)
-    {
-        return EventSystem.current.IsPointerOverGameObject(touch.fingerId);
-    }
-#endif
-    
 }

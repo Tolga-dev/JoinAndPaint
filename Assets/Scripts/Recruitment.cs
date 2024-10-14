@@ -7,6 +7,7 @@ public class Recruitment : MonoBehaviour
     {
         if (other.collider.CompareTag("add"))
         {
+            /*
             other.gameObject.tag = "Finish";
             PlayerManager.PlayerManagerCls.rbList.Add(other.collider.GetComponent<Rigidbody>());
 
@@ -23,6 +24,7 @@ public class Recruitment : MonoBehaviour
 
             other.collider.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material =
                 PlayerManager.PlayerManagerCls.rbList.ElementAt(0).transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material;
+                */
             
             
             
