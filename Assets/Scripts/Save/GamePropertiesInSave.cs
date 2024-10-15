@@ -27,5 +27,6 @@ namespace Save
         
         // game properties
         public int totalMoney;
+        public string[] winTexts;
     }
 }

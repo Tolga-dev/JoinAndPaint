@@ -1099,6 +1099,7 @@ MonoBehaviour:
   soundManager: {fileID: 1632492265}
   serviceManager: {fileID: 1632492267}
   menuState:
+    menuPanel: {fileID: 658450094}
     paraAmount: {fileID: 1163114734}
     startMarket: {fileID: 71922449}
     exitMarket: {fileID: 916172569}
@@ -1678,6 +1679,10 @@ PrefabInstance:
     - target: {fileID: 2708845546227868511, guid: dbb8d84a26e32eb55aa4d4b052c6a23f, type: 3}
       propertyPath: m_Name
       value: MenuAvoids
+      objectReference: {fileID: 0}
+    - target: {fileID: 2708845546227868511, guid: dbb8d84a26e32eb55aa4d4b052c6a23f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4020228321539741274, guid: dbb8d84a26e32eb55aa4d4b052c6a23f, type: 3}
       propertyPath: m_AnchorMax.y

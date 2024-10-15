@@ -11,7 +11,7 @@ public class GameManager : Singleton<GameManager>
     public MemberManager memberManager;
     public SoundManager soundManager;
     public ServiceManager serviceManager;
-
+    public SaveManager saveManager;
     [Header("Game States")]
     public GameState CurrentState;
     public MenuState menuState;

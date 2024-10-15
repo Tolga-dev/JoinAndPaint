@@ -9,6 +9,7 @@ namespace GameStates
     {
         public int score;
         public Transform playerInitialPosition;
+        public GameObject clickAvoid;
 
         public override void Enter()
         {
@@ -18,6 +19,10 @@ namespace GameStates
         {
             GameManager.playerManager.UpdatePlayer();
         }
-        
+
+        public void ClickAvoid(bool b)
+        {
+            GameManager.playingState.clickAvoid.SetActive(b);
+        }
     }
 }

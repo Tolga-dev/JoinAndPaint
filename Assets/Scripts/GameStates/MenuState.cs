@@ -4,12 +4,16 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace GameStates
 {
     [Serializable]
     public class MenuState : GameState
     { 
+        // panel
+        
+        public Transform menuPanel;
         // game properties
         public TextMeshProUGUI paraAmount;
             
@@ -33,6 +37,7 @@ namespace GameStates
         
         public Button changeStatusMusicButton;
         public Button changeStatusSoundButton;
+        public TextMeshProUGUI clickToStart;
 
         public override void Init(GameManager gameManager)
         {
@@ -59,6 +64,12 @@ namespace GameStates
                 GameManager.ChangeState(GameManager.playingState);
             }
         }
+        public override void Exit()
+        {
+            menuPanel.gameObject.SetActive(false);
+            Debug.Log("MenuState Exit");
+        }
+        
         private void SetUI()
         {
             SetSaveUI();
@@ -188,6 +199,19 @@ namespace GameStates
             {
                 description.text = $"Remove ads with {GameManager.serviceManager.inAppPurchase.ReturnLocalizedPrice(GameManager.gamePropertiesInSave.noAdsProductId)}"; // money might be changed
             }   
+        }
+
+        public void SetNewMotivationString(string message)
+        {
+            if (string.IsNullOrEmpty(message))
+            {
+                clickToStart.text = message;
+                return;
+            }
+
+            var gamePropertiesInSave = GameManager.gamePropertiesInSave;
+            
+            clickToStart.text = gamePropertiesInSave.winTexts[Random.Range(0, gamePropertiesInSave.winTexts.Length)];
         }
 
     }
