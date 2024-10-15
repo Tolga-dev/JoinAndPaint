@@ -20,3 +20,9 @@ MonoBehaviour:
   gameMusicChangeDuration: 1
   gameMusicStartVolume: 1
   onMenuStateSound: {fileID: 8300000, guid: 92cb74aac94cb5c2893b364c7b2ccef1, type: 3}
+  onMarketSound: {fileID: 8300000, guid: eca205e3b811672b19c0be824bcea394, type: 3}
+  purchasedSound: {fileID: 8300000, guid: 0076e9e3619625113ac99a1e27027937, type: 3}
+  failedClickSound: {fileID: 8300000, guid: e1b47de9c54e01d23bcfee402a099d8f, type: 3}
+  isNoAds: 0
+  noAdsProductId: HelloWorld
+  totalMoney: 10

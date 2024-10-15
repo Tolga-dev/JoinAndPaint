@@ -8,7 +8,7 @@ public class SoundManager : MonoBehaviour
     
     public GameManager gameManager;
     public GamePropertiesInSave gamePropertiesInSave;
-    
+
     public void PlayASound(AudioClip audioClip)
     {
         if (gameManager.gamePropertiesInSave.isGameSoundOn == false)

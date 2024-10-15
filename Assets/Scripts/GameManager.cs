@@ -10,7 +10,8 @@ public class GameManager : Singleton<GameManager>
     public PlayerManager playerManager;
     public MemberManager memberManager;
     public SoundManager soundManager;
-    
+    public ServiceManager serviceManager;
+
     [Header("Game States")]
     public GameState CurrentState;
     public MenuState menuState;
@@ -18,6 +19,7 @@ public class GameManager : Singleton<GameManager>
     
     [Header("Game Save")]
     public GamePropertiesInSave gamePropertiesInSave;
+
 
     public void Start()
     {

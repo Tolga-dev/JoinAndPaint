@@ -1,6 +1,8 @@
 using System;
 using GameStates.Base;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace GameStates
@@ -8,9 +10,20 @@ namespace GameStates
     [Serializable]
     public class MenuState : GameState
     { 
+        // game properties
+        public TextMeshProUGUI paraAmount;
+            
         // game spawn
         // prepare game
         // shop
+            // no ads
+        [Header("Shop UI")]
+        public Button startMarket;
+        public Button exitMarket;
+        public Button buyNoAds;
+        public TextMeshProUGUI description;
+        public TextMeshProUGUI shopResult;
+        public Transform marketPanel;
         
         // setting
         [Header("Setting UI")]
@@ -53,6 +66,7 @@ namespace GameStates
             var save = GameManager.gamePropertiesInSave;
             var soundManager = GameManager.soundManager;
             
+            // settings
             changeStatusMusicButton.onClick.AddListener(() =>
             {
                 soundManager.ButtonClickSound();
@@ -89,6 +103,45 @@ namespace GameStates
                 soundManager.ButtonClickSound();
             });
             
+            // markets
+            startMarket.onClick.AddListener(() =>
+            {
+                soundManager.ButtonClickSound();
+                soundManager.GameMusic(save.onMarketSound);
+                marketPanel.gameObject.SetActive(true);
+                
+            });
+
+            exitMarket.onClick.AddListener(() =>
+            {
+                soundManager.ButtonClickSound();
+                soundManager.GameMusic(save.onMenuStateSound);
+                marketPanel.gameObject.SetActive(false);
+                
+                shopResult.text = "";
+            });
+            
+            buyNoAds.onClick.AddListener(() =>
+            {
+                var success = new UnityAction<string>((string result) =>
+                {
+                    soundManager.ButtonClickSound();
+                    soundManager.PlayASound(save.purchasedSound);
+                    GameManager.gamePropertiesInSave.isNoAds = true;
+                    
+                    SetShopUI();
+                    
+                    GameManager.serviceManager.adsManager.CleanUp();
+                    shopResult.text = result;
+                });
+                
+                var failed = new UnityAction<string>((string result) =>
+                {
+                    soundManager.PlayASound(save.failedClickSound);
+                    shopResult.text = result;
+                });
+                GameManager.serviceManager.inAppPurchase.BuyItem(GameManager.gamePropertiesInSave.noAdsProductId,success,failed);
+            }); 
         }
 
         private void ToggleButtonPosition(Button button, bool isOn)
@@ -114,8 +167,28 @@ namespace GameStates
             // settings
             ToggleButtonPosition(changeStatusMusicButton, save.isGameMusicOn);
             ToggleButtonPosition(changeStatusSoundButton, save.isGameSoundOn);
-            
-            
+            SetShopUI();
+            SetMoney();
         }
+
+        private void SetMoney()
+        {
+            paraAmount.text = GameManager.gamePropertiesInSave.totalMoney + "$";
+        }
+
+        private void SetShopUI()
+        {
+            var save = GameManager.gamePropertiesInSave;
+            if (save.isNoAds)
+            {
+                buyNoAds.gameObject.SetActive(false);
+                description.text = "You have bought No Ads!";
+            }
+            else
+            {
+                description.text = $"Remove ads with {GameManager.serviceManager.inAppPurchase.ReturnLocalizedPrice(GameManager.gamePropertiesInSave.noAdsProductId)}"; // money might be changed
+            }   
+        }
+
     }
 }
