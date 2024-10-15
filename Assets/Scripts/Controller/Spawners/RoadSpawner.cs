@@ -31,7 +31,11 @@ namespace Controller.Spawners
         public void SpawnNormalRoad()
         {
             var created = Object.Instantiate(road, spawnAmount * offset,road.transform.rotation);
-            createdRoads.Add(created.GetComponent<Road>());
+            var createdRoad = created.GetComponent<Road>();
+            createdRoad.gameManager = gameManager;
+            
+            createdRoads.Add(createdRoad);
+            
             SetNewPos();
         }
 
@@ -39,7 +43,8 @@ namespace Controller.Spawners
         {
             var created = Object.Instantiate(bossRoad, spawnAmount * offset,road.transform.rotation);
             createdBossRoad = created.GetComponent<BossRoad>();
-            
+            createdBossRoad.gameManager = gameManager;
+
             gameManager.cameraController.SetTarget(createdBossRoad.transform, gameManager.cameraController.winCam);
             SetNewPos();
         }

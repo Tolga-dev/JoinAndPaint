@@ -8,21 +8,15 @@ namespace GameObjects.Road
 {
     public class BossRoad : Road
     {
+        public FinishLine finishLine;
+        
         [Header("Boss")] 
         public GameObject boss;
         public float scaleDuration = 0.5f; // Duration of the scaling animation for each pile
         public float moveDuration = 0.5f; // Duration for moving the money pile to the boss
         private readonly Vector3 _maxScale = new Vector3(27.023634f, 810.709106f, 27.023634f);
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.CompareTag("Player"))
-            {
-                PlayerArrived();
-            }
-        }
-
-        private void PlayerArrived() // player finished game, add score in here
+       
+        public void PlayerArrived() // player finished game, add score in here
         {
             Debug.Log("Game Is Finished");
             /*SetActiveReloadButton(false);
