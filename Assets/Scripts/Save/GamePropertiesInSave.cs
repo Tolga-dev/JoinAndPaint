@@ -34,7 +34,7 @@ namespace Save
         public int totalMoney;
         public string[] winTexts;
         public int currenLevel;
-        
-        
+        public AudioClip onGameWinSound;
+        public List<int> levelRecords = new List<int>();
     }
 }

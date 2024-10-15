@@ -19,96 +19,31 @@ namespace GameObjects.Road
         public void PlayerArrived() // player finished game, add score in here
         {
             Debug.Log("Game Is Finished");
-            /*SetActiveReloadButton(false);
             
-            _playerController.SetWin();
-            
-            CheckForChest();
-            AddComboBonus();
+            SetActiveReloadButton(false);
+            gameManager.playerManager.SetWin();
 
-            _playerController.gameManager.PlayASound(_playerController.gameManager.onGameWinSound);
-
-            var moneyPiles = _playerController.pileController.moneyPiles;
-            if (moneyPiles.Count == 0)
-            {
-                _playerController.gameManager.StartCoroutine(SetGameMainMenu());
-            }
-            else
-            {
-                StartCoroutine(FinishedGameWithPile(moneyPiles));
-            }*/
-        }
-/*
-        private IEnumerator FinishedGameWithPile(List<Prize> moneyPiles)
-        {
-            foreach (var moneyPile in moneyPiles)
-            {
-                StartCoroutine(MovePileToBossAndScale(moneyPile));
-            }
-
-            yield return StartCoroutine(SetGameMainMenu());
-        }
-
-
-        private IEnumerator MovePileToBossAndScale(Prize moneyPile)
-        {
-            var initialPosition = moneyPile.transform.position;
-            var bossPosition = boss.transform.position;
-            var elapsedTime = 0f;
-
-            while (elapsedTime < moveDuration)
-            {
-                moneyPile.transform.position = Vector3.Lerp(initialPosition, bossPosition, (elapsedTime / moveDuration));
-                elapsedTime += Time.deltaTime;
-                yield return null;
-            }
-
-            moneyPile.transform.position = bossPosition;
-            moneyPile.gameObject.SetActive(false);
-
+            gameManager.soundManager.PlayASound(gameManager.gamePropertiesInSave.onGameWinSound);
             CheckForRecords();
-            StartCoroutine(ScaleBoss());
+            StartCoroutine(SetGameMainMenu());
         }
-
-        private IEnumerator ScaleBoss()
-        {
-            Vector3 initialScale = boss.transform.localScale;
-            Vector3 targetScale = initialScale + initialScale * (_playerController.pileController.moneyPiles.Count * 0.1f);
-
-            // Ensure target scale does not exceed the maximum allowed scale
-            targetScale = Vector3.Min(targetScale, _maxScale);
-
-            float elapsedTime = 0f;
-
-            while (elapsedTime < scaleDuration)
-            {
-                // Lerp the scale and clamp it to not exceed the maximum scale
-                boss.transform.localScale = Vector3.Lerp(initialScale, targetScale, (elapsedTime / scaleDuration));
-                elapsedTime += Time.deltaTime;
-                yield return null;
-            }
-
-            // Set the final scale to the clamped target scale
-            boss.transform.localScale = targetScale;
-        }
-
         private IEnumerator SetGameMainMenu()
         {
             Debug.Log("Called");
             yield return new WaitForSeconds(3);
-            var gameManager = _playerController.gameManager;
+            
             gameManager.ChangeState(gameManager.menuState);
             SetActiveReloadButton(true);
         }
 
         private void CheckForRecords()
         {
-            var score = _playerController.gameManager.playingState.score;
+            var score = gameManager.playingState.score;
 
             var findRecord = -1;
-            for (int i = 0; i < _save.levelRecords.Length; i++)
+            for (int i = 0; i < gameManager.gamePropertiesInSave.levelRecords.Count; i++)
             {
-                if (score > _save.levelRecords[i])
+                if (score > gameManager.gamePropertiesInSave.levelRecords[i])
                 {
                     findRecord = i;
                 }
@@ -116,21 +51,18 @@ namespace GameObjects.Road
 
             if (findRecord != -1)
             {
-                MadeAScore(_save.levelRecords[findRecord]);
+                MadeAScore(gameManager.gamePropertiesInSave.levelRecords[findRecord]);
             }
         }
         private void MadeAScore(int recordIndexBonus)
         {
-            StartCoroutine(IncreaseBonusOverTime(recordIndexBonus, 1f, "record"));
+            StartCoroutine(IncreaseBonusOverTime(recordIndexBonus, 1f));
         }
-
-        private IEnumerator IncreaseBonusOverTime(int targetValue, float duration, string bonusType)
+        private IEnumerator IncreaseBonusOverTime(int targetValue, float duration)
         {
-            var playingState = _playerController.gameManager.playingState;
-    
-            float elapsed = 0f;
-            int startValue = 0; // Start from 0 and increase over time
-            int currentScore = bonusType == "record" ? 0 : playingState.score; // Adjust based on bonus type
+            var playingState = gameManager.playingState;
+            var elapsed = 0f;
+            var startValue = 0; // Start from 0 and increase over time
 
             while (elapsed < duration)
             {
@@ -138,49 +70,16 @@ namespace GameObjects.Road
         
                 int currentValue = (int)(Mathf.Lerp(startValue, targetValue, elapsed / duration));
 
-                if (bonusType == "record")
-                {
-                    playingState.extraBonus.text = $"WAOW Record! Bonus: {currentValue}";
-                }
-                else if (bonusType == "combo")
-                {
-                    playingState.score = currentScore + currentValue;
-                    playingState.extraComboBonus.text = $"Combo Bonus: {currentValue}";
-                }
-
+                playingState.extraBonus.text = $"WAOW Record! Bonus: {currentValue}";
                 yield return null;
             }
-
-            // Ensure final value is set to target when finished
-            if (bonusType == "record")
-            {
-                playingState.extraBonus.text = $"WAOW Record! Bonus: {targetValue}";
-            }
-            else if (bonusType == "combo")
-            {
-                playingState.score = currentScore + targetValue;
-                playingState.extraComboBonus.text = $"Combo Bonus: {targetValue}";
-            }
+            playingState.extraBonus.text = $"WAOW Record! Bonus: {targetValue}";
         }
+
         private void SetActiveReloadButton(bool b)
         {
-            _playerController.gameManager.playingState.reloadButton.enabled = b;
+            gameManager.playingState.reloadButton.enabled = b;
         }
 
-        private void CheckForChest()
-        {
-            var foundChest = _playerController.pileController.foundChest;
-            if (foundChest != null)
-            {
-                _save.chestSpawnCount++;
-            }
-        }
-        private void AddComboBonus()
-        {
-            var comboRank = _playerController.gameManager.playingState.score * _save.comboRank / 100;
-            StartCoroutine(IncreaseBonusOverTime(comboRank, 1f, "combo"));
-        }
-        */
-        
     }
 }

@@ -111,13 +111,13 @@ public class PlayerManager : MonoBehaviour
     public void SetWin()
     {
         animationController.StartWinner();
-        /*gameManager.SwitchToWinCam();
+        gameManager.cameraController.SwitchToWinCam();
         gameManager.playingState.isGameWon = true;
 
         if (gameManager.playingState.score > 0)
         {
             gameManager.gamePropertiesInSave.currenLevel++;
-        }*/
+        }
     }
 
     private void OnTriggerEnter(Collider other)
