@@ -46,33 +46,11 @@ namespace Controller
             SwitchCam(winCam);
         }
         
-        public void OnCameraSwitch(ICinemachineCamera toCam, ICinemachineCamera fromCam)
+        public void SetTarget(Transform target, CinemachineVirtualCamera cam)
         {
-            var firstCam = (CinemachineVirtualCamera)fromCam;
-            var secondCam = (CinemachineVirtualCamera)toCam;
-            if (firstCam == winCam && secondCam == menuStateCam)
-            {
-                gameManager.menuState.SetNewMotivationString(null);
-
-                gameManager.playingState.ClickAvoid(true);
-                gameManager.serviceManager.adsManager.PlaySceneTransitionAds();
-                
-                gameManager.StartCoroutine(WaitForCameraBlendToFinish());
-            }
+            cam.Follow = target;
+            cam.LookAt = target;
         }
-
-        private IEnumerator WaitForCameraBlendToFinish()
-        {
-            while (cinemaMachineBrain.IsBlending)
-            {
-                yield return null;  // Wait until the next frame
-            }
-            gameManager.StartCoroutine(gameManager.saveManager.Save());
-            
-            gameManager.playingState.ClickAvoid(false);
-            gameManager.menuState.SetNewMotivationString("Tap To Play!");
-            Debug.Log("Arrived at menu state!");
-        }
-
+        
     }
 }

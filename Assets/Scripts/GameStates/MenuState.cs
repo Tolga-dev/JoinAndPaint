@@ -14,6 +14,7 @@ namespace GameStates
         // panel
         
         public Transform menuPanel;
+        public GameObject clickAvoid;
         // game properties
         public TextMeshProUGUI paraAmount;
             
@@ -55,6 +56,8 @@ namespace GameStates
             
             sound.GameMusic(save.onMenuStateSound);
             
+            GameManager.cameraController.SwitchToMenuStateCam();
+
         }
         public override void Update()
         {

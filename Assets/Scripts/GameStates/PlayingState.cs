@@ -9,10 +9,10 @@ namespace GameStates
     {
         public int score;
         public Transform playerInitialPosition;
-        public GameObject clickAvoid;
 
         public override void Enter()
         {
+            GameManager.cameraController.SwitchToPlayerCam();
         }
 
         public override void Update()
@@ -22,7 +22,7 @@ namespace GameStates
 
         public void ClickAvoid(bool b)
         {
-            GameManager.playingState.clickAvoid.SetActive(b);
+            GameManager.menuState.clickAvoid.SetActive(b);
         }
     }
 }
