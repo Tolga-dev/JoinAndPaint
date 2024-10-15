@@ -80,13 +80,15 @@ public class PlayerManager : MonoBehaviour
         ResetPos();
         animationController.Reset();
         ResetInput();
-
-        foreach (var member in members)
+        
+        foreach (var member in members) 
         {
+            if(member == recruitment)
+                continue;
             Destroy(member);
         }
-
         members.Clear();
+        members.Add(recruitment);
     }
 
     private void ResetInput()

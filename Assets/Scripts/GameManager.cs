@@ -16,6 +16,7 @@ public class GameManager : Singleton<GameManager>
     public SoundManager soundManager;
     public ServiceManager serviceManager;
     public SaveManager saveManager;
+    public SpawnManager spawnerManager;
     
     [Header("Controllers")]
     public CameraController cameraController;
@@ -29,11 +30,13 @@ public class GameManager : Singleton<GameManager>
     public GamePropertiesInSave gamePropertiesInSave;
 
 
+
     public void Start()
     {
         menuState.Init(this);
         playingState.Init(this);
-
+        spawnerManager.Starter();
+        
         ChangeState(menuState);
     }
 

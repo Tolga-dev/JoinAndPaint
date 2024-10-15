@@ -1,34 +1,71 @@
-using System;
-using System.Collections.Generic;
+using System.Collections;
+using Controller.Spawners;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    // spawn ground prefab
-    public GameObject groundPrefab;
-    public Vector3 offset;
-    public int spawnAmount;
-    public Transform playerInitialPosition;
-    // spawn boss ground
-    public GameObject bossPrefab;
+    private GameManager _gameManager;
+        
+    [Header("Road Spawner")]
+    public RoadSpawner roadSpawner;
+        
+    [Header("Obstacle Spawner")]
+    public ObstacleSpawner obstacleSpawner;
+        
+    [Header("Prize Spawner")]
+    public PrizeSpawner prizeSpawner;
+        
+    public void Starter()
+    {
+        _gameManager = GameManager.Instance;
+        roadSpawner.Init(_gameManager);
+        SpawnObjects(); 
+    } 
 
-    public List<GameObject> grounds = new List<GameObject>();
-    private void Start()
+    private void SpawnObjects()
     {
-        for (int i = 0; i < spawnAmount; i++)
+        SpawnRoads();
+        SpawnObstacles();
+        SpawnerPrizes();
+    }
+
+    private void SpawnerPrizes()
+    {
+        prizeSpawner.SpawnObject(this);
+    }
+
+    private void SpawnObstacles()
+    {
+        obstacleSpawner.SpawnObject(this);
+    }
+
+    private void SpawnRoads()
+    {
+        for (int i = 0; i < roadSpawner.GetNumberOfRoad(); i++)
         {
-            grounds.Add(Instantiate(groundPrefab, offset * i, Quaternion.identity));
+            roadSpawner.SpawnNormalRoad();
         }
-        grounds.Add(Instantiate(bossPrefab, offset * spawnAmount, Quaternion.identity));
+
+        roadSpawner.SpawnBossObject();
+
+    }
+
+    public IEnumerator ResetSpawners()
+    {
+            
+        roadSpawner.ResetRoads();
+        obstacleSpawner.ResetObstacle();
+        prizeSpawner.ResetPrize();
+
+        SpawnObjects();
+
+        yield return null;
+    }
+    public GameManager GameManager
+    {
+        get => _gameManager;
+        set => _gameManager = value;
     }
     
-    
-    public void CleanGround()
-    {
-        foreach (var ground in grounds)
-        {
-            Destroy(ground);
-        }
-        grounds.Clear();
-    }
+
 }

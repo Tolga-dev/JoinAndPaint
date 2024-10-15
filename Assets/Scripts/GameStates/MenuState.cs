@@ -55,7 +55,6 @@ namespace GameStates
             var sound = GameManager.soundManager;
             
             sound.GameMusic(save.onMenuStateSound);
-            
             GameManager.cameraController.SwitchToMenuStateCam();
 
         }
@@ -217,5 +216,10 @@ namespace GameStates
             clickToStart.text = gamePropertiesInSave.winTexts[Random.Range(0, gamePropertiesInSave.winTexts.Length)];
         }
 
+        public void SetMenuStateUI()
+        {
+            paraAmount.text = GameManager.gamePropertiesInSave.totalMoney + "$";
+            menuPanel.gameObject.SetActive(true);
+        }
     }
 }

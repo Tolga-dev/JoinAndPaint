@@ -691,6 +691,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &312047256 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4572478755700786970, guid: d1fa2dae42ecf74d0891b645746fdce5, type: 3}
+  m_PrefabInstance: {fileID: 8208992260344700485}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &341854291 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8751462587573591972, guid: 2366e516e132f1d0ca7a2aaaca4f6346, type: 3}
@@ -1113,6 +1118,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1213551898 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7535695867787720208, guid: 2366e516e132f1d0ca7a2aaaca4f6346, type: 3}
+  m_PrefabInstance: {fileID: 7398050034385931943}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1241398215
 GameObject:
   m_ObjectHideFlags: 3
@@ -1498,6 +1508,8 @@ GameObject:
   - component: {fileID: 1632492264}
   - component: {fileID: 1632492265}
   - component: {fileID: 1632492267}
+  - component: {fileID: 1632492269}
+  - component: {fileID: 1632492268}
   - component: {fileID: 1632492266}
   m_Layer: 0
   m_Name: GameManager
@@ -1537,7 +1549,8 @@ MonoBehaviour:
   memberManager: {fileID: 1632492264}
   soundManager: {fileID: 1632492265}
   serviceManager: {fileID: 1632492267}
-  saveManager: {fileID: 0}
+  saveManager: {fileID: 1632492269}
+  spawnerManager: {fileID: 1632492268}
   cameraController:
     gameManager: {fileID: 1632492263}
     playerCam: {fileID: 1848167394}
@@ -1546,6 +1559,7 @@ MonoBehaviour:
     cinemaMachineBrain: {fileID: 1257897975}
   menuState:
     menuPanel: {fileID: 658450094}
+    clickAvoid: {fileID: 0}
     paraAmount: {fileID: 1163114734}
     startMarket: {fileID: 71922449}
     exitMarket: {fileID: 916172569}
@@ -1562,7 +1576,6 @@ MonoBehaviour:
   playingState:
     score: 0
     playerInitialPosition: {fileID: 150374411}
-    clickAvoid: {fileID: 0}
   gamePropertiesInSave: {fileID: 11400000, guid: b1e91ed30f956b6858df1f4ecd6b9ac3, type: 2}
 --- !u!114 &1632492264
 MonoBehaviour:
@@ -1708,6 +1721,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2de7aff596e14824b5e59985f5eafaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1632492268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632492261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52b45dd58d464a9cad8196312702e9e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundPrefab: {fileID: 1213551898}
+  offset: {x: 0, y: 0, z: 5}
+  spawnAmount: 5
+  playerInitialPosition: {fileID: 150374411}
+  bossPrefab: {fileID: 312047256}
+  grounds: []
+--- !u!114 &1632492269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632492261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7543d0861faa4b89b1efb55015963cc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 1632492263}
 --- !u!4 &1720271060 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3595845297977493465, guid: d1fa2dae42ecf74d0891b645746fdce5, type: 3}
@@ -2981,7 +3025,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4572478755700786970, guid: d1fa2dae42ecf74d0891b645746fdce5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
