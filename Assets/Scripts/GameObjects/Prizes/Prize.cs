@@ -23,7 +23,7 @@ namespace GameObjects.Prizes
 
         public virtual void FoundPlayerHit()
         {
-            gameManager.score += prizeAmount;
+            gameManager.playingState.score += prizeAmount;
         }
         
         protected override void PlayAdditionalEffects(PlayerManager playerController)

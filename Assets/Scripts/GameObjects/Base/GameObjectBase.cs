@@ -22,7 +22,7 @@ namespace GameObjects.Base
         }
         private void CallPlayerGotHit(GameObject player)
         {
-            GameManager.Instance.PlayASound(gameManager.gamePropertiesInSave.playerHitSound);
+            gameManager.soundManager.PlayASound(gameManager.gamePropertiesInSave.playerHitSound);
     
             if(animator != null)
                 animator.SetBool(PlayerHit, true);

@@ -6,8 +6,16 @@ namespace Save
     public class GamePropertiesInSave : ScriptableObject
     {
         public bool isGameSoundOn;
+        public bool isGameMusicOn;
+        
+        public AudioClip playerHitSound;
+        public AudioClip buttonClickSound;
         
         public float gameSoundVolume;
-        public AudioClip playerHitSound;
+        public float gameMusicChangeDuration;
+        public float gameMusicStartVolume;
+        
+        
+        public AudioClip onMenuStateSound;
     }
 }

@@ -97,7 +97,7 @@ public class PlayerManager : MonoBehaviour
 
     public void ResetPos()
     {
-        var initPos = gameManager.playerInitialPosition;
+        var initPos = gameManager.playingState.playerInitialPosition;
         transform.position = initPos.position;
     }
 

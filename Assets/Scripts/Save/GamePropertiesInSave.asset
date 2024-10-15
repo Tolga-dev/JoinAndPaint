@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647cb86753db4c308929cfcbcd290805, type: 3}
+  m_Name: GamePropertiesInSave
+  m_EditorClassIdentifier: 
+  isGameSoundOn: 1
+  isGameMusicOn: 1
+  playerHitSound: {fileID: 8300000, guid: 68e3da0187b7e6a21848271af804c349, type: 3}
+  buttonClickSound: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
+  gameSoundVolume: 1
+  gameMusicChangeDuration: 1
+  gameMusicStartVolume: 1
+  onMenuStateSound: {fileID: 8300000, guid: 92cb74aac94cb5c2893b364c7b2ccef1, type: 3}
