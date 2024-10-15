@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGameSoundOn: 1
   isGameMusicOn: 1
-  playerHitSound: {fileID: 8300000, guid: 68e3da0187b7e6a21848271af804c349, type: 3}
   buttonClickSound: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
+  playerHitSound: {fileID: 8300000, guid: 68e3da0187b7e6a21848271af804c349, type: 3}
+  starSound: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
   gameSoundVolume: 1
   gameMusicChangeDuration: 1
   gameMusicStartVolume: 1
@@ -23,6 +24,11 @@ MonoBehaviour:
   onMarketSound: {fileID: 8300000, guid: eca205e3b811672b19c0be824bcea394, type: 3}
   purchasedSound: {fileID: 8300000, guid: 0076e9e3619625113ac99a1e27027937, type: 3}
   failedClickSound: {fileID: 8300000, guid: e1b47de9c54e01d23bcfee402a099d8f, type: 3}
+  gameMusic:
+  - {fileID: 8300000, guid: 7bd6b897eb5ca4b7d88a205c4a51640c, type: 3}
   isNoAds: 0
   noAdsProductId: HelloWorld
   totalMoney: 10
+  winTexts:
+  - Sex
+  currenLevel: 0

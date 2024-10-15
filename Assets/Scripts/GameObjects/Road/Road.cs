@@ -15,7 +15,7 @@ namespace GameObjects.Road
     [Serializable]
     public class SpawnPoint
     {
-        public List<Transform> spawnPoint = new List<Transform>();
-        public List<bool> isObjSpawned = new List<bool>(); // hate sorry
+        public Transform spawnPoint;
+        public bool isObjSpawned;
     }
 }

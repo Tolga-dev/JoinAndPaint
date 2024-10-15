@@ -25,8 +25,8 @@ public class SpawnManager : MonoBehaviour
     private void SpawnObjects()
     {
         SpawnRoads();
-        SpawnObstacles();
-        SpawnerPrizes();
+        //SpawnObstacles();
+        //SpawnerPrizes();
     }
 
     private void SpawnerPrizes()
@@ -47,7 +47,6 @@ public class SpawnManager : MonoBehaviour
         }
 
         roadSpawner.SpawnBossObject();
-
     }
 
     public IEnumerator ResetSpawners()

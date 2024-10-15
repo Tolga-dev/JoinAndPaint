@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Cinemachine;
 using GameObjects.Road;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -16,14 +15,13 @@ namespace Controller.Spawners
     
         [Header("Positions")]
         public Vector3 offset;
-        public Transform spawnPoint;
 
         [Header("Created")]
         public List<Road> createdRoads = new List<Road>();
         public BossRoad createdBossRoad;
         
-        public int startAmountOfRoad = 1;
-        public int spawnAmount = 0;
+        public int startAmountOfRoad;
+        public int spawnAmount;
 
         public void Init(GameManager gameManagerInGame)
         {
@@ -39,7 +37,7 @@ namespace Controller.Spawners
 
         public void SpawnBossObject()
         {
-            var created = Object.Instantiate(bossRoad, spawnPoint.position, bossRoad.transform.rotation);
+            var created = Object.Instantiate(bossRoad, spawnAmount * offset,road.transform.rotation);
             createdBossRoad = created.GetComponent<BossRoad>();
             
             gameManager.cameraController.SetTarget(createdBossRoad.transform, gameManager.cameraController.winCam);
@@ -75,41 +73,4 @@ namespace Controller.Spawners
             spawnAmount++;
         }
     }
-    
-    
-    /*// spawn ground prefab
-    public GameObject groundPrefab;
-    public Vector3 offset;
-    public int spawnAmount;
-    public Transform playerInitialPosition;
-    // spawn boss ground
-    public GameObject bossPrefab;
-
-    public List<GameObject> grounds = new List<GameObject>();
-
-    public void SpawnPlayObjects()
-    {
-         CleanGround();
-
-         SpawnGrounds();
-
-    }
-    private void SpawnGrounds()
-    {
-        for (int i = 0; i < spawnAmount; i++)
-        {
-            grounds.Add(Instantiate(groundPrefab, offset * i, Quaternion.identity));
-        }
-        grounds.Add(Instantiate(bossPrefab, offset * spawnAmount, Quaternion.identity));
-    }
-
-    public void CleanGround()
-    {
-        foreach (var ground in grounds)
-        {
-            Destroy(ground);
-        }
-        grounds.Clear();
-    }*/
-    
 }
