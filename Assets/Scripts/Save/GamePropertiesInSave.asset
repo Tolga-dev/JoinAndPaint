@@ -25,12 +25,19 @@ MonoBehaviour:
   purchasedSound: {fileID: 8300000, guid: 0076e9e3619625113ac99a1e27027937, type: 3}
   failedClickSound: {fileID: 8300000, guid: e1b47de9c54e01d23bcfee402a099d8f, type: 3}
   gameMusic:
-  - {fileID: 8300000, guid: 7bd6b897eb5ca4b7d88a205c4a51640c, type: 3}
+  - {fileID: 8300000, guid: 5014d962f7277e8f99941fdef4fc075a, type: 3}
+  - {fileID: 8300000, guid: 0619822bf22927bb3a4e827b8ec4bc8c, type: 3}
+  - {fileID: 8300000, guid: eca205e3b811672b19c0be824bcea394, type: 3}
+  - {fileID: 8300000, guid: 0076e9e3619625113ac99a1e27027937, type: 3}
+  - {fileID: 8300000, guid: 76fecfeb77b346c3c94f5819e22cbdb5, type: 3}
+  - {fileID: 8300000, guid: 5e995020155a7af1da19a31a6ddf5742, type: 3}
+  bossFightMusic: {fileID: 8300000, guid: 5e995020155a7af1da19a31a6ddf5742, type: 3}
   isNoAds: 0
   noAdsProductId: HelloWorld
   totalMoney: 10
   winTexts:
-  - Sex
+  - You Win!
+  - Good Luck
   currenLevel: 0
   onGameWinSound: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
   levelRecords: 64000000

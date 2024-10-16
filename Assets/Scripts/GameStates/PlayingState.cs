@@ -20,6 +20,7 @@ namespace GameStates
         [Header("Player Parameters")] 
         public int score = 0;
         public bool isGameWon = false;
+        public bool isOnFinish = false;
         
         [Header("Game UI")] 
         public Transform gamePanel;
@@ -58,10 +59,13 @@ namespace GameStates
         public override void Update()
         {
             if (isGameWon) return;
-            
-            GameManager.playerManager.UpdatePlayer();
 
             UpdateSlider();
+
+            if (isOnFinish)
+                return;
+            
+            GameManager.playerManager.UpdatePlayer();
         }
         
         public override void Exit()
@@ -73,6 +77,7 @@ namespace GameStates
                 GameManager.gamePropertiesInSave.totalMoney += score;
             }
             isGameWon = false;
+            isOnFinish = false;
             
             GameManager.menuState.SetMenuStateUI();
             
@@ -150,8 +155,6 @@ namespace GameStates
             {
                 stars[p0].gameObject.SetActive(true);
                 GameManager.soundManager.PlayASound(GameManager.gamePropertiesInSave.starSound);
-
-                GameManager.playerManager.zSpeed += p0 * 2; // i like this
             }
         }
 

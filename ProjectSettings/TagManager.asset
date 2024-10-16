@@ -9,6 +9,12 @@ TagManager:
   - obstacle
   - add
   - boss
+  - Stick
+  - Obstacle
+  - Money
+  - Chest
+  - Gold
+  - Recruitment
   layers:
   - Default
   - TransparentFX

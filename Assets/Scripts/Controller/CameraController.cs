@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace Controller
@@ -14,7 +15,8 @@ namespace Controller
         [Header("Game Cams")]
         public CinemachineVirtualCamera playerCam;
         public CinemachineVirtualCamera menuStateCam;
-        public CinemachineVirtualCamera winCam;
+        [FormerlySerializedAs("winCam")] 
+        public CinemachineVirtualCamera bossCam;
 
         private CinemachineVirtualCamera _activeCam;
         public CinemachineBrain cinemaMachineBrain;
@@ -25,7 +27,7 @@ namespace Controller
 
             playerCam.Priority = 0;
             menuStateCam.Priority = 0;
-            winCam.Priority = 0;
+            bossCam.Priority = 0;
 
             newActiveCam.Priority = 10;
             _activeCam = newActiveCam;
@@ -41,9 +43,9 @@ namespace Controller
             SwitchCam(menuStateCam);
         }
 
-        public void SwitchToWinCam()
+        public void SwitchToBossCam()
         {
-            SwitchCam(winCam);
+            SwitchCam(bossCam);
         }
         
         public void SetTarget(Transform target, CinemachineVirtualCamera cam)
@@ -51,6 +53,6 @@ namespace Controller
             cam.Follow = target;
             cam.LookAt = target;
         }
-        
+
     }
 }

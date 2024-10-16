@@ -26,6 +26,7 @@ namespace Save
         public AudioClip purchasedSound;
         public AudioClip failedClickSound;
         public List<AudioClip> gameMusic = new List<AudioClip>();
+        public AudioClip bossFightMusic;
             // no ads
         public bool isNoAds;
         public string noAdsProductId;

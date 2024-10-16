@@ -54,7 +54,7 @@ public class GameManager : Singleton<GameManager>
     {
         var firstCam = (CinemachineVirtualCamera)fromCam;
         var secondCam = (CinemachineVirtualCamera)toCam;
-        if (firstCam == cameraController.winCam && secondCam == cameraController.menuStateCam)
+        if (firstCam == cameraController.bossCam && secondCam == cameraController.menuStateCam)
         {
             menuState.SetNewMotivationString(null);
             playingState.ClickAvoid(true);

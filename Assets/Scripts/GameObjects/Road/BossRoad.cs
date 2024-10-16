@@ -6,25 +6,36 @@ namespace GameObjects.Road
     public class BossRoad : Road
     {
         public FinishLine finishLine;
-        
-        [Header("Boss")] 
-        public GameObject boss;
-        public float scaleDuration = 0.5f; // Duration of the scaling animation for each pile
-        public float moveDuration = 0.5f; // Duration for moving the money pile to the boss
-        private readonly Vector3 _maxScale = new Vector3(27.023634f, 810.709106f, 27.023634f);
-       
-        public void PlayerArrived() // player finished game, add score in here
+        public Boss.Boss boss;
+
+        public void StartBossMatch()
+        {
+            SetPlayerOnFinish();
+
+            // player on fight - stop input 
+            boss.PlayerArrived(this);
+        }
+
+        private void SetPlayerOnFinish()
+        {
+            gameManager.playerManager.ResetInput();
+            gameManager.playingState.isOnFinish = true;
+            gameManager.cameraController.SwitchToBossCam();
+            gameManager.soundManager.GameMusic(gameManager.gamePropertiesInSave.bossFightMusic);
+            SetActiveReloadButton(false);
+        }
+
+        public void GameFinished() // player finished game, add score in here
         {
             Debug.Log("Game Is Finished");
             gameManager.soundManager.PlayASound(gameManager.gamePropertiesInSave.onGameWinSound);
             SetActiveReloadButton(false);
             CheckForRecords();
-            
             gameManager.playerManager.SetWin();
-            gameManager.cameraController.SwitchToWinCam();
             
             StartCoroutine(SetGameMainMenu());
         }
+        
         
         private IEnumerator SetGameMainMenu()
         {
@@ -79,6 +90,5 @@ namespace GameObjects.Road
         {
             gameManager.playingState.reloadButton.enabled = b;
         }
-
     }
 }

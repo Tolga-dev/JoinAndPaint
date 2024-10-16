@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using GameObjects.Prizes;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -31,7 +33,6 @@ public class PlayerManager : MonoBehaviour
     public void UpdatePlayer()
     {
         inputController.HandleMouseInput();
-
         MovePlayer();
     }
 
@@ -63,8 +64,8 @@ public class PlayerManager : MonoBehaviour
     {
         foreach (var member in members)
         {
-            member.rb.rotation = 
-                Quaternion.Slerp(member.rb.rotation, member.rb.velocity.magnitude > 0.5f 
+            member.transform.rotation = 
+                Quaternion.Slerp(member.transform.rotation, member.rb.velocity.magnitude > 0.5f 
                     ? Quaternion.LookRotation(member.rb.velocity) : Quaternion.identity, Time.deltaTime * rotationSpeed);
         }
     }
@@ -96,7 +97,7 @@ public class PlayerManager : MonoBehaviour
         recruitment.rb.velocity = Vector3.zero;
     }
 
-    private void ResetInput()
+    public void ResetInput()
     {
         inputController.isMouseDown = false;
         inputController.canMove = false;
@@ -121,15 +122,51 @@ public class PlayerManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Recruitment"))
         {
             gameManager.memberManager.AddNewMember(other.transform);
         }
     }
-
-
     public void GotHitReaction()
     {
         Debug.Log("die");
     }
+
+    public void TargetToATransform(Transform target)
+    {
+        foreach (var member in members)
+        {
+            var rb = member.rb;
+            
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            rb.drag = 0f;
+            rb.angularDrag = 0f;
+            
+            StartCoroutine(MoveToTarget(member, target));
+        }
+    }
+
+    private IEnumerator MoveToTarget(Recruitment member, Transform target)
+    {
+        while (!gameManager.playingState.isGameWon) // Continue moving until the game is won
+        {
+            var position = target.position;
+            var targetPosition = position;
+
+            member.rb.MovePosition(Vector3.MoveTowards(member.rb.position, targetPosition, zSpeed * Time.fixedDeltaTime));
+
+            var lookDirection = (position - member.transform.position).normalized;
+            
+            if (lookDirection != Vector3.zero) // Avoid zero direction issues
+            {
+                var targetRotation = Quaternion.LookRotation(lookDirection);
+                member.transform.rotation = Quaternion.Slerp(member.transform.rotation, targetRotation, Time.fixedDeltaTime * rotationSpeed);
+            }
+
+            yield return new WaitForFixedUpdate(); // Ensure this runs in sync with the physics engine
+        }
+        yield break;
+    }
+
 }

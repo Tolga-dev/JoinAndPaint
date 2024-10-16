@@ -13,8 +13,14 @@ public class Recruitment : MonoBehaviour
         playerAnimationController.StartRunner();
     }
 
+    public void Die(PlayerManager playerManager)
+    {
+        gameObject.SetActive(false);
+    }
+
     public void OnTriggerEnter(Collider other)
     {
+        
         
     }
 }

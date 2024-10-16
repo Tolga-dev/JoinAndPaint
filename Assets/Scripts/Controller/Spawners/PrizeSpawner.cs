@@ -17,6 +17,9 @@ namespace Controller.Spawners
         
         [Header("Created")]
         public List<GameObject> createdPrizes = new List<GameObject>();
+        public List<GameObject> createdMembers = new List<GameObject>();
+        
+        public GameObject recruitment;
         
         private SpawnManager _spawnerManager;
         private GameManager _gameManager;
@@ -51,9 +54,12 @@ namespace Controller.Spawners
             {
                 for (int i = 0; i < road.spawnPoints.Count-1; i++)
                 {
-                    // add randomly spawned prizes
+                    if (road.spawnPoints[i].isObjSpawned)
+                        continue;
+
+                    CreateMember(road.spawnPoints[i].spawnPoint);
                     
-                    if (road.spawnPoints[i].isObjSpawned == false)
+                    if (Random.Range(0, 2) == 1) // 50% chance to spawn
                     {
                         CreatePrize(road.spawnPoints[i].spawnPoint);
                     }
@@ -61,6 +67,7 @@ namespace Controller.Spawners
             }
         }
 
+       
         private void CreatePrize(Transform spawnPoint) 
         {
             var rate = Random.Range(0, _totalMaxRange); 
@@ -109,9 +116,35 @@ namespace Controller.Spawners
             
             prize.prizeAmount = Random.Range(maxRange - (int)(maxRange/2),maxRange);
             prize.prizeAmount *= factor;
+            prize.gameManager = _gameManager;
+        }
+        private void CreateMember(Transform spawnPoint)
+        {
+            Debug.Log("SpawnMan");
+            
+            var spawnCount = Random.Range(2, 5); 
+ 
+            var positionOffsets = new float[spawnCount];
+
+            for (int i = 0; i < spawnCount; i++)
+            {
+                positionOffsets[i] = (i % 2 == 0 ? 1 : -1) * (i / 4f);
+            }
+            
+            for (int i = 0; i < spawnCount; i++)
+            {
+                var prize = Object.Instantiate(recruitment, spawnPoint, true);
+                var position = spawnPoint.position;
+                var randomXOffset = Random.Range(-0.5f, 0.5f);
+              
+                prize.transform.position = new Vector3(position.x + randomXOffset, prize.transform.position.y, position.z + positionOffsets[i]);
+                createdMembers.Add(prize);
+            }
             
         }
-        
+
+ 
+
         /*private void ConfigureSelector(GameObject prize)
         {
             var selector = prize.GetComponentInChildren<Selector>();
@@ -159,6 +192,12 @@ namespace Controller.Spawners
                 Object.Destroy(createdObstacle);
             }
             createdPrizes.Clear();
+            
+            foreach (var member in createdMembers)
+            {
+                Object.Destroy(member);
+            }
+            createdMembers.Clear();
         }
     }
 }

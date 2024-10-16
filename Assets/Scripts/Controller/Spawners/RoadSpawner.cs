@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using GameObjects.Road;
 using UnityEngine;
 using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 namespace Controller.Spawners
 {
@@ -11,7 +12,10 @@ namespace Controller.Spawners
     {
         public GameManager gameManager;
         public GameObject road;
+        
         public GameObject bossRoad;
+        public GameObject paintBoss;
+        public GameObject chestBoss;
     
         [Header("Positions")]
         public Vector3 offset;
@@ -44,11 +48,17 @@ namespace Controller.Spawners
 
         public void SpawnBossObject()
         {
-            var created = Object.Instantiate(bossRoad, startAmountOfRoad * offset,road.transform.rotation);
+            GameObject[] bossOptions = { bossRoad, paintBoss, chestBoss };
+            
+            var randomIndex = Random.Range(0, bossOptions.Length);
+            var selectedBoss = bossOptions[randomIndex];
+
+            var created = Object.Instantiate(selectedBoss, startAmountOfRoad * offset, selectedBoss.transform.rotation);
+            
             createdBossRoad = created.GetComponent<BossRoad>();
             createdBossRoad.gameManager = gameManager;
 
-            gameManager.cameraController.SetTarget(createdBossRoad.transform, gameManager.cameraController.winCam);
+            gameManager.cameraController.SetTarget(createdBossRoad.transform, gameManager.cameraController.bossCam);
             SetNewPos();
         }
 

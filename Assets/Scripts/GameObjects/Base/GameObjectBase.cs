@@ -19,6 +19,7 @@ namespace GameObjects.Base
             {
                 CallPlayerGotHit(other.gameObject);
             }
+            
         }
         private void CallPlayerGotHit(GameObject player)
         {

@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 1037955429985198707}
   - component: {fileID: 4702515429276152769}
   - component: {fileID: 2290128597603992645}
+  - component: {fileID: 7839720259736256762}
+  - component: {fileID: 1659311501749575699}
   m_Layer: 0
   m_Name: Half_Donut_01 (1)
   m_TagString: Untagged
@@ -121,8 +123,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.06532517, y: 0.060000073, z: 0.19630264}
-  m_Center: {x: -0.018199032, y: -0.0000000131426825, z: -0.01130235}
+  m_Size: {x: 0.06532517, y: 0.060000066, z: 0.23077825}
+  m_Center: {x: -0.018199034, y: -0.000000013100228, z: 0.00025201967}
 --- !u!54 &2290128597603992645
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -150,6 +152,48 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!65 &7839720259736256762
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3925907116868824743}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.19345894, y: 0.060641386, z: 0.05951224}
+  m_Center: {x: -0.08194524, y: 0.00000022496549, z: 0.112242594}
+--- !u!65 &1659311501749575699
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3925907116868824743}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.19345894, y: 0.060641386, z: 0.058963846}
+  m_Center: {x: -0.08194524, y: 0.0000002435895, z: -0.12083839}
 --- !u!1 &6101474983760764076
 GameObject:
   m_ObjectHideFlags: 0

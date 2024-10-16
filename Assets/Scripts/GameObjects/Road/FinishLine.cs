@@ -17,7 +17,7 @@ namespace GameObjects.Road
             {
                 gameObject.SetActive(false);
                 
-                bossRoad.PlayerArrived();
+                bossRoad.StartBossMatch();
             }
         }
     }
