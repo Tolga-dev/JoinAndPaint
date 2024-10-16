@@ -8,8 +8,11 @@ public class Recruitment : MonoBehaviour
     public PlayerAnimationController playerAnimationController;
     public Rigidbody rb;
     public int health;
-
+    public int damageAmount;
+    
     public PlayerManager _playerManager;
+    public float maxDistance = 0.3f;
+
     public void StartPlayer(PlayerManager playerManager)
     {
         _playerManager = playerManager;

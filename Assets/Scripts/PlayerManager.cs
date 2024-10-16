@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using GameObjects.Boss;
 using GameObjects.Prizes;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -132,7 +133,7 @@ public class PlayerManager : MonoBehaviour
         Debug.Log("die");
     }
 
-    public void TargetToATransform(Transform target)
+    public void TargetToATransform(Boss target)
     {
         foreach (var member in members)
         {
@@ -147,26 +148,48 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private IEnumerator MoveToTarget(Recruitment member, Transform target)
+    private IEnumerator MoveToTarget(Recruitment member, Boss target)
     {
+        var playerAnimationController = member.playerAnimationController;
+        playerAnimationController.SetStartFight();
+
         while (!gameManager.playingState.isGameFinished) // Continue moving until the game is won
         {
-            var position = target.position;
-            var targetPosition = position;
+            var distance = Vector3.Distance(member.rb.position, target.transform.position);
 
-            member.rb.MovePosition(Vector3.MoveTowards(member.rb.position, targetPosition, zSpeed * Time.fixedDeltaTime));
-
-            var lookDirection = (position - member.transform.position).normalized;
+            var canAttack =distance < member.maxDistance;
             
-            if (lookDirection != Vector3.zero) // Avoid zero direction issues
+            if (canAttack)
             {
-                var targetRotation = Quaternion.LookRotation(lookDirection);
-                member.transform.rotation = Quaternion.Slerp(member.transform.rotation, targetRotation, Time.fixedDeltaTime * rotationSpeed);
+                int attackType = Random.Range(0, 3); // 0 for kick, 1 for punch
+                playerAnimationController.SetFightMethod(attackType);
+                yield return new WaitForSeconds(0.5f); // wait for kick to play
+                DamageTarget(recruitment,target);
             }
+            else
+            {
+                member.playerAnimationController.StartRunner();
+                var position = target.transform.position;
+                var targetPosition = position;
 
+                member.rb.MovePosition(Vector3.MoveTowards(member.rb.position, targetPosition, zSpeed * Time.fixedDeltaTime));
+
+                var lookDirection = (position - member.transform.position).normalized;
+                
+                if (lookDirection != Vector3.zero) // Avoid zero direction issues
+                {
+                    var targetRotation = Quaternion.LookRotation(lookDirection);
+                    member.transform.rotation = Quaternion.Slerp(member.transform.rotation, targetRotation, Time.fixedDeltaTime * rotationSpeed);
+                }
+            }
+            
             yield return new WaitForFixedUpdate(); // Ensure this runs in sync with the physics engine
         }
         yield break;
     }
 
+    private void DamageTarget(Recruitment member, Boss target)
+    {
+        target.TakeDamage(member.damageAmount); 
+    }
 }

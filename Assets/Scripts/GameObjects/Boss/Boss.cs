@@ -18,7 +18,7 @@ namespace GameObjects.Boss
         public int damageAmount;
         public float maxFarToRunOnPlayer;
         public float zSpeed;
-
+        
         private static readonly int IsFighting = Animator.StringToHash("IsFighting");
         private static readonly int AttackMode = Animator.StringToHash("AttackMode");
 
@@ -27,7 +27,7 @@ namespace GameObjects.Boss
             _bossRoad = bossRoadInGame;
             _gameManager = _bossRoad.gameManager;
 
-            _gameManager.playerManager.TargetToATransform(transform);
+            _gameManager.playerManager.TargetToATransform(this);
             Debug.Log("Player is arrived");
             StartCoroutine(StartBossMatch());
         }
@@ -47,7 +47,6 @@ namespace GameObjects.Boss
                 while (isTargetAvailable)
                 {
                     float distance = Vector3.Distance(transform.position, target.transform.position);
-                    Debug.Log(distance);
                     
                     if (distance > maxFarToRunOnPlayer) // If far, run towards target
                     {
@@ -124,6 +123,10 @@ namespace GameObjects.Boss
         {
             target.TakeDamage(damageAmount); 
         }
-        
+
+        public void TakeDamage(int memberDamageAmount)
+        {
+            health -= memberDamageAmount;
+        }
     }
 }
