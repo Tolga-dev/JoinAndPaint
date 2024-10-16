@@ -232,11 +232,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2649054148882901675}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2f278cde50c7b444ba54cc9e3e52c58, type: 3}
+  m_Script: {fileID: 11500000, guid: d4d5840ad204481d8dc9975bcb67bf45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotatingSpeed: 80
-  rotatingAxis: {x: 1, y: 0, z: 0}
+  rotatingSpeed: 10
+  rotatingAxis: {x: 5, y: 0, z: 0}
 --- !u!114 &1949938942357943903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,11 +249,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9ff53da6e7e4658a23ed2a0f140a7ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   animator: {fileID: 0}
-  playerHitSound: {fileID: 8300000, guid: c6d45d69015ca934fbd95932874c5b59, type: 3}
   hitPlayerEffect: {fileID: 5684674757566208174}
   isHitPlayer: 0
-  gameManager: {fileID: 0}
   speed: 1
   minXValue: 0
   maxXValue: 0.3
@@ -345,7 +344,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4, y: 0.20999998, z: 37.200016}
-  m_LocalScale: {x: 18.556486, y: 18.556463, z: 18.556477}
+  m_LocalScale: {x: 3.973209, y: 3.973209, z: 3.973209}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3061438777069964547}

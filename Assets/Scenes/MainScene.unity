@@ -1827,7 +1827,16 @@ MonoBehaviour:
     startAmountOfRoad: 4
     spawnAmount: 0
   obstacleSpawner:
-    obstacles: []
+    obstacles:
+    - {fileID: 6101474983760764076, guid: 041888e5d2b73f8b0bd12ae34ddf59ef, type: 3}
+    - {fileID: 7919248655856774208, guid: bd29cbd5b5733376e9d26fcdd01bd151, type: 3}
+    - {fileID: 5679311953507544461, guid: 07cfe1a153eed606c90d25e4eec545f1, type: 3}
+    - {fileID: 5679311953507544461, guid: 02dedfe223c3add468ac90ce2190ee27, type: 3}
+    - {fileID: 4058741700650152446, guid: 47f81157fcac67bb29ad28e2ed20b61a, type: 3}
+    - {fileID: 3265439876958530759, guid: 69bbfa5274b0497acbd6ea0d4d7650c2, type: 3}
+    - {fileID: 7835820043269349452, guid: 5cb4e6d4b0ac9951396928ce84289429, type: 3}
+    - {fileID: 3236718058140866936, guid: e5ae14fe78275bc0f8b949ef0b1754ef, type: 3}
+    - {fileID: 7980592550645374983, guid: 7299b9104232c290ab23fa3dfea621f9, type: 3}
     createdObstacles: []
 --- !u!114 &1632492269
 MonoBehaviour:
@@ -2091,6 +2100,89 @@ Transform:
   - {fileID: 123069565}
   m_Father: {fileID: 1534706134}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1925565617
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1925565618}
+  - component: {fileID: 1925565621}
+  - component: {fileID: 1925565620}
+  m_Layer: 7
+  m_Name: PrizeSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1925565618
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925565617}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.619, z: -0.002}
+  m_LocalScale: {x: 0.045149, y: 0.045149, z: 0.045149}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3046251974286387255}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &1925565620
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925565617}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1925565621
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925565617}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &1980616929 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 972352487465673917, guid: dbb8d84a26e32eb55aa4d4b052c6a23f, type: 3}
@@ -2742,6 +2834,11 @@ CapsuleCollider:
   m_Height: 0.37
   m_Direction: 1
   m_Center: {x: 0, y: 0.16, z: 0}
+--- !u!4 &3046251974286387255 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2619720052304297221, guid: 8fc26a87603af0f719fd48fca514d9e6, type: 3}
+  m_PrefabInstance: {fileID: 4504063310477269138}
+  m_PrefabAsset: {fileID: 0}
 --- !u!108 &3212665780622348820
 Light:
   m_ObjectHideFlags: 0
@@ -2851,6 +2948,10 @@ PrefabInstance:
       propertyPath: recruitment
       value: 
       objectReference: {fileID: 1266571274}
+    - target: {fileID: 423969743126283052, guid: 8fc26a87603af0f719fd48fca514d9e6, type: 3}
+      propertyPath: prizeEffectSpawnPoint
+      value: 
+      objectReference: {fileID: 1925565618}
     - target: {fileID: 5635283175334900030, guid: 8fc26a87603af0f719fd48fca514d9e6, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -2917,7 +3018,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2619720052304297221, guid: 8fc26a87603af0f719fd48fca514d9e6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1925565618}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7611827382454103893, guid: 8fc26a87603af0f719fd48fca514d9e6, type: 3}
       insertIndex: -1

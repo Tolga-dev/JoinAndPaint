@@ -24,9 +24,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4058741700650152446}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.01, y: 0, z: 0}
-  m_LocalScale: {x: 0.3998078, y: 0.3998077, z: 0.3998077}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.90000004, y: 0, z: 9}
+  m_LocalScale: {x: 0.42557612, y: 0.51069117, z: 0.51069117}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6525066722763189931}
@@ -62,8 +62,8 @@ Transform:
   m_GameObject: {fileID: 4112235525041062001}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -17.71, y: 15.4, z: 0}
-  m_LocalScale: {x: 120, y: 120, z: 220}
+  m_LocalPosition: {x: -3.32, y: 1.01, z: 0}
+  m_LocalScale: {x: 43.482, y: 43.482, z: 47.80708}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6396392002967483586}
@@ -180,8 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b5d706cbfe4762b79550f2dbd1132c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   animator: {fileID: 0}
-  playerHitSound: {fileID: 8300000, guid: 68e3da0187b7e6a21848271af804c349, type: 3}
   hitPlayerEffect: {fileID: 0}
   isHitPlayer: 0
-  gameManager: {fileID: 0}

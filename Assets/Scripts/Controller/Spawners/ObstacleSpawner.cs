@@ -14,17 +14,18 @@ namespace Controller.Spawners
         public List<GameObject> createdObstacles = new List<GameObject>();
         public virtual void SpawnObject(SpawnManager spawnerManager)
         {
+            
             var createdRoads = spawnerManager.roadSpawner.createdRoads;
             foreach (var road in createdRoads)
             {
-                /*var spawnPoints = road.spawnPoint;
+                var spawnPoints = road.spawnPoints;
 
                 int randomIndex = Random.Range(0, 2); // 0 = spawnPoints[0], 1 = spawnPoints[1]
                 int pairedIndex =
                     randomIndex == 0 ? 3 : 2; // If 0 is chosen, pair with 3 (index 3), else pair with 2 (index 2)
 
-                var selectedSpawnPoint1 = spawnPoints[randomIndex]; // Randomly selected spawn point
-                var selectedSpawnPoint2 = spawnPoints[pairedIndex]; // Paired spawn point
+                var selectedSpawnPoint1 = spawnPoints[randomIndex].spawnPoint; // Randomly selected spawn point
+                var selectedSpawnPoint2 = spawnPoints[pairedIndex].spawnPoint; // Paired spawn point
 
                 var spawn = obstacles[Random.Range(0, obstacles.Count)]; // You can adjust this to select a random obstacle if needed
 
@@ -39,7 +40,7 @@ namespace Controller.Spawners
                 createdObstacles.Add(created2);
 
                 road.spawnPoints[randomIndex].isObjSpawned = true;
-                road.spawnPoints[pairedIndex].isObjSpawned = true;*/
+                road.spawnPoints[pairedIndex].isObjSpawned = true;
             }
         }
 

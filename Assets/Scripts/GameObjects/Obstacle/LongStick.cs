@@ -1,9 +1,8 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Save.GameObjects.Obstacle
+namespace GameObjects.Obstacle
 {
-    public class LongStick : global::GameObjects.Obstacle.Obstacle
+    public class LongStick : Obstacle
     {
         [SerializeField] float speed = 2f;
         [SerializeField] float minAngle;

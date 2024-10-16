@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace Save.GameObjects.Obstacle
+namespace GameObjects.Obstacle
 {
-    public class PurpleMover : global::GameObjects.Obstacle.Obstacle
+    public class PurpleMover : Obstacle
     {
         private float _startX; // Starting X position
         private float _endX;   // Ending X position

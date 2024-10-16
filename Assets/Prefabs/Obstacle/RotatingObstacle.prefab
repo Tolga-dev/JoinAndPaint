@@ -121,14 +121,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66824e83926e432bb7c9488aa7f4b8c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   animator: {fileID: 0}
-  playerHitSound: {fileID: 8300000, guid: 68e3da0187b7e6a21848271af804c349, type: 3}
   hitPlayerEffect: {fileID: 0}
   isHitPlayer: 0
-  gameManager: {fileID: 0}
   speed: 2
-  minAngle: -45
-  maxAngle: 45
+  minAngle: -30
+  maxAngle: 30
   rotationalTransform: {fileID: 5259542463259523611}
 --- !u!54 &8790092650898334815
 Rigidbody:
@@ -264,9 +263,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7835820043269349452}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.37321764, z: 0, w: 0.92774385}
-  m_LocalPosition: {x: -4, y: 1, z: 37.200016}
-  m_LocalScale: {x: 0.3998078, y: 0.3998077, z: 0.3998077}
+  m_LocalRotation: {x: 0, y: 0.25863993, z: 0, w: 0.96597385}
+  m_LocalPosition: {x: -0.90000004, y: 0.239, z: 16}
+  m_LocalScale: {x: 0.087552674, y: 0.087681815, z: 0.08781194}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3579290222136258313}

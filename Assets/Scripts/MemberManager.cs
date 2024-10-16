@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using OuterAssets.Assets.Scripts;
 using UnityEngine;
 using Random = UnityEngine.Random;
 

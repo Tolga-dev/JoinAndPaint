@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace Save.GameObjects.Obstacle
+namespace GameObjects.Obstacle
 {
-    public class HalfDonut : global::GameObjects.Obstacle.Obstacle
+    public class HalfDonut : Obstacle
     {
         [SerializeField] float speed = 2f;
         [SerializeField] float minXValue;
