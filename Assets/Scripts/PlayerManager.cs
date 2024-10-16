@@ -112,7 +112,7 @@ public class PlayerManager : MonoBehaviour
     public void SetWin()
     {
         recruitment.rb.velocity = Vector3.zero;
-        gameManager.playingState.isGameWon = true;
+        gameManager.playingState.isGameFinished = true;
 
         if (gameManager.playingState.score > 0)
         {
@@ -149,7 +149,7 @@ public class PlayerManager : MonoBehaviour
 
     private IEnumerator MoveToTarget(Recruitment member, Transform target)
     {
-        while (!gameManager.playingState.isGameWon) // Continue moving until the game is won
+        while (!gameManager.playingState.isGameFinished) // Continue moving until the game is won
         {
             var position = target.position;
             var targetPosition = position;

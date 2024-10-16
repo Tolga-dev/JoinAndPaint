@@ -3470,7 +3470,7 @@ MonoBehaviour:
     playerInitialPosition: {fileID: 150374411}
     startPosZ: 0
     score: 0
-    isGameWon: 0
+    isGameFinished: 0
     isOnFinish: 0
     gamePanel: {fileID: 22464565}
     scoreText: {fileID: 1121935861}
@@ -3497,14 +3497,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcefcd0225c13db4eaf5f93890a485c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character_animator: {fileID: 0}
-  Particle_Death: {fileID: 0}
-  Health: 0
-  MinDistanceOfEnemy: 0
-  MaxDistanceOfEnemy: 0
-  moveSpeed: 0
-  fight: 0
-  member: 0
   gameManager: {fileID: 1632492263}
 --- !u!114 &1632492265
 MonoBehaviour:
@@ -5027,6 +5019,8 @@ MonoBehaviour:
   playerAnimationController:
     animator: {fileID: 2141682792032569912}
   rb: {fileID: 1266571273}
+  health: 1000
+  _playerManager: {fileID: 1266571271}
 --- !u!108 &3212665780622348820
 Light:
   m_ObjectHideFlags: 0

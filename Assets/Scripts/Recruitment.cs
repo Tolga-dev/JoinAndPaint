@@ -7,10 +7,14 @@ public class Recruitment : MonoBehaviour
     public SkinnedMeshRenderer skinnedMeshRenderer;
     public PlayerAnimationController playerAnimationController;
     public Rigidbody rb;
+    public int health;
+
+    public PlayerManager _playerManager;
     public void StartPlayer(PlayerManager playerManager)
     {
+        _playerManager = playerManager;
         skinnedMeshRenderer.material = playerManager.recruitment.skinnedMeshRenderer.material;
-        playerAnimationController.StartRunner();
+        playerAnimationController.StartRunner();    
     }
 
     public void Die(PlayerManager playerManager)
@@ -18,9 +22,17 @@ public class Recruitment : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void OnTriggerEnter(Collider other)
+    public void TakeDamage(int damageAmount)
     {
-        
-        
+        health -= damageAmount;
+        if (health < 0)
+        {
+            _playerManager.gameManager.memberManager.DestroyNewMember(transform);
+        }
+    }
+
+    public bool IsDefeated()
+    {
+        return health < 0;
     }
 }

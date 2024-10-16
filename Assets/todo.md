@@ -10,6 +10,7 @@ yol ustundeki engellerden gece gece boss bolumune git ve cabuk boya!
 
 * fix game play
 * add boss fights then
+  - finsih line -> add for members
 
 * iki farkli biom
   * odul biomu -> her yeni level eklenecegi zaman bu gelecek
@@ -25,7 +26,6 @@ yol ustundeki engellerden gece gece boss bolumune git ve cabuk boya!
       * bossun hareketleri
       * bossun animasyonlari
       
-
 * koselerden assagi dusuyor
 * bomba ekle
 * ziplatici ekle

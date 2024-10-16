@@ -14,7 +14,6 @@ namespace Controller.Spawners
         public GameObject road;
         
         public GameObject bossRoad;
-        public GameObject paintBoss;
         public GameObject chestBoss;
     
         [Header("Positions")]
@@ -48,7 +47,7 @@ namespace Controller.Spawners
 
         public void SpawnBossObject()
         {
-            GameObject[] bossOptions = { bossRoad, paintBoss, chestBoss };
+            GameObject[] bossOptions = { bossRoad, chestBoss };
             
             var randomIndex = Random.Range(0, bossOptions.Length);
             var selectedBoss = bossOptions[randomIndex];

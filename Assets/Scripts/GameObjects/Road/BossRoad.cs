@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameObjects.Road
@@ -7,12 +8,11 @@ namespace GameObjects.Road
     {
         public FinishLine finishLine;
         public Boss.Boss boss;
-
-        public void StartBossMatch()
+        
+        public void StartBossMatch(GameObject recruitment)
         {
             SetPlayerOnFinish();
 
-            // player on fight - stop input 
             boss.PlayerArrived(this);
         }
 

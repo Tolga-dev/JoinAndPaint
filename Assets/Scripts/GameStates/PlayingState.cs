@@ -19,7 +19,7 @@ namespace GameStates
         // parameters
         [Header("Player Parameters")] 
         public int score = 0;
-        public bool isGameWon = false;
+        public bool isGameFinished = false;
         public bool isOnFinish = false;
         
         [Header("Game UI")] 
@@ -58,7 +58,7 @@ namespace GameStates
 
         public override void Update()
         {
-            if (isGameWon) return;
+            if (isGameFinished) return;
 
             UpdateSlider();
 
@@ -72,11 +72,11 @@ namespace GameStates
         {
             gamePanel.gameObject.SetActive(false);
             
-            if (isGameWon)
+            if (isGameFinished)
             {
                 GameManager.gamePropertiesInSave.totalMoney += score;
             }
-            isGameWon = false;
+            isGameFinished = false;
             isOnFinish = false;
             
             GameManager.menuState.SetMenuStateUI();
@@ -102,7 +102,7 @@ namespace GameStates
             
             processSlider.value = 0;
             score = 0;
-            isGameWon = false;
+            isGameFinished = false;
             
             processLeftText.text = GameManager.gamePropertiesInSave.currenLevel.ToString();
             processRightText.text = (GameManager.gamePropertiesInSave.currenLevel + 1).ToString();
