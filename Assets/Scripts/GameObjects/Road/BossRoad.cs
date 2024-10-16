@@ -1,7 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using GameObjects.Prizes;
-using Save;
 using UnityEngine;
 
 namespace GameObjects.Road
@@ -19,14 +16,16 @@ namespace GameObjects.Road
         public void PlayerArrived() // player finished game, add score in here
         {
             Debug.Log("Game Is Finished");
-            
-            SetActiveReloadButton(false);
-            gameManager.playerManager.SetWin();
-
             gameManager.soundManager.PlayASound(gameManager.gamePropertiesInSave.onGameWinSound);
+            SetActiveReloadButton(false);
             CheckForRecords();
+            
+            gameManager.playerManager.SetWin();
+            gameManager.cameraController.SwitchToWinCam();
+            
             StartCoroutine(SetGameMainMenu());
         }
+        
         private IEnumerator SetGameMainMenu()
         {
             Debug.Log("Called");

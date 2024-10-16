@@ -15,6 +15,8 @@ namespace GameObjects.Road
 
             if (isHitPlayer)
             {
+                gameObject.SetActive(false);
+                
                 bossRoad.PlayerArrived();
             }
         }

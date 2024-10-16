@@ -780,7 +780,7 @@ Transform:
   m_GameObject: {fileID: 774389675}
   serializedVersion: 2
   m_LocalRotation: {x: 0.194484, y: -0, z: -0, w: 0.9809057}
-  m_LocalPosition: {x: 0, y: -0.04700005, z: 1.0230002}
+  m_LocalPosition: {x: 21.48, y: 0.04, z: 6.68}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -805,8 +805,8 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 0
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 150374411}
-  m_Follow: {fileID: 150374411}
+  m_LookAt: {fileID: 0}
+  m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 91.72
     OrthographicSize: 5
@@ -1041,7 +1041,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7611827382454103893, guid: 8fc26a87603af0f719fd48fca514d9e6, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7611827382454103893, guid: 8fc26a87603af0f719fd48fca514d9e6, type: 3}
       propertyPath: m_TagString
@@ -1660,7 +1660,6 @@ MonoBehaviour:
     reloadButton: {fileID: 1205399010}
     extraBonus: {fileID: 63934105}
     extraComboBonus: {fileID: 487028338}
-    clickAvoid: {fileID: 2113663009}
   gamePropertiesInSave: {fileID: 11400000, guid: b1e91ed30f956b6858df1f4ecd6b9ac3, type: 2}
 --- !u!114 &1632492264
 MonoBehaviour:
@@ -1830,7 +1829,6 @@ MonoBehaviour:
   obstacleSpawner:
     obstacles: []
     createdObstacles: []
-  prizeSpawner: {fileID: 0}
 --- !u!114 &1632492269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2661,7 +2659,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8027909436948322556, guid: dbb8d84a26e32eb55aa4d4b052c6a23f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -163.0813
+      value: -163.08154
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

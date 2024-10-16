@@ -51,7 +51,6 @@ public class SpawnManager : MonoBehaviour
 
     public IEnumerator ResetSpawners()
     {
-            
         roadSpawner.ResetRoads();
         obstacleSpawner.ResetObstacle();
         prizeSpawner.ResetPrize();

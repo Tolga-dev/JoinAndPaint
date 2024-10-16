@@ -18,12 +18,10 @@ public class PlayerManager : MonoBehaviour
     public float zSpeed = 10f;
     public float rotationSpeed;
 
-
     public List<Recruitment> members = new List<Recruitment>();
     public Vector3 direction;
     public Transform prizeEffectSpawnPoint;
     public Transform canvasSpawnPoint;
-    public Chest foundChest;
 
     private void Start()
     {
@@ -39,16 +37,30 @@ public class PlayerManager : MonoBehaviour
 
     private void MovePlayer()
     {
-        if (!inputController.canMove)
+        if (inputController.canMove == false)
         {
-            return;
+            foreach (var member in members)
+            {
+                member.rb.velocity = Vector3.zero;
+                member.playerAnimationController.SetPlayerIdle();
+            }
         }
+        else
+        {
+            SetDirection();
+            SetRot();
+            
+            var velocity = new Vector3(direction.x * xSpeed, 0f, direction.z * zSpeed);
+            foreach (var member in members)
+            {
+                member.rb.velocity = velocity;
+                member.playerAnimationController.StartRunner();
+            }
+        }
+    }
 
-        direction.x = Mathf.Lerp(direction.x, inputController.IsMouseX(), Time.deltaTime * xSpeed);
-        direction.z = 1;
-
-        direction = Vector3.ClampMagnitude(direction, 1f);
- 
+    private void SetRot()
+    {
         foreach (var member in members)
         {
             member.rb.rotation = 
@@ -57,23 +69,14 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    private void SetDirection()
     {
-        if (inputController.canMove)
-        {
-            var velocity = new Vector3(direction.x * xSpeed, 0f, direction.z * zSpeed);
+        direction.x = Mathf.Lerp(direction.x, inputController.IsMouseX(), Time.deltaTime * xSpeed);
+        direction.z = 1;
 
-            foreach (var member in members)
-            {
-                member.rb.velocity = velocity;
-            }
-        }
-        else
-        {
-            foreach (var member in members)
-                member.rb.velocity = Vector3.zero;
-        }
+        direction = Vector3.ClampMagnitude(direction, 1f);
     }
+ 
 
     public void ResetPlayer()
     {
@@ -88,7 +91,9 @@ public class PlayerManager : MonoBehaviour
             Destroy(member);
         }
         members.Clear();
+        
         members.Add(recruitment);
+        recruitment.rb.velocity = Vector3.zero;
     }
 
     private void ResetInput()
@@ -101,17 +106,11 @@ public class PlayerManager : MonoBehaviour
     {
         var initPos = gameManager.playingState.playerInitialPosition;
         transform.position = initPos.position;
-    }
-
-    public void StartRunning()
-    {
-        animationController.StartRunner();
-    }
-
+    }   
+    
     public void SetWin()
     {
-        animationController.StartWinner();
-        gameManager.cameraController.SwitchToWinCam();
+        recruitment.rb.velocity = Vector3.zero;
         gameManager.playingState.isGameWon = true;
 
         if (gameManager.playingState.score > 0)

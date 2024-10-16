@@ -29,8 +29,6 @@ public class GameManager : Singleton<GameManager>
     [Header("Game Save")]
     public GamePropertiesInSave gamePropertiesInSave;
 
-
-
     public void Start()
     {
         menuState.Init(this);
@@ -54,16 +52,14 @@ public class GameManager : Singleton<GameManager>
 
     public void OnCameraSwitch(ICinemachineCamera toCam, ICinemachineCamera fromCam) // event function
     {
-        
         var firstCam = (CinemachineVirtualCamera)fromCam;
         var secondCam = (CinemachineVirtualCamera)toCam;
         if (firstCam == cameraController.winCam && secondCam == cameraController.menuStateCam)
         {
             menuState.SetNewMotivationString(null);
-
             playingState.ClickAvoid(true);
+            
             serviceManager.adsManager.PlaySceneTransitionAds();
-                
             StartCoroutine(WaitForCameraBlendToFinish());
         }
     }
@@ -75,7 +71,6 @@ public class GameManager : Singleton<GameManager>
             yield return null;  // Wait until the next frame
         }
         StartCoroutine(saveManager.Save());
-            
         playingState.ClickAvoid(false);
         menuState.SetNewMotivationString("Tap To Play!");
         Debug.Log("Arrived at menu state!");

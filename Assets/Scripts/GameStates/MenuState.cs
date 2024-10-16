@@ -12,16 +12,13 @@ namespace GameStates
     public class MenuState : GameState
     { 
         // panel
-        
         public Transform menuPanel;
         public GameObject clickAvoid;
+        
         // game properties
         public TextMeshProUGUI paraAmount;
             
-        // game spawn
-        // prepare game
-        // shop
-            // no ads
+        // no ads
         [Header("Shop UI")]
         public Button startMarket;
         public Button exitMarket;
@@ -48,15 +45,13 @@ namespace GameStates
 
         public override void Enter()
         {
-            // start music
-            // start cam
-            // start ui
             var save = GameManager.gamePropertiesInSave;
             var sound = GameManager.soundManager;
             
             sound.GameMusic(save.onMenuStateSound);
             GameManager.cameraController.SwitchToMenuStateCam();
-
+            
+            menuPanel.gameObject.SetActive(true);
         }
         public override void Update()
         {
@@ -180,6 +175,7 @@ namespace GameStates
             // settings
             ToggleButtonPosition(changeStatusMusicButton, save.isGameMusicOn);
             ToggleButtonPosition(changeStatusSoundButton, save.isGameSoundOn);
+            
             SetShopUI();
             SetMoney();
         }
@@ -201,11 +197,12 @@ namespace GameStates
             {
                 description.text = $"Remove ads with {GameManager.serviceManager.inAppPurchase.ReturnLocalizedPrice(GameManager.gamePropertiesInSave.noAdsProductId)}"; // money might be changed
             }   
+            menuPanel.gameObject.SetActive(true);
         }
 
         public void SetNewMotivationString(string message)
         {
-            if (string.IsNullOrEmpty(message))
+            if (string.IsNullOrEmpty(message) == false)
             {
                 clickToStart.text = message;
                 return;
@@ -219,7 +216,7 @@ namespace GameStates
         public void SetMenuStateUI()
         {
             paraAmount.text = GameManager.gamePropertiesInSave.totalMoney + "$";
-            menuPanel.gameObject.SetActive(true);
         }
+        
     }
 }

@@ -32,3 +32,5 @@ MonoBehaviour:
   winTexts:
   - Sex
   currenLevel: 0
+  onGameWinSound: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
+  levelRecords: 64000000

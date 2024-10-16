@@ -34,8 +34,6 @@ namespace GameStates
 
         public TextMeshProUGUI extraBonus;
         public TextMeshProUGUI extraComboBonus; 
-        
-        public GameObject clickAvoid;
 
         public override void Init(GameManager gameManager)
         {
@@ -48,14 +46,47 @@ namespace GameStates
             GameManager.cameraController.SwitchToPlayerCam();
             
             ResetPlayGameUI();
+            
             GameManager.soundManager.GameMusic(
                 GameManager.gamePropertiesInSave.gameMusic
                     [Random.Range(0, GameManager.gamePropertiesInSave.gameMusic.Count)]);
             
             GameManager.playerManager.ResetPlayer();
-            GameManager.playerManager.StartRunning();
         }
 
+
+        public override void Update()
+        {
+            if (isGameWon) return;
+            
+            GameManager.playerManager.UpdatePlayer();
+
+            UpdateSlider();
+        }
+        
+        public override void Exit()
+        {
+            gamePanel.gameObject.SetActive(false);
+            
+            if (isGameWon)
+            {
+                GameManager.gamePropertiesInSave.totalMoney += score;
+            }
+            isGameWon = false;
+            
+            GameManager.menuState.SetMenuStateUI();
+            
+            extraBonus.text = "";
+            extraComboBonus.text = "";
+            
+            SetStarsTransform(false);
+            
+            GameManager.playerManager.ResetPlayer();
+            
+            GameManager.StartCoroutine(GameManager.spawnerManager.ResetSpawners());
+            Debug.Log("PlayingState Exit");
+            
+        }
         private void ResetPlayGameUI()
         {
             gamePanel.gameObject.SetActive(true);
@@ -71,6 +102,7 @@ namespace GameStates
             processLeftText.text = GameManager.gamePropertiesInSave.currenLevel.ToString();
             processRightText.text = (GameManager.gamePropertiesInSave.currenLevel + 1).ToString();
             
+            GameManager.playerManager.recruitment.rb.velocity = Vector3.zero;
             SetStarsTransform(false);
         }
 
@@ -82,14 +114,6 @@ namespace GameStates
             }
         }
 
-        public override void Update()
-        {
-            if (isGameWon) return;
-            
-            GameManager.playerManager.UpdatePlayer();
-
-            UpdateSlider();
-        }
 
         private void UpdateSlider()
         {
@@ -131,26 +155,7 @@ namespace GameStates
             }
         }
 
-        public override void Exit()
-        {
-            gamePanel.gameObject.SetActive(false);
-            if (isGameWon)
-            {
-                GameManager.gamePropertiesInSave.totalMoney += score;
-                GameManager.menuState.SetMenuStateUI();
-            }
-            
-            isGameWon = false;
-            
-            extraBonus.text = "";
-            extraComboBonus.text = "";
-            
-            SetStarsTransform(false);
-            
-            GameManager.StartCoroutine(GameManager.spawnerManager.ResetSpawners());
-            Debug.Log("PlayingState Exit");
-        }
-        
+
         public void ClickAvoid(bool b)
         {
             GameManager.menuState.clickAvoid.SetActive(b);
@@ -164,6 +169,7 @@ namespace GameStates
                 GameManager.serviceManager.adsManager.PlaySceneTransitionAds();
                 GameManager.ChangeState(GameManager.playingState);
             });
+            
             startPosZ = playerInitialPosition.transform.position.z;
         }
     }

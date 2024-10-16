@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 
 namespace Controller.Spawners
 {
-    public class PrizeSpawner : MonoBehaviour
+    [Serializable]
+    public class PrizeSpawner
     {
         public void SpawnObject(SpawnManager spawnManager)
         {
