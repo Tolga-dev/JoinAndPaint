@@ -718,11 +718,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &312047256 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4572478755700786970, guid: d1fa2dae42ecf74d0891b645746fdce5, type: 3}
-  m_PrefabInstance: {fileID: 8208992260344700485}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &341854291 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8751462587573591972, guid: 2366e516e132f1d0ca7a2aaaca4f6346, type: 3}
@@ -1188,11 +1183,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1213551898 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7535695867787720208, guid: 2366e516e132f1d0ca7a2aaaca4f6346, type: 3}
-  m_PrefabInstance: {fileID: 7398050034385931943}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1241398215
 GameObject:
   m_ObjectHideFlags: 3
@@ -1819,13 +1809,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roadSpawner:
     gameManager: {fileID: 1632492263}
-    road: {fileID: 1213551898}
-    bossRoad: {fileID: 312047256}
+    road: {fileID: 7535695867787720208, guid: 2366e516e132f1d0ca7a2aaaca4f6346, type: 3}
+    bossRoad: {fileID: 4572478755700786970, guid: d1fa2dae42ecf74d0891b645746fdce5, type: 3}
     offset: {x: 0, y: 0, z: 5}
     createdRoads: []
     createdBossRoad: {fileID: 0}
-    startAmountOfRoad: 4
-    spawnAmount: 0
+    initAmount: 1
+    startAmountOfRoad: 0
+    spawnAmount: 4
   obstacleSpawner:
     obstacles:
     - {fileID: 6101474983760764076, guid: 041888e5d2b73f8b0bd12ae34ddf59ef, type: 3}
@@ -1838,6 +1829,14 @@ MonoBehaviour:
     - {fileID: 3236718058140866936, guid: e5ae14fe78275bc0f8b949ef0b1754ef, type: 3}
     - {fileID: 7980592550645374983, guid: 7299b9104232c290ab23fa3dfea621f9, type: 3}
     createdObstacles: []
+  prizeSpawner:
+    prizes:
+    - {fileID: 878732086903297617, guid: ca0abf828b1b155738a4a8fb4030016d, type: 3}
+    - {fileID: 5480849866933351741, guid: 5a3311e86bfb6dd7eb9dbb97e2277de6, type: 3}
+    - {fileID: 5480849866933351741, guid: cea74161f5aa1de6a98276b23a5058cf, type: 3}
+    chest: {fileID: 878732086903297617, guid: ca0abf828b1b155738a4a8fb4030016d, type: 3}
+    standardPrize: {fileID: 0}
+    createdPrizes: []
 --- !u!114 &1632492269
 MonoBehaviour:
   m_ObjectHideFlags: 0

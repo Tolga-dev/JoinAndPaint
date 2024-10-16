@@ -19,3 +19,7 @@ yol ustundeki engellerden gece gece boss bolumune git ve cabuk boya!
 
 
 * koselerden assagi dusuyor
+* bomba ekle
+* ziplatici ekle
+* zikzak yapan seyin transformlar ver
+* rotate - az donuyor

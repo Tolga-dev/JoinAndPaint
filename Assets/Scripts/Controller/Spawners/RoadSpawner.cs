@@ -19,18 +19,21 @@ namespace Controller.Spawners
         [Header("Created")]
         public List<Road> createdRoads = new List<Road>();
         public BossRoad createdBossRoad;
-        
+
+        public int initAmount;
         public int startAmountOfRoad;
         public int spawnAmount;
-
+        
         public void Init(GameManager gameManagerInGame)
         {
             gameManager = gameManagerInGame;
+            startAmountOfRoad = initAmount;
+            
         }
         
         public void SpawnNormalRoad()
         {
-            var created = Object.Instantiate(road, spawnAmount * offset,road.transform.rotation);
+            var created = Object.Instantiate(road, startAmountOfRoad * offset,road.transform.rotation);
             var createdRoad = created.GetComponent<Road>();
             createdRoad.gameManager = gameManager;
             
@@ -41,7 +44,7 @@ namespace Controller.Spawners
 
         public void SpawnBossObject()
         {
-            var created = Object.Instantiate(bossRoad, spawnAmount * offset,road.transform.rotation);
+            var created = Object.Instantiate(bossRoad, startAmountOfRoad * offset,road.transform.rotation);
             createdBossRoad = created.GetComponent<BossRoad>();
             createdBossRoad.gameManager = gameManager;
 
@@ -60,13 +63,13 @@ namespace Controller.Spawners
             Object.Destroy(createdBossRoad.gameObject);
             createdBossRoad = null;
             
-            spawnAmount = 0;
+            startAmountOfRoad = initAmount;
         }
         
         public int GetNumberOfRoad()
         {
             var level = gameManager.gamePropertiesInSave.currenLevel;
-            var numberOfRoadsToSpawn = startAmountOfRoad;
+            var numberOfRoadsToSpawn = spawnAmount;
 
             numberOfRoadsToSpawn += level / 10;
             
@@ -75,7 +78,7 @@ namespace Controller.Spawners
         
         public void SetNewPos()
         {
-            spawnAmount++;
+            startAmountOfRoad++;
         }
     }
 }

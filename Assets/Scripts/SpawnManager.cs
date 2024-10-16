@@ -19,6 +19,8 @@ public class SpawnManager : MonoBehaviour
     {
         _gameManager = GameManager.Instance;
         roadSpawner.Init(_gameManager);
+        prizeSpawner.Init(_gameManager);
+        
         SpawnObjects(); 
     } 
 
@@ -26,7 +28,7 @@ public class SpawnManager : MonoBehaviour
     {
         SpawnRoads();
         SpawnObstacles();
-        //SpawnerPrizes();
+        SpawnerPrizes();
     }
 
     private void SpawnerPrizes()
