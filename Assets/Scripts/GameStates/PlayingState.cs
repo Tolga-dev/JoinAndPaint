@@ -21,6 +21,7 @@ namespace GameStates
         public int score = 0;
         public bool isGameFinished = false;
         public bool isOnFinish = false;
+        public bool isGameWon = false;
         
         [Header("Game UI")] 
         public Transform gamePanel;
@@ -78,6 +79,7 @@ namespace GameStates
             }
             isGameFinished = false;
             isOnFinish = false;
+            isGameWon = false;
             
             GameManager.menuState.SetMenuStateUI();
             
@@ -103,6 +105,8 @@ namespace GameStates
             processSlider.value = 0;
             score = 0;
             isGameFinished = false;
+            isGameWon = false;
+            isOnFinish = false;
             
             processLeftText.text = GameManager.gamePropertiesInSave.currenLevel.ToString();
             processRightText.text = (GameManager.gamePropertiesInSave.currenLevel + 1).ToString();

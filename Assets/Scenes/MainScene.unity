@@ -4965,6 +4965,14 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1632492263}
+    - target: {fileID: 5166045459854261932, guid: 8fc26a87603af0f719fd48fca514d9e6, type: 3}
+      propertyPath: maxDistance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5166045459854261932, guid: 8fc26a87603af0f719fd48fca514d9e6, type: 3}
+      propertyPath: damageAmount
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7303435789333138070, guid: 8fc26a87603af0f719fd48fca514d9e6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

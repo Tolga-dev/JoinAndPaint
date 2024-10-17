@@ -87,13 +87,17 @@ namespace GameObjects.Boss
             {
                 Debug.Log("YES");
                 animator.SetFloat(AttackMode, 3); // running kick
+                _gameManager.playingState.isGameWon = false;
             }
             else
             {
+                _gameManager.playingState.isGameWon = true; 
+                // olme anim
+                animator.enabled = false;
                 Debug.Log("SEX");
             }
             
-            yield return new WaitForSeconds(1f); // wait for punch to play
+            yield return new WaitForSeconds(0.5f); // wait for punch to play
             
             _gameManager.playingState.isGameFinished = true;
             
@@ -126,6 +130,7 @@ namespace GameObjects.Boss
 
         public void TakeDamage(int memberDamageAmount)
         {
+            Debug.Log("damage");
             health -= memberDamageAmount;
         }
     }
