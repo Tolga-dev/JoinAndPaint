@@ -56,6 +56,7 @@ namespace Controller.Spawners
         public GameObject recruitment;
         
         public GameObject goodSelector;
+        public Sprite badSprite;
         
         private SpawnManager _spawnerManager;
         private GameManager _gameManager;
@@ -124,10 +125,19 @@ namespace Controller.Spawners
 
             var selectorController = prize.GetComponentInChildren<Selector>();
             selectorController.gameManager = _gameManager;
-            selectorController.selectorEnum = SelectorEnum.Good;
             selectorController.prizeAmount = 20;
             selectorController.SetText();
-        
+            
+            var randomCurrentSelector = Random.Range(0, 2);
+            
+            if(randomCurrentSelector == 1)
+                selectorController.selectorEnum = SelectorEnum.Good;
+            else
+            {
+                selectorController.selectorEnum = SelectorEnum.Bad;
+                selectorController.gateSprite.sprite = badSprite;
+            }
+                
         }
 
 
@@ -273,6 +283,17 @@ namespace Controller.Spawners
                 Object.Destroy(member);
             }
             createdMembers.Clear();
+        }
+
+        public void RemoveMember(int prizeAmount)
+        {
+            for (int i = 0; i < prizeAmount; i++)
+            {
+                if (_gameManager.playerManager.members.Count == 1) // 1 is player ehe
+                    break;
+                
+                _gameManager.memberManager.DestroyNewMember(_gameManager.playerManager.members[1].transform);
+            }
         }
     }
 }

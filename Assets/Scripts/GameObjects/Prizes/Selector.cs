@@ -23,7 +23,10 @@ namespace GameObjects.Prizes
 
             if (isHitPlayer)
             {
-                gameManager.spawnerManager.prizeSpawner.CreateMemberFromSelector(prizeAmount, transform);
+                if(selectorEnum ==SelectorEnum.Bad)
+                    gameManager.spawnerManager.prizeSpawner.RemoveMember(prizeAmount);
+                else
+                   gameManager.spawnerManager.prizeSpawner.CreateMemberFromSelector(prizeAmount, transform);
             }
         }
 
