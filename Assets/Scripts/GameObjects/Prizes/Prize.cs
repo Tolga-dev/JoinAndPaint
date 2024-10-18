@@ -18,38 +18,44 @@ namespace GameObjects.Prizes
             if (isHitPlayer)
             {
                 FoundPlayerHit();
+                return;
+            }
+
+            if (other.CompareTag("Recruitment"))
+            {
+                var recruitment = other.GetComponent<Recruitment>();
+                if (recruitment.isHitPlayer == false)
+                    return;
+                
+                FoundPlayerHit();
+                CallPlayerGotHit();
             }
         }
 
         public virtual void FoundPlayerHit()
         {
             gameManager.playingState.score += prizeAmount;
+            
         }
         
         protected override void PlayAdditionalEffects(PlayerManager playerController)
         {
             if (emoji != null)
-                SetParticlePosition(emoji, playerController.prizeEffectSpawnPoint.transform);
+                SetParticlePosition(emoji,emoji.transform);
 
             if(prizeCanvas != null)
-                    ShowCanvas(playerController.canvasSpawnPoint.transform);
+                    ShowCanvas(prizeCanvas.transform);
         }
 
         public void ShowCanvas(Transform playerPos)
         {
-            var canvasTransform = prizeCanvas.transform;
-    
-            // Set the canvas parent and initial position
-            canvasTransform.SetParent(playerPos);
-            canvasTransform.localPosition = Vector3.zero;
-
             var text = prizeCanvas.GetComponentInChildren<TextMeshProUGUI>();
             text.text = prizeAmount.ToString();
     
-            canvasTransform.gameObject.SetActive(true);
-            StartCoroutine(AnimateCanvas(canvasTransform));
+            prizeCanvas.gameObject.SetActive(true);
+            StartCoroutine(AnimateCanvas(prizeCanvas.transform));
         }
-
+         
 
         protected virtual IEnumerator AnimateCanvas(Transform canvasTransform)
         {
@@ -57,7 +63,7 @@ namespace GameObjects.Prizes
             float elapsed = 0f;
 
             Vector3 startPos = canvasTransform.localPosition; // Starting position (Vector3.zero)
-            Vector3 endPos = startPos + new Vector3(0, 10, 0); // Move up by 1 unit on the Y axis
+            Vector3 endPos = startPos + new Vector3(0, 0.1f, 0); // Move up by 1 unit on the Y axis
     
             while (elapsed < duration)
             {
@@ -66,6 +72,7 @@ namespace GameObjects.Prizes
         
                 yield return null;
             }
+            prizeCanvas.gameObject.SetActive(false);
             Destroy(prizeCanvas.gameObject);
         }
 

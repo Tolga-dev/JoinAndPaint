@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
+using GameObjects.Base;
 using GameObjects.Boss;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
-public class Recruitment : MonoBehaviour
+public class Recruitment : GameObjectBase
 {
     public SkinnedMeshRenderer skinnedMeshRenderer;
     public PlayerAnimationController playerAnimationController;
@@ -15,16 +16,41 @@ public class Recruitment : MonoBehaviour
     
     public PlayerManager _playerManager;
     public float maxDistance = 0.3f;
+    
+    public bool merged = false;
 
+    public ParticleSystem dieEffect;
+    public ParticleSystem surfaceBlood;
     public void StartPlayer(PlayerManager playerManager)
     {
         _playerManager = playerManager;
         skinnedMeshRenderer.material = playerManager.recruitment.skinnedMeshRenderer.material;
         playerAnimationController.StartRunner();    
     }
+    
+    public override void OnTriggerEnter(Collider other)
+    {
+        base.OnTriggerEnter(other);
+        
+        if (other.CompareTag("Obstacle"))
+        {
+            gameManager.memberManager.DestroyNewMember(transform);
+        }
+    }
 
+    public void Freeze()
+    {
+       rb.constraints = RigidbodyConstraints.FreezeAll;
+    }
+    public void UnFreeze()
+    {
+        rb.constraints = 
+            RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+    }
     public void Die(PlayerManager playerManager)
     {
+        SetParticlePosition(dieEffect);
+        SetParticlePosition(surfaceBlood);
         gameObject.SetActive(false);
     }
 
@@ -42,6 +68,49 @@ public class Recruitment : MonoBehaviour
     {
         return health < 0;
     }
+    
+    public void Merge(Recruitment member, Transform playerPos)
+    {
+        StartCoroutine(MergeCoroutine(member, playerPos));    
+    }
+
+    private IEnumerator MergeCoroutine(Recruitment member, Transform playerPos)
+    {
+        while (merged == false)
+        {
+            var position = playerPos.transform.position;
+            var distance = Vector3.Distance(member.rb.position, position);
+            var canMerge =distance < member.maxDistance;
+
+            if (canMerge)
+            {
+                playerPos.localScale += new Vector3(0.1f, 0.1f, 0.1f);
+                merged = true;
+                yield break;
+            }
+            else
+            {
+                member.playerAnimationController.StartRunner();
+                var targetPosition = position;
+
+                member.rb.MovePosition(Vector3.MoveTowards(member.rb.position, targetPosition,
+                    _playerManager.zSpeed * Time.fixedDeltaTime));
+
+                var lookDirection = (position - member.transform.position).normalized;
+                    
+                if (lookDirection != Vector3.zero) // Avoid zero direction issues
+                {
+                    var targetRotation = Quaternion.LookRotation(lookDirection);
+                    member.transform.rotation = Quaternion.Slerp(member.transform.rotation, targetRotation, 
+                        Time.fixedDeltaTime * _playerManager.rotationSpeed);
+                }
+            }
+        }
+        
+        gameObject.SetActive(false);
+        yield break;
+    }
+
 
     public void Attack(Recruitment member, Boss target)
     {
@@ -50,8 +119,8 @@ public class Recruitment : MonoBehaviour
     
     private IEnumerator MoveToTarget(Recruitment member, Boss target)
     {
-        var playerAnimationController = member.playerAnimationController;
-        playerAnimationController.SetStartFight();
+        var controller = member.playerAnimationController;
+        controller.SetStartFight();
 
         var coolDown = false;
         var playingState = _playerManager.gameManager.playingState;
@@ -63,11 +132,10 @@ public class Recruitment : MonoBehaviour
             
             if (canAttack && coolDown == false)
             {
-                Debug.Log("Attack!");
                 coolDown = true;
                 
                 int attackType = Random.Range(0, 3); // 0 for kick, 1 for punch
-                playerAnimationController.SetFightMethod(attackType);
+                controller.SetFightMethod(attackType);
                 DamageTarget(member,target);
                 
                 yield return new WaitForSeconds(0.5f); // wait for kick to play
@@ -75,7 +143,6 @@ public class Recruitment : MonoBehaviour
             }
             else
             {
-                Debug.Log("Running!");
                 member.playerAnimationController.StartRunner();
                 var position = target.transform.position;
                 var targetPosition = position;
@@ -105,4 +172,6 @@ public class Recruitment : MonoBehaviour
     {
         target.TakeDamage(member.damageAmount); 
     }
+
+  
 }

@@ -15,11 +15,12 @@ MonoBehaviour:
   isGameSoundOn: 1
   isGameMusicOn: 1
   buttonClickSound: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
-  playerHitSound: {fileID: 8300000, guid: 68e3da0187b7e6a21848271af804c349, type: 3}
+  playerObstacleHitSound: {fileID: 8300000, guid: 68e3da0187b7e6a21848271af804c349, type: 3}
+  playerPrizeHitSound: {fileID: 8300000, guid: 0fc76fedeb809a48182cfeae4c5a7e1b, type: 3}
   starSound: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
-  gameSoundVolume: 1
+  gameSoundVolume: 0.5
   gameMusicChangeDuration: 1
-  gameMusicStartVolume: 1
+  gameMusicStartVolume: 0.5
   onMenuStateSound: {fileID: 8300000, guid: 92cb74aac94cb5c2893b364c7b2ccef1, type: 3}
   onMarketSound: {fileID: 8300000, guid: eca205e3b811672b19c0be824bcea394, type: 3}
   purchasedSound: {fileID: 8300000, guid: 0076e9e3619625113ac99a1e27027937, type: 3}
@@ -39,5 +40,5 @@ MonoBehaviour:
   - You Win!
   - Good Luck
   currenLevel: 0
-  onGameWinSound: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
+  onGameWinSound: {fileID: 8300000, guid: 3ffa5211c2d4bbb5593beb44a0b5a81e, type: 3}
   levelRecords: 64000000

@@ -10,20 +10,24 @@ namespace GameObjects.Base
         public ParticleSystem hitPlayerEffect;
 
         [Header("Parameters")]
+        public AudioClip playerHitSound;
         public bool isHitPlayer = false;
         private static readonly int PlayerHit = Animator.StringToHash("HitPlayer");
+        
         
         public virtual void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
             {
-                CallPlayerGotHit(other.gameObject);
+                CallPlayerGotHit();
             }
             
         }
-        private void CallPlayerGotHit(GameObject player)
+        public void CallPlayerGotHit()
         {
-            gameManager.soundManager.PlayASound(gameManager.gamePropertiesInSave.playerHitSound);
+            CloseCollider();
+            if(playerHitSound != null)
+                gameManager.soundManager.PlayASound(playerHitSound);
     
             if(animator != null)
                 animator.SetBool(PlayerHit, true);
@@ -31,13 +35,19 @@ namespace GameObjects.Base
             if (hitPlayerEffect != null)
             {
                 var playerController = gameManager.playerManager;
-                SetParticlePosition(hitPlayerEffect, playerController.prizeEffectSpawnPoint.transform);
+                SetParticlePosition(hitPlayerEffect, hitPlayerEffect.transform);
                 PlayAdditionalEffects(playerController);
             }
 
             isHitPlayer = true;
             
             DisableGameObject();
+        }
+
+        private void CloseCollider()
+        {
+            var component = GetComponent<Collider>();
+            component.enabled = false;
         }
 
         protected virtual void PlayAdditionalEffects(PlayerManager playerController)
@@ -50,16 +60,17 @@ namespace GameObjects.Base
             enabled = false;
         }
 
-        protected void SetParticlePosition(ParticleSystem currentParticle, Transform playerPos)
+        protected void SetParticlePosition(ParticleSystem currentParticle, Transform parent = null)
         {
-            var particleTransform = currentParticle.transform;
-            particleTransform.parent = playerPos;
-            particleTransform.transform.localPosition = Vector3.zero;
-    
+            if (parent == null)
+            {
+                currentParticle.transform.parent = null;
+            }
+            
             currentParticle.Play(); // Start particle system
-
             var main = currentParticle.main;
             Destroy(currentParticle.gameObject, main.duration + main.startLifetime.constantMax);
+            
         }
 
 

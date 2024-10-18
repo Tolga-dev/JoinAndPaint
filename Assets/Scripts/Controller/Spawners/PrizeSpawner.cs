@@ -26,6 +26,7 @@ namespace Controller.Spawners
 
         private int _totalMaxRange;
         private int[] _prizeRanges;
+        public int additionalPoint;
 
         public void Init(GameManager gameManager)
         {
@@ -112,7 +113,7 @@ namespace Controller.Spawners
         public void SetRandValuePrize(Prize prize, int factor)
         {
             var save = _spawnerManager.GameManager.gamePropertiesInSave;
-            var maxRange = save.currenLevel;
+            var maxRange = save.currenLevel + additionalPoint;
             
             prize.prizeAmount = Random.Range(maxRange - (int)(maxRange/2),maxRange);
             prize.prizeAmount *= factor;
@@ -134,6 +135,10 @@ namespace Controller.Spawners
             for (int i = 0; i < spawnCount; i++)
             {
                 var prize = Object.Instantiate(recruitment, spawnPoint, true);
+                var createdRecruitment = prize.GetComponent<Recruitment>();
+                createdRecruitment.Freeze();
+                createdRecruitment.gameManager = _gameManager;
+
                 var position = spawnPoint.position;
                 var randomXOffset = Random.Range(-0.5f, 0.5f);
               

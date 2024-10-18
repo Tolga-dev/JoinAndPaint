@@ -8,7 +8,7 @@ public class MemberManager : MonoBehaviour
     {
         var playerManager = gameManager.playerManager;
         var recruitment = otherTransform.GetComponent<Recruitment>();
-        
+        recruitment.UnFreeze();
         recruitment.StartPlayer(playerManager);
         playerManager.members.Add(recruitment);
     }

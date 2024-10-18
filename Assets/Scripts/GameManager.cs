@@ -6,7 +6,6 @@ using GameStates;
 using GameStates.Base;
 using Save;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class GameManager : Singleton<GameManager>
 {

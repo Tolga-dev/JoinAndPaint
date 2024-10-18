@@ -31,7 +31,6 @@ namespace Controller.Spawners
         {
             gameManager = gameManagerInGame;
             startAmountOfRoad = initAmount;
-            
         }
         
         public void SpawnNormalRoad()
@@ -47,7 +46,7 @@ namespace Controller.Spawners
 
         public void SpawnBossObject()
         {
-            GameObject[] bossOptions = { bossRoad, chestBoss };
+            GameObject[] bossOptions = { bossRoad }; // 5 turda bir chestBoss, her turda farkli sapkali boss, bazilrinda ozel chestler olacak
             
             var randomIndex = Random.Range(0, bossOptions.Length);
             var selectedBoss = bossOptions[randomIndex];

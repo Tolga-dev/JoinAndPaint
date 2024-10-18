@@ -12,7 +12,6 @@ namespace Save
         public AudioClip buttonClickSound;
         
         // in game sounds
-        public AudioClip playerHitSound;
         public AudioClip starSound;
         
         // sound

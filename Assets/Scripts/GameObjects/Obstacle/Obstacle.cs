@@ -15,16 +15,12 @@ namespace GameObjects.Obstacle
                 var playerController = gameManager.playerManager;
                 playerController.GotHitReaction();
             }
-            if (other.CompareTag("Recruitment"))
-            {
-                gameManager.memberManager.DestroyNewMember(other.transform);
-            }
         }
  
         protected override void DisableGameObject()
         {
             
         }
-        
+     
     }
 }

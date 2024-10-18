@@ -47,7 +47,7 @@ public class PlayerManager : MonoBehaviour
                 member.rb.velocity = Vector3.zero;
                 member.playerAnimationController.SetPlayerIdle();
             }
-        }
+        }   
         else
         {
             SetDirection();
@@ -134,8 +134,9 @@ public class PlayerManager : MonoBehaviour
         Debug.Log("die");
     }
 
-    public void TargetToATransform(Boss target)
+    public void TargetToATransform(Boss target, bool isAttack) // hated ofc but, i was bored tbh
     {
+        /*
         foreach (var member in members)
         {
             var rb = member.rb;
@@ -145,9 +146,47 @@ public class PlayerManager : MonoBehaviour
             rb.drag = 0f;
             rb.angularDrag = 0f;
 
-            member.Attack(member, target);
-            
+            if(isAttack)
+                member.Attack(member, target);
+            else
+            {
+                if (members.Count == 1)
+                    break;
+                member.Merge(member, transform);
+            }
         }
+
+        if (isAttack == false)
+        {
+            StartCoroutine(AttackToTarget(target));
+        }
+        */
+        
     }
-    
+
+    private IEnumerator AttackToTarget(Boss target)
+    {
+
+        /*if (members.Count > 1)
+        {
+            bool isAllMembersAreMerged = false;
+            while (isAllMembersAreMerged == false)
+            {
+                isAllMembersAreMerged = true;
+                foreach (var member in members)
+                {
+                    if(member == recruitment)
+                        continue;
+                    
+                    if (member.merged == false)
+                    {
+                        isAllMembersAreMerged = false;
+                    }
+                }
+            }
+        }
+        recruitment.Attack(recruitment, target);*/
+
+        yield break;
+    }
 }
