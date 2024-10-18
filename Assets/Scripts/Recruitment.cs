@@ -21,6 +21,11 @@ public class Recruitment : GameObjectBase
 
     public ParticleSystem dieEffect;
     public ParticleSystem surfaceBlood;
+
+    public Transform accessorLeftHand;
+    public Transform accessorRightHand;
+    public Transform accessorHead;
+    
     public void StartPlayer(PlayerManager playerManager)
     {
         _playerManager = playerManager;

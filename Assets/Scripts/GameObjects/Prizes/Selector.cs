@@ -1,31 +1,42 @@
 
-using GameObjects.Prizes;
+using TMPro;
+using UnityEngine;
 
-namespace Save.GameObjects.Prizes
+namespace GameObjects.Prizes
 {
+    public enum SelectorEnum
+    {
+        Good, // sum
+        Bad // subs
+    }
+    
     public class Selector : Prize
     {
-        /*public Selection selection;
+        public SelectorEnum selectorEnum;
+
         public TextMeshPro selectionText;
         public SpriteRenderer gateSprite;
-        
+
         public override void OnTriggerEnter(Collider other)
         {
             base.OnTriggerEnter(other);
 
             if (isHitPlayer)
             {
-                isHitPlayer = false;
-                selection.PerformAction(prizeAmount);
+                gameManager.spawnerManager.prizeSpawner.CreateMemberFromSelector(prizeAmount, transform);
             }
         }
-        
+
         public void SetText()
         {
-
-            selectionText.text = selection.selectionOperation + " " + prizeAmount;
+            selectionText.text =  GetOperation() + " " + prizeAmount;
         }
-        */
-        
+
+        public string GetOperation()
+        {
+            if (selectorEnum == SelectorEnum.Bad)
+                return "-";
+            return "+";
+        }
     }
 }

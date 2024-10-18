@@ -61,14 +61,18 @@ namespace GameStates
         {
             if (isGameFinished) return;
 
-            UpdateSlider();
-
+            UpdateUI();
+            
             if (isOnFinish)
                 return;
             
             GameManager.playerManager.UpdatePlayer();
         }
-        
+        public void UpdateUI()
+        {
+            scoreText.text = score.ToString();
+            UpdateSlider();
+        }
         public override void Exit()
         {
             gamePanel.gameObject.SetActive(false);
@@ -179,5 +183,6 @@ namespace GameStates
             
             startPosZ = playerInitialPosition.transform.position.z;
         }
+
     }
 }

@@ -2,13 +2,47 @@ using System;
 using System.Collections.Generic;
 using GameObjects.Prizes;
 using GameObjects.Road;
-using Save.GameObjects.Prizes;
+using Unity.VisualScripting;
 using UnityEngine;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
+
 namespace Controller.Spawners
 {
+    public enum AccessorTypesEnum
+    {
+        Head,
+        LeftHand,
+        RightHand
+    }
+    [Serializable]
+    public class Accessor
+    {
+        public GameObject accessor;
+        public int power;
+    }
+
+    [Serializable]
+    public class AccessorType
+    {
+        public AccessorTypesEnum accessorType;
+        public List<Accessor> accessories = new List<Accessor>();
+    }
+    
+    
+    [Serializable]
+    public class AccessorTypes
+    {
+        public List<Material> materials = new List<Material>();
+        public List<AccessorType> accessorTypes = new List<AccessorType>();
+        public AccessorType GetType(AccessorTypesEnum accessorTypesEnum)
+        {
+            return accessorTypes.Find(x => x.accessorType == accessorTypesEnum);
+        }
+        
+    }
+
     [Serializable]
     public class PrizeSpawner
     {
@@ -21,12 +55,16 @@ namespace Controller.Spawners
         
         public GameObject recruitment;
         
+        public GameObject goodSelector;
+        
         private SpawnManager _spawnerManager;
         private GameManager _gameManager;
 
         private int _totalMaxRange;
         private int[] _prizeRanges;
         public int additionalPoint;
+        
+        public AccessorTypes accessorTypes;
 
         public void Init(GameManager gameManager)
         {
@@ -59,16 +97,40 @@ namespace Controller.Spawners
                         continue;
 
                     CreateMember(road.spawnPoints[i].spawnPoint);
+
+                    var index = Random.Range(0, 3);
                     
-                    if (Random.Range(0, 2) == 1) // 50% chance to spawn
+                    if (index == 1) // 50% chance to spawn
                     {
                         CreatePrize(road.spawnPoints[i].spawnPoint);
+                    }
+                    else if (index == 2)
+                    {
+                        CreateSelector(road.spawnPoints[i].spawnPoint);
                     }
                 }
             }
         }
 
-       
+        private void CreateSelector(Transform spawnPoint)
+        {
+            var selector = goodSelector;
+            
+            var prize = Object.Instantiate(selector, spawnPoint, true);
+            var position = spawnPoint.position;
+            var transform = prize.transform;
+            transform.position = new Vector3(position.x, transform.position.y, position.z);
+            createdPrizes.Add(prize.gameObject);
+
+            var selectorController = prize.GetComponentInChildren<Selector>();
+            selectorController.gameManager = _gameManager;
+            selectorController.selectorEnum = SelectorEnum.Good;
+            selectorController.prizeAmount = 20;
+            selectorController.SetText();
+        
+        }
+
+
         private void CreatePrize(Transform spawnPoint) 
         {
             var rate = Random.Range(0, _totalMaxRange); 
@@ -119,17 +181,28 @@ namespace Controller.Spawners
             prize.prizeAmount *= factor;
             prize.gameManager = _gameManager;
         }
-        private void CreateMember(Transform spawnPoint)
+
+        public void CreateMemberFromSelector(int prizeAmount, Transform spawnPoint)
+        {
+            CreateMember(spawnPoint,prizeAmount);   
+        }
+        
+        private void CreateMember(Transform spawnPoint, int spawnCount = 0)
         {
             Debug.Log("SpawnMan");
-            
-            var spawnCount = Random.Range(2, 5); 
+
+            var canIAddToNewMembers = true;
+            if (spawnCount == 0)
+            {
+                spawnCount = Random.Range(2, 5);
+                canIAddToNewMembers = false;
+            }
  
             var positionOffsets = new float[spawnCount];
 
             for (int i = 0; i < spawnCount; i++)
             {
-                positionOffsets[i] = (i % 2 == 0 ? 1 : -1) * (i / 4f);
+                positionOffsets[i] = (i % 2 == 0 ? 1 : -1) * (i / 16f);
             }
             
             for (int i = 0; i < spawnCount; i++)
@@ -138,50 +211,47 @@ namespace Controller.Spawners
                 var createdRecruitment = prize.GetComponent<Recruitment>();
                 createdRecruitment.Freeze();
                 createdRecruitment.gameManager = _gameManager;
+                
+                var randomAccessorType = accessorTypes.accessorTypes[Random.Range(0, accessorTypes.accessorTypes.Count)];
+                var accessor = randomAccessorType.accessories[0];
+                var currentAccessor = accessor.accessor;
+                createdRecruitment.damageAmount += accessor.power;
+
+                switch (randomAccessorType.accessorType)
+                {
+                    case AccessorTypesEnum.Head:
+                        var accessorHead = createdRecruitment.accessorHead;
+                        var createdAccessor = Object.Instantiate(currentAccessor, accessorHead);
+                        createdAccessor.transform.localPosition = Vector3.zero;
+                        createdAccessor.GetComponent<MeshRenderer>().material = accessorTypes.materials[Random.Range(0, accessorTypes.materials.Count)];
+                        break;
+                    case AccessorTypesEnum.LeftHand:
+                        var accessorLeftHand = createdRecruitment.accessorLeftHand;
+                        var createdAccessorLeftHand = Object.Instantiate(currentAccessor, accessorLeftHand);
+                        createdAccessorLeftHand.transform.localPosition = Vector3.zero;
+                        createdAccessorLeftHand.GetComponent<MeshRenderer>().material = accessorTypes.materials[Random.Range(0, accessorTypes.materials.Count)];
+                        break;
+                    case AccessorTypesEnum.RightHand:
+                        var accessorRightHand = createdRecruitment.accessorRightHand;
+                        var createdAccessorRightHand = Object.Instantiate(currentAccessor, accessorRightHand);
+                        createdAccessorRightHand.transform.localPosition = Vector3.zero;
+                        createdAccessorRightHand.GetComponent<MeshRenderer>().material = accessorTypes.materials[Random.Range(0, accessorTypes.materials.Count)];
+                        break;
+                }
 
                 var position = spawnPoint.position;
                 var randomXOffset = Random.Range(-0.5f, 0.5f);
-              
-                prize.transform.position = new Vector3(position.x + randomXOffset, prize.transform.position.y, position.z + positionOffsets[i]);
+                
+                if (canIAddToNewMembers)
+                    prize.transform.position = new Vector3(position.x + randomXOffset, prize.transform.position.y, position.z);
+                else
+                   prize.transform.position = new Vector3(position.x + randomXOffset, prize.transform.position.y, position.z + positionOffsets[i]);
+                    
                 createdMembers.Add(prize);
+                if (canIAddToNewMembers)
+                    _gameManager.memberManager.AddNewMember(prize.transform);
             }
-            
         }
-
- 
-
-        /*private void ConfigureSelector(GameObject prize)
-        {
-            var selector = prize.GetComponentInChildren<Selector>();
-            var gameManager = _spawnerManager.GameManager;
-            var selectorManager = gameManager.selectorManager;
-            var operations = selectorManager.GetOperations();
-            
-            selector.selection = operations[Random.Range(0, operations.Count)];
-    
-            var currentLevel = gameManager.gamePropertiesInSave.currenLevel;
-
-            selector.prizeAmount = selector.selection.selectionAction switch
-            {
-                SelectionAction.Sum => Random.Range(5, 10 + currentLevel),
-                SelectionAction.Subtraction => Random.Range(5, 20 + currentLevel),
-                SelectionAction.Multiply => Random.Range(2, 4 + currentLevel/10),
-                SelectionAction.Divide => Random.Range(2, 4 + currentLevel),
-                _ => selector.prizeAmount
-            };
-            selector.gateSprite.sprite = selector.selection.sprite;
-            
-            selector.SetText();
-        }
-        
-
-        private void SpawnChest(SpawnManager spawnerManager)
-        {
-            var road = spawnerManager.roadSpawner.createdRoads[0]; // make it easy some times :)
-            var spawnPoint = road.spawnPoint[Random.Range(0, road.spawnPoint.Count)];
-            SpawnAtPoint(chest, spawnPoint);
-        }*/
-        
         private void SpawnAtPoint(GameObject prize, Transform spawnPoint)
         {
             var created = Object.Instantiate(prize, spawnPoint.position, Quaternion.identity);
