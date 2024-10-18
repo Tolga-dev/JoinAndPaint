@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using GameObjects.Base;
 using GameObjects.Boss;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -39,10 +40,15 @@ public class Recruitment : GameObjectBase
         
         if (other.CompareTag("Obstacle"))
         {
-            gameManager.memberManager.DestroyNewMember(transform);
+            gameManager.memberManager.DestroyNewMember(this);
         }
     }
 
+    protected override void DisableGameObject()
+    {
+        
+    }
+    
     public void Freeze()
     {
        rb.constraints = RigidbodyConstraints.FreezeAll;
@@ -56,7 +62,8 @@ public class Recruitment : GameObjectBase
     {
         SetParticlePosition(dieEffect);
         SetParticlePosition(surfaceBlood);
-        gameObject.SetActive(false);
+        
+        Destroy(gameObject);
     }
 
     public void TakeDamage(int damage)
@@ -64,7 +71,7 @@ public class Recruitment : GameObjectBase
         health -= damage;
         if (health < 0)
         {
-            _playerManager.gameManager.memberManager.DestroyNewMember(transform);
+            gameManager.memberManager.DestroyNewMember(transform.GetComponent<Recruitment>());
         }
     }
     

@@ -9895,7 +9895,7 @@ GameObject:
   - component: {fileID: 8674711512509383020}
   m_Layer: 0
   m_Name: Half_Donut_Side (1)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10002,6 +10002,7 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   animator: {fileID: 0}
   hitPlayerEffect: {fileID: 3553294313040152274}
+  playerHitSound: {fileID: 0}
   isHitPlayer: 0
 --- !u!54 &8310836844478981092
 Rigidbody:

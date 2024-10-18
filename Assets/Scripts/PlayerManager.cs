@@ -27,6 +27,7 @@ public class PlayerManager : MonoBehaviour
     public Transform prizeEffectSpawnPoint;
     public Transform canvasSpawnPoint;
 
+    public bool memberEditMode = false;
     private void Start()
     {
         members.Add(recruitment);
@@ -35,6 +36,9 @@ public class PlayerManager : MonoBehaviour
     public void UpdatePlayer()
     {
         inputController.HandleMouseInput();
+
+        if (memberEditMode)
+            return;
         MovePlayer();
     }
 
@@ -66,6 +70,7 @@ public class PlayerManager : MonoBehaviour
     {
         foreach (var member in members)
         {
+            
             member.transform.rotation = 
                 Quaternion.Slerp(member.transform.rotation, member.rb.velocity.magnitude > 0.5f 
                     ? Quaternion.LookRotation(member.rb.velocity) : Quaternion.identity, Time.deltaTime * rotationSpeed);
@@ -126,7 +131,10 @@ public class PlayerManager : MonoBehaviour
     {
         if (other.CompareTag("Recruitment"))
         {
-            gameManager.memberManager.AddNewMember(other.transform);
+            var rec = other.transform.GetComponent<Recruitment>();
+            if (rec.isHitPlayer)
+                return;
+            gameManager.memberManager.AddNewMember(rec);
         }
     }
     public void GotHitReaction()

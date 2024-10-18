@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 1659311501749575699}
   m_Layer: 0
   m_Name: Half_Donut_01 (1)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,6 +103,7 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   animator: {fileID: 0}
   hitPlayerEffect: {fileID: 0}
+  playerHitSound: {fileID: 0}
   isHitPlayer: 0
 --- !u!65 &4702515429276152769
 BoxCollider:

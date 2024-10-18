@@ -1,34 +1,45 @@
 yol ustundeki engellerden gece gece boss bolumune git ve cabuk boya!
 
-- trapler -ok
-  - spawn et hepsini testler yap -ok
-- oduller -ok
-  - traplerin oldugu olmadigi yerlere spawn et - random spawn olacak -ok
-- adamlar -ok
-  - traplerin olmadigi yerlerde belli nadirlikle olacak -ok
+
+* kamera daha hizli gitmeli 
+* adama carparsan
+  * ses 
+  * efect
+  * farkli akseksuarlar - levele gore -> daha guclu olmasini saglayan sexler - simdilik bir tane assekx - ok
+  
+* adam bir seye carparsa -ok
+  * ses  -ok
+  * olme efeti -ok
+  
+* prize a carparsan -ok
+  * effect -ok
+  * ses -ok
+  * skor -ok
 
 
-* fix game play
-* add boss fights then
-  - finsih line -> add for members
 
-* iki farkli biom
-  * odul biomu -> her yeni level eklenecegi zaman bu gelecek
-    * birlesme ve ortadaki chesti patlatma  
-  * normal level biomu
-    * boss
-      * boyama animasyonu
-      * 5 ten fazla ise birlesme
-      * assa birlikte boyama
-    * fight
-      * bossun saldirilari
-      * bossun cani
-      * bossun hareketleri
-      * bossun animasyonlari
-      
-* koselerden assagi dusuyor
-* bomba ekle
-* ziplatici ekle
-* zikzak yapan seyin transformlar ver
-* rotate - az donuyor
-* spawnlarla ilgili problem
+* traps  spawn
+  * yukari dogru firlatici
+  * dikenler
+
+
+
+* boss
+  * chest
+    * 5 levelde 1
+      * toplu birlesme ve tekli birlesme
+  * boss spawn
+    * toplu birlesme ve tekli birlesme
+
+
+  
+- found bugs      
+  * koselerden assagi dusuyor
+  * olenlerde corotine baslatilamaz
+  * bomba ekle
+  * ziplatici ekle
+  * zikzak yapan seyin transformlar ver
+  * rotate - az donuyor
+  * spawnlarla ilgili problem
+  * boss a kullesme shader ekle
+  * kucuk gold barlarda, uzerinden gecerken s*xe ugruyoruz

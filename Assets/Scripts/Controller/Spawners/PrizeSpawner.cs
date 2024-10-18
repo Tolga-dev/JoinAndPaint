@@ -97,7 +97,7 @@ namespace Controller.Spawners
                     if (road.spawnPoints[i].isObjSpawned)
                         continue;
 
-                    CreateMember(road.spawnPoints[i].spawnPoint);
+                    /*CreateMember(road.spawnPoints[i].spawnPoint);
 
                     var index = Random.Range(0, 3);
                     
@@ -105,7 +105,7 @@ namespace Controller.Spawners
                     {
                         CreatePrize(road.spawnPoints[i].spawnPoint);
                     }
-                    else if (index == 2)
+                    else if (index == 2)*/
                     {
                         CreateSelector(road.spawnPoints[i].spawnPoint);
                     }
@@ -126,7 +126,6 @@ namespace Controller.Spawners
             var selectorController = prize.GetComponentInChildren<Selector>();
             selectorController.gameManager = _gameManager;
             selectorController.prizeAmount = 20;
-            selectorController.SetText();
             
             var randomCurrentSelector = Random.Range(0, 2);
             
@@ -138,6 +137,7 @@ namespace Controller.Spawners
                 selectorController.gateSprite.sprite = badSprite;
             }
                 
+            selectorController.SetText();
         }
 
 
@@ -257,9 +257,15 @@ namespace Controller.Spawners
                 else
                    prize.transform.position = new Vector3(position.x + randomXOffset, prize.transform.position.y, position.z + positionOffsets[i]);
                     
-                createdMembers.Add(prize);
                 if (canIAddToNewMembers)
-                    _gameManager.memberManager.AddNewMember(prize.transform);
+                {
+                    createdRecruitment.isHitPlayer = true;
+                    _gameManager.memberManager.AddNewMember(createdRecruitment);
+                }
+                else
+                {
+                    createdMembers.Add(prize);
+                }
             }
         }
         private void SpawnAtPoint(GameObject prize, Transform spawnPoint)
@@ -287,13 +293,16 @@ namespace Controller.Spawners
 
         public void RemoveMember(int prizeAmount)
         {
+            _gameManager.playerManager.memberEditMode = true;
             for (int i = 0; i < prizeAmount; i++)
             {
                 if (_gameManager.playerManager.members.Count == 1) // 1 is player ehe
                     break;
                 
-                _gameManager.memberManager.DestroyNewMember(_gameManager.playerManager.members[1].transform);
+                _gameManager.memberManager.DestroyNewMember(_gameManager.playerManager.members[1]);
             }
+            _gameManager.playerManager.memberEditMode = false;
+
         }
     }
 }

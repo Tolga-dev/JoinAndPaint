@@ -4,21 +4,20 @@ public class MemberManager : MonoBehaviour
 {
     public GameManager gameManager;
     
-    public void AddNewMember(Transform otherTransform)
+    public void AddNewMember(Recruitment recruitment)// check for this function
     {
+        Debug.Log("called!");
         var playerManager = gameManager.playerManager;
-        var recruitment = otherTransform.GetComponent<Recruitment>();
         recruitment.UnFreeze();
         recruitment.StartPlayer(playerManager);
         playerManager.members.Add(recruitment);
     }
-    public void DestroyNewMember(Transform otherTransform)
+    public void DestroyNewMember(Recruitment otherTransform)
     {
         var playerManager = gameManager.playerManager;
-        var recruitment = otherTransform.GetComponent<Recruitment>();
         
-        recruitment.Die(playerManager);
-        playerManager.members.Remove(recruitment);
+        playerManager.members.Remove(otherTransform);
+        otherTransform.Die(playerManager);
     }
     
 }

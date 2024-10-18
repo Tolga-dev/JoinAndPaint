@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 7128204766260104271}
   m_Layer: 0
   m_Name: Half_Donut_01
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -252,6 +252,7 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   animator: {fileID: 0}
   hitPlayerEffect: {fileID: 5684674757566208174}
+  playerHitSound: {fileID: 0}
   isHitPlayer: 0
   speed: 1
   minXValue: 0

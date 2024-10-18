@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1463558216687264316}
   m_Layer: 0
   m_Name: HorizontalObstacle
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,6 +125,7 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   animator: {fileID: 0}
   hitPlayerEffect: {fileID: 8112208998834963864}
+  playerHitSound: {fileID: 0}
   isHitPlayer: 0
   moveSpeed: 10
   smoothness: 0.1
