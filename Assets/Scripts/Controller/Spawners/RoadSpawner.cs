@@ -59,7 +59,7 @@ namespace Controller.Spawners
             createdBossRoad.gameManager = gameManager;
             SpawnAccessories(createdBossRoad.boss);
 
-            gameManager.cameraController.SetTarget(createdBossRoad.transform, gameManager.cameraController.bossCam);
+            gameManager.cameraController.SetTarget(createdBossRoad.boss.transform, gameManager.cameraController.bossCam);
             SetNewPos();
         }
 

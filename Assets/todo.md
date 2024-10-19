@@ -36,14 +36,14 @@ yol ustundeki engellerden gece gece boss bolumune git ve cabuk boya!
     
   
 - found bugs      
-  * koselerden assagi dusuyor
+  * rotate - az donuyor -ok
+  * kavga sahnesinde boss a odakla kamera -ok
+  * koselerden assagi dusuyor 
   * olenlerde corotine baslatilamaz
   * zikzak yapan seyin transformlar ver
-  * rotate - az donuyor
   * spawnlarla ilgili problem
   * boss a kullesme shader ekle
   * kucuk gold barlarda, uzerinden gecerken s*xe ugruyoruz
-  * kavga sahnesinde boss a odakla kamera
   * attack miktarlari cok yuksek - can miktarlari cok yuksek
   * gorunmez spawnlar oluyor
   * spawn ederken rotasyonu 0 la
