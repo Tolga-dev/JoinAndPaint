@@ -1263,6 +1263,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19927144, guid: a79f8048fa75d6c449d730e96bb836fa, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19927144, guid: a79f8048fa75d6c449d730e96bb836fa, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -1302,8 +1306,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 766039791032734827}
     m_Modifications:
     - target: {fileID: 2239775907042860487, guid: c0eb01d9d213abdf2a80c409da250451, type: 3}
+      propertyPath: m_Maskable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2239775907042860487, guid: c0eb01d9d213abdf2a80c409da250451, type: 3}
       propertyPath: m_fontSize
       value: 1.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 2239775907042860487, guid: c0eb01d9d213abdf2a80c409da250451, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3414222184904518294, guid: c0eb01d9d213abdf2a80c409da250451, type: 3}
       propertyPath: m_Pivot.x

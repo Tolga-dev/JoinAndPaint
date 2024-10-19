@@ -5138,6 +5138,10 @@ PrefabInstance:
       propertyPath: maxDistanceMove
       value: 0.7
       objectReference: {fileID: 0}
+    - target: {fileID: 423969743126283052, guid: 8fc26a87603af0f719fd48fca514d9e6, type: 3}
+      propertyPath: inputController.gameManager
+      value: 
+      objectReference: {fileID: 1632492263}
     - target: {fileID: 5166045459854261932, guid: 8fc26a87603af0f719fd48fca514d9e6, type: 3}
       propertyPath: imPlayer
       value: 1

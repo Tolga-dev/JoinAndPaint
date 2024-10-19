@@ -51,4 +51,5 @@ yol ustundeki engellerden gece gece boss bolumune git ve cabuk boya!
   * geriye dogru firlatilinca problem oluyor
   * saga zorlarken kamera rotasyona ugruyor
   * emoji ee canvs efekltrinde input zortluyor
+  * disari duzerse dusme scripti ve geri koyma elemani
   

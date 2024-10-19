@@ -64,7 +64,7 @@ public class Recruitment : GameObjectBase
     public void UnFreeze()
     {
         rb.constraints =
-            RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+            RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation;
     }
 
     public void Die(PlayerManager playerManager)
@@ -191,6 +191,8 @@ public class Recruitment : GameObjectBase
 
             yield return new WaitForFixedUpdate(); // Ensure this runs in sync with the physics engine
         }
+        
+        gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
         member.playerAnimationController.SetFightMethod(3); // cheers 
 
         yield return new WaitForSeconds(0.5f); // wait for punch to play

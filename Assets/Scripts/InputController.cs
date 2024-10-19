@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 [Serializable]
 public class InputController
 {
+    public GameManager gameManager;
     public bool isMouseDown;
     public bool canMove;
     
@@ -81,6 +82,9 @@ public class InputController
 #if UNITY_EDITOR
     private bool IsPointerOverUIElement()
     {
+        if (gameManager.CurrentState == gameManager.playingState)
+            return false;
+        
         return EventSystem.current.IsPointerOverGameObject(); // Check for UI element under mouse in editor
     }
 #else
