@@ -590,8 +590,8 @@ MonoBehaviour:
   playerAnimationController:
     animator: {fileID: 7802042934949798794}
   rb: {fileID: 5606522099927279388}
-  health: 0
-  damageAmount: 0
+  health: 100
+  damageAmount: 10
   _playerManager: {fileID: 0}
   maxDistance: 0.3
   merged: 0

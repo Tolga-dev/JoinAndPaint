@@ -43,3 +43,4 @@ yol ustundeki engellerden gece gece boss bolumune git ve cabuk boya!
   * spawnlarla ilgili problem
   * boss a kullesme shader ekle
   * kucuk gold barlarda, uzerinden gecerken s*xe ugruyoruz
+  * kavga sahnesinde boss a odakla kamerayi

@@ -28,6 +28,7 @@ public class PlayerManager : MonoBehaviour
     public Transform canvasSpawnPoint;
 
     public bool memberEditMode = false;
+    public float maxDistanceMove = 0.5f;
     private void Start()
     {
         members.Add(recruitment);
@@ -144,7 +145,6 @@ public class PlayerManager : MonoBehaviour
 
     public void TargetToATransform(Boss target, bool isAttack) // hated ofc but, i was bored tbh
     {
-        /*
         foreach (var member in members)
         {
             var rb = member.rb;
@@ -168,14 +168,13 @@ public class PlayerManager : MonoBehaviour
         {
             StartCoroutine(AttackToTarget(target));
         }
-        */
         
     }
 
     private IEnumerator AttackToTarget(Boss target)
     {
 
-        /*if (members.Count > 1)
+        if (members.Count > 1)
         {
             bool isAllMembersAreMerged = false;
             while (isAllMembersAreMerged == false)
@@ -193,7 +192,7 @@ public class PlayerManager : MonoBehaviour
                 }
             }
         }
-        recruitment.Attack(recruitment, target);*/
+        recruitment.Attack(recruitment, target);
 
         yield break;
     }

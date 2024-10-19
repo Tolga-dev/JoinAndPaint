@@ -13,6 +13,7 @@ namespace GameObjects.Boss
         public override void PlayerArrived(BossRoad bossRoadInGame)
         {
             base.PlayerArrived(bossRoadInGame);
+            
             GameManager.playerManager.TargetToATransform(this, true);
 
             StartCoroutine(StartBossMatch());

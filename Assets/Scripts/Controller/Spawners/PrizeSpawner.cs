@@ -97,7 +97,7 @@ namespace Controller.Spawners
                     if (road.spawnPoints[i].isObjSpawned)
                         continue;
 
-                    /*CreateMember(road.spawnPoints[i].spawnPoint);
+                    CreateMember(road.spawnPoints[i].spawnPoint);
 
                     var index = Random.Range(0, 3);
                     
@@ -105,7 +105,7 @@ namespace Controller.Spawners
                     {
                         CreatePrize(road.spawnPoints[i].spawnPoint);
                     }
-                    else if (index == 2)*/
+                    else if (index == 2)
                     {
                         CreateSelector(road.spawnPoints[i].spawnPoint);
                     }
@@ -218,6 +218,8 @@ namespace Controller.Spawners
             for (int i = 0; i < spawnCount; i++)
             {
                 var prize = Object.Instantiate(recruitment, spawnPoint, true);
+                prize.name += i.ToString();
+                
                 var createdRecruitment = prize.GetComponent<Recruitment>();
                 createdRecruitment.Freeze();
                 createdRecruitment.gameManager = _gameManager;

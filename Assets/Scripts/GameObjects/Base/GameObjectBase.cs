@@ -44,7 +44,7 @@ namespace GameObjects.Base
             DisableGameObject();
         }
 
-        private void CloseCollider()
+        public virtual void CloseCollider()
         {
             var component = GetComponent<Collider>();
             component.enabled = false;
