@@ -27,7 +27,6 @@ public class Recruitment : GameObjectBase
     public Transform accessorHead;
 
     public bool imPlayer;
-
     public void StartPlayer(PlayerManager playerManager)
     {
         _playerManager = playerManager;
@@ -97,46 +96,47 @@ public class Recruitment : GameObjectBase
         return health < 0;
     }
 
-    public void Merge(Recruitment member, Transform playerPos)
+ 
+    public IEnumerator MergeCoroutine(Recruitment member, Transform playerPos)
     {
-        StartCoroutine(MergeCoroutine(member, playerPos));
-    }
-
-    private IEnumerator MergeCoroutine(Recruitment member, Transform playerPos)
-    {
-        /*while (merged == false)
+        _playerManager.recruitment.Freeze();
+        member.playerAnimationController.StartRunner();
+    
+        while (!merged)
         {
             var position = playerPos.transform.position;
             var distance = Vector3.Distance(member.rb.position, position);
-            var canMerge =distance < member.maxDistance;
-
+            var canMerge = distance < (_playerManager.maxMergeDistanceMove);
+        
+            Debug.Log(distance);
+        
             if (canMerge)
             {
-                playerPos.localScale += new Vector3(0.1f, 0.1f, 0.1f);
+                Freeze(); // Assume this stops NPC motion
                 merged = true;
+                member.transform.position = _playerManager.mergePos.position;
+                playerPos.localScale += new Vector3(_playerManager.scaleBigFactor, _playerManager.scaleBigFactor, _playerManager.scaleBigFactor);
                 yield break;
             }
             else
             {
-                member.playerAnimationController.StartRunner();
-                var targetPosition = position;
-
-                member.rb.MovePosition(Vector3.MoveTowards(member.rb.position, targetPosition,
-                    _playerManager.zSpeed * Time.fixedDeltaTime));
+                member.rb.MovePosition(Vector3.MoveTowards(member.rb.position, position, 
+                    Time.fixedDeltaTime));
 
                 var lookDirection = (position - member.transform.position).normalized;
 
-                if (lookDirection != Vector3.zero) // Avoid zero direction issues
+                if (lookDirection != Vector3.zero)
                 {
-                    var targetRotation = Quaternion.LookRotation(lookDirection);
-                    member.transform.rotation = Quaternion.Slerp(member.transform.rotation, targetRotation,
-                        Time.fixedDeltaTime * _playerManager.rotationSpeed);
+                    Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
+                    member.transform.rotation = Quaternion.Slerp(member.transform.rotation,
+                        targetRotation, Time.fixedDeltaTime * _playerManager.rotationSpeed);
                 }
             }
-        }
 
-        gameObject.SetActive(false);*/
-        yield break;
+            yield return new WaitForFixedUpdate(); // Ensure the coroutine runs with physics updates
+        }
+        _playerManager.recruitment.UnFreeze();
+
     }
 
 
@@ -147,10 +147,8 @@ public class Recruitment : GameObjectBase
 
     private IEnumerator MoveToTarget(Recruitment member, Boss target)
     {
-
         var controller = member.playerAnimationController;
         controller.SetStartFight();
-
 
         var playingState = _playerManager.gameManager.playingState;
         while (!playingState.isGameFinished || !playingState.isGameWon) // Continue moving until the game is won
@@ -186,6 +184,7 @@ public class Recruitment : GameObjectBase
                 int attackType = Random.Range(0, 3); // 0 for kick, 1 for punch
                 controller.SetFightMethod(attackType);
                 DamageTarget(member, target);
+                
                 yield return new WaitForSeconds(0.5f); // wait for kick to play
             }
 

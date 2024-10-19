@@ -12,17 +12,11 @@ namespace GameObjects.Boss
         {
             base.PlayerArrived(bossRoadInGame);
             GameManager.playerManager.TargetToATransform(this, false);
-
-            StartCoroutine(StartBossMatch());
-
+            
         }
 
         private IEnumerator StartBossMatch()
         {
-            while (health > 0)
-            {
-            }
-
             animator.SetBool(AttackMode, true);
 
             GameManager.playingState.isGameWon = true;
@@ -33,6 +27,11 @@ namespace GameObjects.Boss
 
             BossRoad.GameFinished();
         }
-        
+        public override void TakeDamage(int memberDamageAmount)
+        {
+            Debug.Log("damage");
+            health -= memberDamageAmount;
+            StartCoroutine(StartBossMatch());
+        }
     }
 }

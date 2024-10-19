@@ -593,13 +593,14 @@ MonoBehaviour:
   health: 100
   damageAmount: 10
   _playerManager: {fileID: 0}
-  maxDistance: 0.3
   merged: 0
   dieEffect: {fileID: 6323411906643048971}
   surfaceBlood: {fileID: 298863484505997958}
   accessorLeftHand: {fileID: 87117831921836921}
   accessorRightHand: {fileID: 4013979006653087559}
   accessorHead: {fileID: 1363053269670536109}
+  imPlayer: 0
+  collider: {fileID: 1323184585844040942}
 --- !u!95 &3053211504587712022
 Animator:
   serializedVersion: 5

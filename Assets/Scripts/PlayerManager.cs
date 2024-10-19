@@ -25,6 +25,11 @@ public class PlayerManager : MonoBehaviour
 
     public bool memberEditMode = false;
     public float maxDistanceMove = 0.5f;
+    public float maxMergeDistanceMove;
+    public Transform mergePos;
+    
+    public float scaleBigFactor;
+
     private void Start()
     {
         members.Add(recruitment);
@@ -115,6 +120,7 @@ public class PlayerManager : MonoBehaviour
         var initPos = gameManager.playingState.playerInitialPosition;
         transform.position = initPos.position;
         transform.rotation = Quaternion.Euler(Vector3.zero);
+        transform.localScale = Vector3.one;
     }   
     
     public void SetWin()
@@ -145,55 +151,95 @@ public class PlayerManager : MonoBehaviour
 
     public void TargetToATransform(Boss target, bool isAttack) // hated ofc but, i was bored tbh
     {
-        foreach (var member in members)
+        if (isAttack)
         {
-            var rb = member.rb;
-            
-            rb.velocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
-            rb.drag = 0f;
-            rb.angularDrag = 0f;
-
-            if(isAttack)
-                member.Attack(member, target);
-            else
+            foreach (var member in members)
             {
-                if (members.Count == 1)
-                    break;
-                member.Merge(member, transform);
-            }
-        }
+                var rb = member.rb;
+            
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+                rb.drag = 0f;
+                rb.angularDrag = 0f;
 
-        if (isAttack == false)
+                member.Attack(member, target);
+            }
+            
+        }
+        else
         {
+
+           
+            
             StartCoroutine(AttackToTarget(target));
         }
         
     }
 
-    private IEnumerator AttackToTarget(Boss target)
+    public IEnumerator AttackToTarget(Boss target)
     {
-
+        yield return MergeMembers();
+        
         if (members.Count > 1)
         {
             bool isAllMembersAreMerged = false;
-            while (isAllMembersAreMerged == false)
+            while (!isAllMembersAreMerged)
             {
                 isAllMembersAreMerged = true;
                 foreach (var member in members)
                 {
-                    if(member == recruitment)
+                    if (member == recruitment)
                         continue;
-                    
+
                     if (member.merged == false)
                     {
                         isAllMembersAreMerged = false;
+                        break; // Exit the loop once you find an unmerged member
                     }
                 }
+
+                // Optionally, add a small delay between each check to avoid continuous looping
+                yield return null;
             }
         }
-        recruitment.Attack(recruitment, target);
 
-        yield break;
+        // Now that all members are merged, perform the attack
+        recruitment.Attack(recruitment, target);
     }
+
+    
+    public IEnumerator MergeMembers()
+    {
+        List<Coroutine> mergeCoroutines = new List<Coroutine>();
+
+        foreach (var member in members)
+        {
+            var rb = member.rb;
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            rb.drag = 0f;
+            rb.angularDrag = 0f;
+
+            if (members.Count == 1)
+                break;
+
+            if (member == recruitment)
+                continue;
+
+            Coroutine mergeCoroutine = StartCoroutine(member.MergeCoroutine(member, transform));
+            mergeCoroutines.Add(mergeCoroutine);
+        }
+
+        var incMe = members.Count / 20;
+        maxMergeDistanceMove += incMe * 0.1f;
+        
+        foreach (var mergeCoroutine in mergeCoroutines)
+        {
+            yield return mergeCoroutine;
+        }
+        
+        maxMergeDistanceMove -= incMe * 0.1f;
+        
+    }
+    
 }
