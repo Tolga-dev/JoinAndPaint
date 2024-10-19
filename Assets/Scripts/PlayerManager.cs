@@ -1,11 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using GameObjects.Boss;
-using GameObjects.Prizes;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -89,6 +85,9 @@ public class PlayerManager : MonoBehaviour
 
     public void ResetPlayer()
     {
+        recruitment.UnFreeze();
+        gameObject.SetActive(true);
+
         ResetPos();
         animationController.Reset();
         ResetInput();
@@ -115,6 +114,7 @@ public class PlayerManager : MonoBehaviour
     {
         var initPos = gameManager.playingState.playerInitialPosition;
         transform.position = initPos.position;
+        transform.rotation = Quaternion.Euler(Vector3.zero);
     }   
     
     public void SetWin()

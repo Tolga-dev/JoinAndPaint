@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using GameObjects.Boss;
 using GameObjects.Road;
+using Unity.VisualScripting;
 using UnityEngine;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
@@ -55,9 +57,42 @@ namespace Controller.Spawners
             
             createdBossRoad = created.GetComponent<BossRoad>();
             createdBossRoad.gameManager = gameManager;
+            SpawnAccessories(createdBossRoad.boss);
 
             gameManager.cameraController.SetTarget(createdBossRoad.transform, gameManager.cameraController.bossCam);
             SetNewPos();
+        }
+
+        private void SpawnAccessories(Boss boss)
+        {
+            var accessorTypes = gameManager.spawnerManager.prizeSpawner.accessorTypes;
+            
+            var randomAccessorType = accessorTypes.accessorTypes[Random.Range(0, accessorTypes.accessorTypes.Count)];
+            var accessor = randomAccessorType.accessories[0];
+            var currentAccessor = accessor.accessor;
+            boss.damageAmount += accessor.power;
+
+            switch (randomAccessorType.accessorType)
+            {
+                case AccessorTypesEnum.Head:
+                    var accessorHead = boss.accessorHead;
+                    var createdAccessor = Object.Instantiate(currentAccessor, accessorHead);
+                    createdAccessor.transform.localPosition = Vector3.zero;
+                    createdAccessor.GetComponent<MeshRenderer>().material = accessorTypes.materials[Random.Range(0, accessorTypes.materials.Count)];
+                    break;
+                case AccessorTypesEnum.LeftHand:
+                    var accessorLeftHand = boss.accessorLeftHand;
+                    var createdAccessorLeftHand = Object.Instantiate(currentAccessor, accessorLeftHand);
+                    createdAccessorLeftHand.transform.localPosition = Vector3.zero;
+                    createdAccessorLeftHand.GetComponent<MeshRenderer>().material = accessorTypes.materials[Random.Range(0, accessorTypes.materials.Count)];
+                    break;
+                case AccessorTypesEnum.RightHand:
+                    var accessorRightHand = boss.accessorRightHand;
+                    var createdAccessorRightHand = Object.Instantiate(currentAccessor, accessorRightHand);
+                    createdAccessorRightHand.transform.localPosition = Vector3.zero;
+                    createdAccessorRightHand.GetComponent<MeshRenderer>().material = accessorTypes.materials[Random.Range(0, accessorTypes.materials.Count)];
+                    break;
+            }
         }
 
         public void ResetRoads()

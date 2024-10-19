@@ -18,18 +18,20 @@ namespace GameObjects.Prizes
             if (isHitPlayer)
             {
                 FoundPlayerHit();
-                return;
+            }
+            else
+            {
+                if (other.CompareTag("Recruitment"))
+                {
+                    var recruitment = other.GetComponent<Recruitment>();
+                    if (recruitment.isHitPlayer == false)
+                        return;
+                    
+                    FoundPlayerHit();
+                    CallPlayerGotHit();
+                }
             }
 
-            if (other.CompareTag("Recruitment"))
-            {
-                var recruitment = other.GetComponent<Recruitment>();
-                if (recruitment.isHitPlayer == false)
-                    return;
-                
-                FoundPlayerHit();
-                CallPlayerGotHit();
-            }
         }
 
         public virtual void FoundPlayerHit()

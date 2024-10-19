@@ -21,6 +21,8 @@ yol ustundeki engellerden gece gece boss bolumune git ve cabuk boya!
 * traps  spawn
   * yukari dogru firlatici
   * dikenler
+  * bomba ekle
+  * ziplatici ekle
 
 
 
@@ -29,18 +31,24 @@ yol ustundeki engellerden gece gece boss bolumune git ve cabuk boya!
     * 5 levelde 1
       * toplu birlesme ve tekli birlesme
   * boss spawn
-    * toplu birlesme ve tekli birlesme
-
-
+    * toplu birlesme ve tekli birlesme -ok
+    * farklu akseksuarlar koy -ok
+    
   
 - found bugs      
   * koselerden assagi dusuyor
   * olenlerde corotine baslatilamaz
-  * bomba ekle
-  * ziplatici ekle
   * zikzak yapan seyin transformlar ver
   * rotate - az donuyor
   * spawnlarla ilgili problem
   * boss a kullesme shader ekle
   * kucuk gold barlarda, uzerinden gecerken s*xe ugruyoruz
-  * kavga sahnesinde boss a odakla kamerayi
+  * kavga sahnesinde boss a odakla kamera
+  * attack miktarlari cok yuksek - can miktarlari cok yuksek
+  * gorunmez spawnlar oluyor
+  * spawn ederken rotasyonu 0 la
+  * colliderlarda, birbirlerine capinca da reksiyon gosteriyor
+  * geriye dogru firlatilinca problem oluyor
+  * saga zorlarken kamera rotasyona ugruyor
+  * emoji ee canvs efekltrinde input zortluyor
+  

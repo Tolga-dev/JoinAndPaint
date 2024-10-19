@@ -14,7 +14,6 @@ namespace GameObjects.Base
         public bool isHitPlayer = false;
         private static readonly int PlayerHit = Animator.StringToHash("HitPlayer");
         
-        
         public virtual void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
@@ -25,7 +24,8 @@ namespace GameObjects.Base
         }
         public void CallPlayerGotHit()
         {
-            CloseCollider();
+            isHitPlayer = true;
+
             if(playerHitSound != null)
                 gameManager.soundManager.PlayASound(playerHitSound);
     
@@ -38,9 +38,8 @@ namespace GameObjects.Base
                 SetParticlePosition(hitPlayerEffect, hitPlayerEffect.transform);
                 PlayAdditionalEffects(playerController);
             }
-
-            isHitPlayer = true;
             
+            CloseCollider();
             DisableGameObject();
         }
 

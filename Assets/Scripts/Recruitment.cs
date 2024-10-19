@@ -25,7 +25,8 @@ public class Recruitment : GameObjectBase
     public Transform accessorLeftHand;
     public Transform accessorRightHand;
     public Transform accessorHead;
-    
+
+    public bool imPlayer;
 
     public void StartPlayer(PlayerManager playerManager)
     {
@@ -36,9 +37,10 @@ public class Recruitment : GameObjectBase
 
     public override void OnTriggerEnter(Collider other)
     {
-        base.OnTriggerEnter(other);
-
-        if (other.CompareTag("Obstacle"))
+        if(isHitPlayer == false)
+            base.OnTriggerEnter(other);
+        
+        else if (other.CompareTag("Obstacle"))
         {
             gameManager.memberManager.DestroyNewMember(this);
         }
@@ -67,9 +69,16 @@ public class Recruitment : GameObjectBase
 
     public void Die(PlayerManager playerManager)
     {
+        if (imPlayer)
+        {
+            playerManager.gameObject.SetActive(false);
+            return;
+        }
+        
         SetParticlePosition(dieEffect);
         SetParticlePosition(surfaceBlood);
 
+        
         Destroy(gameObject);
     }
 
@@ -78,7 +87,7 @@ public class Recruitment : GameObjectBase
         health -= damage;
         if (health < 0)
         {
-            gameManager.memberManager.DestroyNewMember(transform.GetComponent<Recruitment>());
+            gameManager.memberManager.DestroyNewMember(this);
         }
     }
 

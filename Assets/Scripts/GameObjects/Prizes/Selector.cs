@@ -27,6 +27,8 @@ namespace GameObjects.Prizes
                     gameManager.spawnerManager.prizeSpawner.RemoveMember(prizeAmount);
                 else
                    gameManager.spawnerManager.prizeSpawner.CreateMemberFromSelector(prizeAmount, transform);
+
+                gateSprite.enabled = false;
             }
         }
 

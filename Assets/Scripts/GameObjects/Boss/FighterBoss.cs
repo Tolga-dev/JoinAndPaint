@@ -1,19 +1,25 @@
 using System.Collections;
 using GameObjects.Road;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace GameObjects.Boss
 {
     public class FighterBoss : Boss
     {
-        
+        public TextMeshProUGUI healthUI;
+        public Slider slider;
+        public int maxHealth;
         protected static readonly int IsFighting = Animator.StringToHash("IsFighting");
         protected static readonly int AttackMode = Animator.StringToHash("AttackMode");
         
         public override void PlayerArrived(BossRoad bossRoadInGame)
         {
+            maxHealth = health;
             base.PlayerArrived(bossRoadInGame);
-            
+
+            SetDamageUI();
             GameManager.playerManager.TargetToATransform(this, true);
 
             StartCoroutine(StartBossMatch());
@@ -69,6 +75,7 @@ namespace GameObjects.Boss
                 animator.SetBool(IsFighting, false); // running state
                 animator.SetFloat(AttackMode, 0); // running state
             }
+            
 
             if (BossRoad.gameManager.playerManager.members.Count == 0)
             {
@@ -106,7 +113,23 @@ namespace GameObjects.Boss
 
             return closest;
         }
-
-        
+        public override void TakeDamage(int memberDamageAmount)
+        {
+            base.TakeDamage(memberDamageAmount);
+            SetDamageUI();
+        }
+        private void SetDamageUI()
+        {
+            if (health < 0)
+            {
+                slider.value = 0;
+                healthUI.text = 0.ToString();
+                return;
+            }
+            
+            slider.value = (float)health / maxHealth;
+            healthUI.text = health.ToString();
+        }
+       
     }
 }

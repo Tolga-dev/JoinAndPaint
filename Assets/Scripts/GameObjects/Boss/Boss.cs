@@ -17,6 +17,11 @@ namespace GameObjects.Boss
         public int damageAmount;
         public float zSpeed;
         public float maxFarToRunOnPlayer;
+        
+
+        public Transform accessorLeftHand;
+        public Transform accessorRightHand;
+        public Transform accessorHead;
 
         public virtual void PlayerArrived(BossRoad bossRoadInGame)
         {
@@ -31,7 +36,7 @@ namespace GameObjects.Boss
             target.TakeDamage(damageAmount);
         }
 
-        public void TakeDamage(int memberDamageAmount)
+        public virtual void TakeDamage(int memberDamageAmount)
         {
             Debug.Log("damage");
             health -= memberDamageAmount;
