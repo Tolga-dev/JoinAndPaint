@@ -27,6 +27,7 @@ public class Recruitment : GameObjectBase
     public Transform accessorHead;
 
     public bool imPlayer;
+
     public void StartPlayer(PlayerManager playerManager)
     {
         _playerManager = playerManager;
@@ -36,9 +37,9 @@ public class Recruitment : GameObjectBase
 
     public override void OnTriggerEnter(Collider other)
     {
-        if(isHitPlayer == false)
+        if (isHitPlayer == false)
             base.OnTriggerEnter(other);
-        
+
         else if (other.CompareTag("Obstacle"))
         {
             gameManager.memberManager.DestroyNewMember(this);
@@ -73,11 +74,11 @@ public class Recruitment : GameObjectBase
             playerManager.gameObject.SetActive(false);
             return;
         }
-        
+
         SetParticlePosition(dieEffect);
         SetParticlePosition(surfaceBlood);
 
-        
+
         Destroy(gameObject);
     }
 
@@ -96,31 +97,32 @@ public class Recruitment : GameObjectBase
         return health < 0;
     }
 
- 
+
     public IEnumerator MergeCoroutine(Recruitment member, Transform playerPos)
     {
         _playerManager.recruitment.Freeze();
         member.playerAnimationController.StartRunner();
-    
+
         while (!merged)
         {
             var position = playerPos.transform.position;
             var distance = Vector3.Distance(member.rb.position, position);
             var canMerge = distance < (_playerManager.maxMergeDistanceMove);
-        
+
             Debug.Log(distance);
-        
+
             if (canMerge)
             {
                 Freeze(); // Assume this stops NPC motion
                 merged = true;
                 member.transform.position = _playerManager.mergePos.position;
-                playerPos.localScale += new Vector3(_playerManager.scaleBigFactor, _playerManager.scaleBigFactor, _playerManager.scaleBigFactor);
+                playerPos.localScale += new Vector3(_playerManager.scaleBigFactor, _playerManager.scaleBigFactor,
+                    _playerManager.scaleBigFactor);
                 yield break;
             }
             else
             {
-                member.rb.MovePosition(Vector3.MoveTowards(member.rb.position, position, 
+                member.rb.MovePosition(Vector3.MoveTowards(member.rb.position, position,
                     Time.fixedDeltaTime));
 
                 var lookDirection = (position - member.transform.position).normalized;
@@ -135,6 +137,7 @@ public class Recruitment : GameObjectBase
 
             yield return new WaitForFixedUpdate(); // Ensure the coroutine runs with physics updates
         }
+
         _playerManager.recruitment.UnFreeze();
 
     }
@@ -184,13 +187,13 @@ public class Recruitment : GameObjectBase
                 int attackType = Random.Range(0, 3); // 0 for kick, 1 for punch
                 controller.SetFightMethod(attackType);
                 DamageTarget(member, target);
-                
+
                 yield return new WaitForSeconds(0.5f); // wait for kick to play
             }
 
             yield return new WaitForFixedUpdate(); // Ensure this runs in sync with the physics engine
         }
-        
+
         gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
         member.playerAnimationController.SetFightMethod(3); // cheers 
 
@@ -201,6 +204,49 @@ public class Recruitment : GameObjectBase
     {
         target.TakeDamage(member.damageAmount);
     }
+    public IEnumerator MoveUpwards(Transform currentTransform, float force, Vector3 targetDirection)
+    {
+        Vector3 startPosition = currentTransform.position;
+        Vector3 targetPosition = startPosition + targetDirection * force;
+
+        float elapsedTime = 0f;
+        float duration = 1f; // Adjust duration as needed for smoothness
+
+        // Move upwards
+        while (elapsedTime < duration)
+        {
+            currentTransform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        currentTransform.position = targetPosition; // Ensure it reaches the final position
+
+        // Start moving downwards after reaching the top
+        StartCoroutine(MoveDownwards(currentTransform, startPosition));
+    }
+
+    public IEnumerator MoveDownwards(Transform currentTransform, Vector3 originalPosition)
+    {
+        Vector3 startPosition = currentTransform.position; // Current position after upward movement
+        Vector3 targetPosition = originalPosition; // Back to the original starting point
+        targetPosition.z += (startPosition.z - targetPosition.z) * 2;
+        targetPosition.y = 0;
+
+        float elapsedTime = 0f;
+        float duration = 1f; // Adjust duration as needed for smoothness
+
+        // Move downwards
+        while (elapsedTime < duration)
+        {
+            currentTransform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        currentTransform.position = targetPosition; // Ensure it reaches the final position (original position)
+    }
+
 
 
 }

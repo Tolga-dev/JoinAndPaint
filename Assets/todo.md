@@ -16,16 +16,12 @@ yol ustundeki engellerden gece gece boss bolumune git ve cabuk boya!
   * ses -ok
   * skor -ok
 
-* traps  spawn
-  * yukari dogru firlatici
-  * dikenler
-  * bomba ekle
-  * ziplatici ekle
+* yukari dogru firlatici -ok
 
 * boss
   * chest
     * 5 levelde 1
-      * toplu birlesme ve tekli birlesme
+      * toplu birlesme ve tekli birlesme -ok
   * boss spawn
     * toplu birlesme ve tekli birlesme -ok
     * farklu akseksuarlar koy -ok
@@ -45,7 +41,7 @@ yol ustundeki engellerden gece gece boss bolumune git ve cabuk boya!
   * emoji ee canvs efekltrinde input zortluyor -ok
   * disari duzerse dusme scripti ve geri koyma elemani -ok
   * spawnlarla ilgili problem -ok
-  * attack miktarlari cok yuksek - can miktarlari cok yuksek
+  * attack miktarlari cok yuksek - can miktarlari cok yuksek 
   * oyunu kaybetsek bile level atliyor
   * kaybetme muzigi
   * zikzak yapan seyin transformlar ver 

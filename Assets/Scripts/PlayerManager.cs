@@ -128,7 +128,7 @@ public class PlayerManager : MonoBehaviour
         recruitment.rb.velocity = Vector3.zero;
         gameManager.playingState.isGameFinished = true;
 
-        if (gameManager.playingState.score > 0)
+        if (gameManager.playingState.score > 0 && gameManager.playingState.isGameWon)
         {
             gameManager.gamePropertiesInSave.currenLevel++;
         }
