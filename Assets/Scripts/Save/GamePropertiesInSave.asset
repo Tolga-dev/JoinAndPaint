@@ -15,7 +15,7 @@ MonoBehaviour:
   isGameSoundOn: 1
   isGameMusicOn: 1
   buttonClickSound: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
-  starSound: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
+  starSound: {fileID: 8300000, guid: 3c07ebc7a7b944da5861ddfd79511802, type: 3}
   gameSoundVolume: 0.5
   gameMusicChangeDuration: 1
   gameMusicStartVolume: 0.5
@@ -33,10 +33,30 @@ MonoBehaviour:
   bossFightMusic: {fileID: 8300000, guid: 5e995020155a7af1da19a31a6ddf5742, type: 3}
   isNoAds: 0
   noAdsProductId: HelloWorld
-  totalMoney: 54549
-  winTexts: []
-  lostTexts: []
-  currenLevel: 7
+  totalMoney: 56469
+  winText:
+  - You did it! Great job!
+  - "You\u2019re a winner!"
+  - Hooray! You won!
+  - "You\u2019re amazing!"
+  - "Wow, you\u2019re so good at this!"
+  - Fantastic! You made it!
+  - Super work! You won!
+  - You're a champion!
+  - Great effort! You won!
+  - "You\u2019re unstoppable!"
+  lostText:
+  - Oops, try again!
+  - "It\u2019s okay, you can do better next time!"
+  - "Don\u2019t worry, you\u2019ll win soon!"
+  - "Keep going, you\u2019re getting better!"
+  - Almost there! Try one more time!
+  - Ouch, do more upgrade!
+  - Not this time, but keep trying!
+  - "You\u2019re learning! Try again!"
+  - "It\u2019s just practice! You\u2019ll win next!"
+  - That was close! You can do it!
+  currenLevel: 26
   onGameWinSound: {fileID: 8300000, guid: 3ffa5211c2d4bbb5593beb44a0b5a81e, type: 3}
   onGameLostSound: {fileID: 8300000, guid: 68e3da0187b7e6a21848271af804c349, type: 3}
   levelRecords: 64000000

@@ -81,8 +81,8 @@ yol ustundeki engellerden gece gece boss bolumune git ve cabuk boya!
 * kazanma olunca farkli seyler -ok
 * chest veya boss olunca farkli seyler olacak -ok
 * donatlinin rotasyon problemini yapalim -ok siktir ettim
+* memberlarda adam alabilsin - OK SIKTIR ETTIM
 
-* memberlarda adam alabilsin
 * player can canvasi
 * player can
 * star sound effect degisicek
