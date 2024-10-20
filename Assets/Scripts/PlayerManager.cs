@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Controller.Spawners;
 using GameObjects.Boss;
+using TMPro;
+using TreeEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -35,10 +38,16 @@ public class PlayerManager : MonoBehaviour
     public Transform accessorHead;
     public List<GameObject> accessories = new List<GameObject>();
 
+    public GameObject canvas;
+    public TextMeshProUGUI healthUI;
+    public Slider slider;
+    
     private void Start()
     {
         members.Add(recruitment);
+        PlayerUiUpdate();
     }
+
 
     public void UpdatePlayer()
     {
@@ -115,7 +124,14 @@ public class PlayerManager : MonoBehaviour
         members.Add(recruitment);
         recruitment.rb.velocity = Vector3.zero;
 
+        
         SpawnAndDestroyAccessories();
+
+        recruitment.health = gameManager.gamePropertiesInSave.maxHealth;
+        
+        PlayerUiUpdate();
+        canvas.SetActive(false);
+
     }
 
     private void SpawnAndDestroyAccessories()
@@ -323,6 +339,24 @@ public class PlayerManager : MonoBehaviour
 
         maxMergeDistanceMove -= incMe * 0.1f;
 
+    }
+
+    public void PlayerUiUpdate()
+    {
+        canvas.SetActive(true);
+        
+        var health = recruitment.health;
+        var maxHealth = gameManager.gamePropertiesInSave.maxHealth;
+        
+        if (health < 0)
+        {
+            slider.value = 0;
+            healthUI.text = 0.ToString();
+            return;
+        }
+            
+        slider.value = (float)health / maxHealth;
+        healthUI.text = health.ToString();
     }
 
 }

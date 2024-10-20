@@ -67,5 +67,6 @@ namespace Save
         
         // updates
         public int updateAmount;
+        public int maxHealth = 100;
     }
 }

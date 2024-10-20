@@ -15,7 +15,7 @@ MonoBehaviour:
   isGameSoundOn: 1
   isGameMusicOn: 1
   buttonClickSound: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
-  starSound: {fileID: 8300000, guid: 3c07ebc7a7b944da5861ddfd79511802, type: 3}
+  starSound: {fileID: 8300000, guid: 7c9bc5c233d18790c8a45322d268741c, type: 3}
   gameSoundVolume: 0.5
   gameMusicChangeDuration: 1
   gameMusicStartVolume: 0.5
@@ -33,7 +33,7 @@ MonoBehaviour:
   bossFightMusic: {fileID: 8300000, guid: 5e995020155a7af1da19a31a6ddf5742, type: 3}
   isNoAds: 0
   noAdsProductId: HelloWorld
-  totalMoney: 56469
+  totalMoney: 56655
   winText:
   - You did it! Great job!
   - "You\u2019re a winner!"
@@ -56,8 +56,9 @@ MonoBehaviour:
   - "You\u2019re learning! Try again!"
   - "It\u2019s just practice! You\u2019ll win next!"
   - That was close! You can do it!
-  currenLevel: 26
+  currenLevel: 7
   onGameWinSound: {fileID: 8300000, guid: 3ffa5211c2d4bbb5593beb44a0b5a81e, type: 3}
   onGameLostSound: {fileID: 8300000, guid: 68e3da0187b7e6a21848271af804c349, type: 3}
   levelRecords: 64000000
   updateAmount: 0
+  maxHealth: 100

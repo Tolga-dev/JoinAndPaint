@@ -82,32 +82,32 @@ yol ustundeki engellerden gece gece boss bolumune git ve cabuk boya!
 * chest veya boss olunca farkli seyler olacak -ok
 * donatlinin rotasyon problemini yapalim -ok siktir ettim
 * memberlarda adam alabilsin - OK SIKTIR ETTIM
-
-* player can canvasi
-* player can
-* star sound effect degisicek
+* star sound effect degisicek -ok
+* playerin can resetlenmiyi -ok
+* player can canvasi -ok 
+* player can -ok
+* rotate - az donuyor -ok
+* kavga sahnesinde boss a odakla kamera -ok
+* koselerden assagi dusuyor -ok
+* olenlerde corotine baslatilamaz -ok
+* kucuk gold barlarda, uzerinden gecerken s*xe ugruyoruz -ok
+* gorunmez spawnlar oluyor -ok
+* spawn ederken rotasyonu 0 la -ok
+* colliderlarda, birbirlerine capinca da reksiyon gosteriyor -ok
+* saga zorlarken kamera rotasyona ugruyor - ok
+* geriye dogru firlatilinca problem oluyor - ok siktir ettim
+* emoji ee canvs efekltrinde input zortluyor -ok
+* disari duzerse dusme scripti ve geri koyma elemani -ok
+* spawnlarla ilgili problem -ok
+* oyunu kaybetsek bile level atliyor -ok
 
 - optimizasyonlar
 * cok uzaktakilerin set activeleri kapali kalacak
   * fog olacak
+    * bulut eklerim ehe
 * level arttikca - road spawn orani azalicak
 
 
-- found bugs      
-  * rotate - az donuyor -ok
-  * kavga sahnesinde boss a odakla kamera -ok
-  * koselerden assagi dusuyor -ok
-  * olenlerde corotine baslatilamaz -ok
-  * kucuk gold barlarda, uzerinden gecerken s*xe ugruyoruz -ok
-  * gorunmez spawnlar oluyor -ok
-  * spawn ederken rotasyonu 0 la -ok
-  * colliderlarda, birbirlerine capinca da reksiyon gosteriyor -ok
-  * saga zorlarken kamera rotasyona ugruyor - ok
-  * geriye dogru firlatilinca problem oluyor - ok siktir ettim
-  * emoji ee canvs efekltrinde input zortluyor -ok
-  * disari duzerse dusme scripti ve geri koyma elemani -ok
-  * spawnlarla ilgili problem -ok
-  * oyunu kaybetsek bile level atliyor -ok
 
   
 

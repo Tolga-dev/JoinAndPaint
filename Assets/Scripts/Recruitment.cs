@@ -12,7 +12,9 @@ public class Recruitment : GameObjectBase
     public SkinnedMeshRenderer skinnedMeshRenderer;
     public PlayerAnimationController playerAnimationController;
     public Rigidbody rb;
+    
     public int health;
+    
     public int damageAmount;
 
     public PlayerManager _playerManager;
@@ -86,6 +88,11 @@ public class Recruitment : GameObjectBase
 
     public void TakeDamage(int damage)
     {
+        if (imPlayer)
+        {
+            _playerManager.PlayerUiUpdate();
+        }
+        
         health -= damage;
         if (health < 0)
         {

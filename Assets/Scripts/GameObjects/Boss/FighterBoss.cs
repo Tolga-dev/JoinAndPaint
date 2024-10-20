@@ -17,6 +17,8 @@ namespace GameObjects.Boss
         public float coolDown;
         public override void PlayerArrived(BossRoad bossRoadInGame)
         {
+            gameManager.playerManager.PlayerUiUpdate();
+            
             var memberCount = gameManager.playerManager.members.Count;
             health = 5000 + (memberCount * 200) + gameManager.gamePropertiesInSave.currenLevel * 10;
             damageAmount = 10 + gameManager.gamePropertiesInSave.currenLevel + memberCount;
