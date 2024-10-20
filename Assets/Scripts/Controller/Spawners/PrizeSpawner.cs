@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using GameObjects.Boss;
 using GameObjects.Prizes;
 using GameObjects.Road;
 using Unity.VisualScripting;
@@ -88,30 +89,61 @@ namespace Controller.Spawners
             SpawnPrizes(spawnerManager.roadSpawner.createdRoads);
         }
 
-        private void SpawnPrizes(IEnumerable<Road> roads)
+        private void SpawnPrizes(List<Road> roads)
         {
+            var spawnPointAmount = roads.Count * 4;  // Total spawn points available
+
+            SpawnPrizesWithDistribution(spawnPointAmount, roads, 20, 20, CreatePrize);
+            SpawnPrizesWithDistribution(spawnPointAmount, roads, 20, 30, CreateSelector);
+            SpawnPrizesWithDistribution(spawnPointAmount, roads, 20, 30, CreateMemberFromSpawner);
+            
+        }
+
+        private void SpawnPrizesWithDistribution(int spawnPointAmount, List<Road> roads, int bossRate, int chestRate, Action<Transform> spawnAction)
+        {
+            var spawnAmount = 0;
+
+            if (_spawnerManager.roadSpawner.createdBossRoad.boss.GetType() == typeof(ChestBoss)) // chest spawns
+            {
+                spawnAmount = (spawnPointAmount * chestRate / 100);  // e.g., 30% of the total spawn points
+            }
+            else
+            {
+                spawnAmount = (spawnPointAmount * bossRate / 100);  // e.g., 30% of the total spawn points
+            }
+            
+            Debug.Log(spawnAmount  + " " + spawnPointAmount);
+            
+            List<(Road, int)> availableSpawnPoints = new List<(Road, int)>();
+
             foreach (var road in roads)
             {
-                for (int i = 0; i < road.spawnPoints.Count-1; i++)
+                for (int i = 0; i < road.spawnPoints.Count; i++)
                 {
-                    if (road.spawnPoints[i].isObjSpawned)
-                        continue;
-
-                    CreateMember(road.spawnPoints[i].spawnPoint);
-
-                    var index = Random.Range(0, 3);
-                    
-                    if (index == 1) // 50% chance to spawn
+                    if (!road.spawnPoints[i].isObjSpawned)
                     {
-                        CreatePrize(road.spawnPoints[i].spawnPoint);
-                    }
-                    else if (index == 2)
-                    {
-                        CreateSelector(road.spawnPoints[i].spawnPoint);
+                        availableSpawnPoints.Add((road, i));
                     }
                 }
             }
+
+            for (int i = 0; i < availableSpawnPoints.Count; i++)
+            {
+                int randomIndex = Random.Range(i, availableSpawnPoints.Count);
+                (availableSpawnPoints[i], availableSpawnPoints[randomIndex]) = 
+                    (availableSpawnPoints[randomIndex], availableSpawnPoints[i]);
+            }
+
+            spawnAmount = Mathf.Min(spawnAmount, availableSpawnPoints.Count);
+
+            for (int i = 0; i < spawnAmount; i++)
+            {
+                var (road, index) = availableSpawnPoints[i];
+                spawnAction(road.spawnPoints[index].spawnPoint);
+                road.spawnPoints[index].isObjSpawned = true;  // Mark the spawn point as used
+            }
         }
+
 
         private void CreateSelector(Transform spawnPoint)
         {
@@ -125,11 +157,11 @@ namespace Controller.Spawners
 
             var selectorController = prize.GetComponentInChildren<Selector>();
             selectorController.gameManager = _gameManager;
-            selectorController.prizeAmount = 20;
+            selectorController.prizeAmount = Random.Range(2, 5 + _gameManager.gamePropertiesInSave.currenLevel / 20); 
             
             var randomCurrentSelector = Random.Range(0, 2);
             
-            if(randomCurrentSelector == 1)
+            if(randomCurrentSelector == 1 || _gameManager.gamePropertiesInSave.currenLevel < 5)
                 selectorController.selectorEnum = SelectorEnum.Good;
             else
             {
@@ -185,7 +217,7 @@ namespace Controller.Spawners
         public void SetRandValuePrize(Prize prize, int factor)
         {
             var save = _spawnerManager.GameManager.gamePropertiesInSave;
-            var maxRange = save.currenLevel + additionalPoint;
+            var maxRange = save.currenLevel + additionalPoint; // additional is just for helping -> 10 point
             
             prize.prizeAmount = Random.Range(maxRange - (int)(maxRange/2),maxRange);
             prize.prizeAmount *= factor;
@@ -196,7 +228,10 @@ namespace Controller.Spawners
         {
             CreateMember(spawnPoint,prizeAmount);   
         }
-        
+        private void CreateMemberFromSpawner(Transform spawnPoint)
+        {
+            CreateMember(spawnPoint);
+        }
         private void CreateMember(Transform spawnPoint, int spawnCount = 0)
         {
             Debug.Log("SpawnMan");
@@ -225,9 +260,11 @@ namespace Controller.Spawners
                 createdRecruitment.gameManager = _gameManager;
                 
                 var randomAccessorType = accessorTypes.accessorTypes[Random.Range(0, accessorTypes.accessorTypes.Count)];
-                var accessor = randomAccessorType.accessories[0];
+                
+                var accessor = randomAccessorType.accessories[Random.Range(0, randomAccessorType.accessories.Count)];
+                
                 var currentAccessor = accessor.accessor;
-                createdRecruitment.damageAmount += accessor.power;
+                createdRecruitment.damageAmount += accessor.power + _gameManager.gamePropertiesInSave.updateAmount;
 
                 switch (randomAccessorType.accessorType)
                 {

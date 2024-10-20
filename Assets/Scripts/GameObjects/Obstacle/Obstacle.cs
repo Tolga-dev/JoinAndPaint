@@ -6,6 +6,7 @@ namespace GameObjects.Obstacle
 {
     public class Obstacle : GameObjectBase
     {
+        public Vector3 additionalRotationForSpawn; 
         public override void OnTriggerEnter(Collider other)
         {
             base.OnTriggerEnter(other);

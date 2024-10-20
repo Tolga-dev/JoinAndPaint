@@ -15,8 +15,6 @@ MonoBehaviour:
   isGameSoundOn: 1
   isGameMusicOn: 1
   buttonClickSound: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
-  playerObstacleHitSound: {fileID: 8300000, guid: 68e3da0187b7e6a21848271af804c349, type: 3}
-  playerPrizeHitSound: {fileID: 8300000, guid: 0fc76fedeb809a48182cfeae4c5a7e1b, type: 3}
   starSound: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
   gameSoundVolume: 0.5
   gameMusicChangeDuration: 1
@@ -35,10 +33,11 @@ MonoBehaviour:
   bossFightMusic: {fileID: 8300000, guid: 5e995020155a7af1da19a31a6ddf5742, type: 3}
   isNoAds: 0
   noAdsProductId: HelloWorld
-  totalMoney: 10
+  totalMoney: 50978
   winTexts:
   - You Win!
   - Good Luck
-  currenLevel: 0
+  currenLevel: 1
   onGameWinSound: {fileID: 8300000, guid: 3ffa5211c2d4bbb5593beb44a0b5a81e, type: 3}
   levelRecords: 64000000
+  updateAmount: 0

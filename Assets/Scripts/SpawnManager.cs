@@ -27,7 +27,7 @@ public class SpawnManager : MonoBehaviour
     private void SpawnObjects()
     {
         SpawnRoads();
-      //  SpawnObstacles();
+        SpawnObstacles();
         SpawnerPrizes();
     }
 

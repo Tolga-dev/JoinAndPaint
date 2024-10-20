@@ -36,5 +36,8 @@ namespace Save
         public int currenLevel;
         public AudioClip onGameWinSound;
         public List<int> levelRecords = new List<int>();
+        
+        // updates
+        public int updateAmount;
     }
 }
