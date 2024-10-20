@@ -33,11 +33,11 @@ MonoBehaviour:
   bossFightMusic: {fileID: 8300000, guid: 5e995020155a7af1da19a31a6ddf5742, type: 3}
   isNoAds: 0
   noAdsProductId: HelloWorld
-  totalMoney: 50978
+  totalMoney: 51529
   winTexts:
   - You Win!
   - Good Luck
-  currenLevel: 1
+  currenLevel: 11
   onGameWinSound: {fileID: 8300000, guid: 3ffa5211c2d4bbb5593beb44a0b5a81e, type: 3}
   levelRecords: 64000000
   updateAmount: 0

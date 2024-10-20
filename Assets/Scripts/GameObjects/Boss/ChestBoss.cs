@@ -11,7 +11,7 @@ namespace GameObjects.Boss
         public override void PlayerArrived(BossRoad bossRoadInGame)
         {
             base.PlayerArrived(bossRoadInGame);
-            GameManager.playerManager.TargetToATransform(this, false);
+            gameManager.playerManager.TargetToATransform(this, false);
             
         }
 
@@ -19,11 +19,11 @@ namespace GameObjects.Boss
         {
             animator.SetBool(AttackMode, true);
 
-            GameManager.playingState.isGameWon = true;
+            gameManager.playingState.isGameWon = true;
 
             yield return new WaitForSeconds(0.5f); // wait for punch to play
             
-            GameManager.playingState.isGameFinished = true;
+            gameManager.playingState.isGameFinished = true;
 
             BossRoad.GameFinished();
         }

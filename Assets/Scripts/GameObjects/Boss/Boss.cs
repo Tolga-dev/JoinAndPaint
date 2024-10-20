@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using GameObjects.Road;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace GameObjects.Boss
@@ -10,7 +11,7 @@ namespace GameObjects.Boss
     {
         public Animator animator;
 
-        protected GameManager GameManager;
+        public GameManager gameManager;
         protected BossRoad BossRoad;
 
         public int health;
@@ -26,7 +27,7 @@ namespace GameObjects.Boss
         public virtual void PlayerArrived(BossRoad bossRoadInGame)
         {
             BossRoad = bossRoadInGame;
-            GameManager = BossRoad.gameManager;
+            gameManager = BossRoad.gameManager;
 
             Debug.Log("Player is arrived");
         }

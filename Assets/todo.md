@@ -46,13 +46,15 @@ yol ustundeki engellerden gece gece boss bolumune git ve cabuk boya!
     * bosslu leveller - ok
       * oynayarak test ederiz
 
-* level atladikca yeni engeller geliyor -ok
-* sapkalarin gucu -> update ile olcak
-* boss gucu level ile attirilmis olacak
 
 * prize amount
   * selector amount -ok
   * member amount -ok
+
+* level atladikca yeni engeller geliyor -ok
+* sapkalarin gucu -> update ile olcak -ok 
+
+
 
 * shoptan satin alarak bisiler yapabilirsin
   * shop yokki amg
@@ -63,11 +65,23 @@ yol ustundeki engellerden gece gece boss bolumune git ve cabuk boya!
     * akseksuarlarin gucunu artirir
       * her updatete 1 - 5 puan 
   
-* player can canvasi
-  * player her turda farkli akseksuar eklicem
-* 50 nin katlarinda oyunda farkli seyler dedirttirrelim
-  
+* player can canvasi -OK
+  * player her turda farkli akseksuar eklicem -OK
+* boss attack ve damage kismini degistir 
+  * member sayisina bagli olarak artip azalabilir
+  * boss gucu level ile attirilmis olacak - start from 1000 to +100 in every level
+    * 0.1 - 0.5 attack hizi
+    * ne kadar army olduguna baglo
+* player can
 
+* attack miktarlari cok yuksek - can miktarlari cok yuksek  -ok 
+* zikzak yapan seyin transformlar ver
+* donatlinin rotasyon problemini yapalim
+* chest ailma hizlandir
+* kaybetme muzigi
+* ziplarkan - o ara yeni bisi alinca zort
+* 50 nin katlarinda oyunda farkli seyler dedirttirrelim
+* memberlarda adam alabilsin
 
 - found bugs      
   * rotate - az donuyor -ok
@@ -84,13 +98,7 @@ yol ustundeki engellerden gece gece boss bolumune git ve cabuk boya!
   * disari duzerse dusme scripti ve geri koyma elemani -ok
   * spawnlarla ilgili problem -ok
   * oyunu kaybetsek bile level atliyor -ok
-  * attack miktarlari cok yuksek - can miktarlari cok yuksek 
-  * kaybetme muzigi
-  * zikzak yapan seyin transformlar ver 
-  * donatlinin rotasyon problemini yapalim
-  * chest ailma hizlandir
-  * memberlarda adam alabilsin
-  * ziplarkan - o ara yeni bisi alinca zort
+
   
 
   

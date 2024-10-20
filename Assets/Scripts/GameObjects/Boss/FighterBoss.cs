@@ -13,14 +13,20 @@ namespace GameObjects.Boss
         public int maxHealth;
         protected static readonly int IsFighting = Animator.StringToHash("IsFighting");
         protected static readonly int AttackMode = Animator.StringToHash("AttackMode");
-        
+
+        public float coolDown;
         public override void PlayerArrived(BossRoad bossRoadInGame)
         {
+            var memberCount = gameManager.playerManager.members.Count;
+            health = 5000 + (memberCount * 100) + gameManager.gamePropertiesInSave.currenLevel * 10;
+            damageAmount = 10 + gameManager.gamePropertiesInSave.currenLevel + memberCount;
+            coolDown = Random.Range(0.1f, 0.5f);
+            
             maxHealth = health;
             base.PlayerArrived(bossRoadInGame);
 
             SetDamageUI();
-            GameManager.playerManager.TargetToATransform(this, true);
+            gameManager.playerManager.TargetToATransform(this, true);
 
             StartCoroutine(StartBossMatch());
 
@@ -56,7 +62,7 @@ namespace GameObjects.Boss
                         int attackType = Random.Range(1, 3); // 0 for kick, 1 for punch
 
                         animator.SetFloat(AttackMode, attackType); // running kick
-                        yield return new WaitForSeconds(0.5f); // wait for kick to play
+                        yield return new WaitForSeconds(coolDown); // wait for kick to play
 
                         DamageTarget(target);
 
@@ -80,17 +86,17 @@ namespace GameObjects.Boss
             if (BossRoad.gameManager.playerManager.members.Count == 0)
             {
                 animator.SetFloat(AttackMode, 3); // running kick
-                GameManager.playingState.isGameWon = false;
+                gameManager.playingState.isGameWon = false;
             }
             else
             {
-                GameManager.playingState.isGameWon = true;
+                gameManager.playingState.isGameWon = true;
                 animator.enabled = false;
             }
 
             yield return new WaitForSeconds(0.5f); // wait for punch to play
 
-            GameManager.playingState.isGameFinished = true;
+            gameManager.playingState.isGameFinished = true;
 
             BossRoad.GameFinished();
         }

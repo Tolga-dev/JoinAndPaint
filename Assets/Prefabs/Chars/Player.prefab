@@ -524,6 +524,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63d11b5c8d65ba445b8546828c5c130a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  animator: {fileID: 0}
+  hitPlayerEffect: {fileID: 0}
+  playerHitSound: {fileID: 0}
+  isHitPlayer: 0
   skinnedMeshRenderer: {fileID: 6757206687544570900}
   playerAnimationController:
     animator: {fileID: 4680759884034906016}
@@ -531,7 +536,13 @@ MonoBehaviour:
   health: 1000
   damageAmount: 10
   _playerManager: {fileID: 423969743126283052}
-  maxDistance: 0.3
+  merged: 0
+  dieEffect: {fileID: 0}
+  surfaceBlood: {fileID: 0}
+  accessorLeftHand: {fileID: 0}
+  accessorRightHand: {fileID: 0}
+  accessorHead: {fileID: 0}
+  imPlayer: 0
 --- !u!1 &2687999227586154110
 GameObject:
   m_ObjectHideFlags: 0
@@ -2089,6 +2100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   inputController:
+    gameManager: {fileID: 0}
     isMouseDown: 0
     canMove: 0
   animationController:
@@ -2101,6 +2113,15 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   prizeEffectSpawnPoint: {fileID: 7071957512335914389}
   canvasSpawnPoint: {fileID: 0}
+  memberEditMode: 0
+  maxDistanceMove: 0.5
+  maxMergeDistanceMove: 0
+  mergePos: {fileID: 0}
+  scaleBigFactor: 0
+  accessorLeftHand: {fileID: 4252661608543972455}
+  accessorRightHand: {fileID: 5804521429620506609}
+  accessorHead: {fileID: 3918998313455549757}
+  accessories: []
 --- !u!54 &8625611899891744615
 Rigidbody:
   m_ObjectHideFlags: 0
