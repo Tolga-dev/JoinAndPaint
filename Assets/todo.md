@@ -65,23 +65,33 @@ yol ustundeki engellerden gece gece boss bolumune git ve cabuk boya!
     * akseksuarlarin gucunu artirir
       * her updatete 1 - 5 puan 
   
-* player can canvasi -OK
-  * player her turda farkli akseksuar eklicem -OK
-* boss attack ve damage kismini degistir 
+* player her turda farkli akseksuar eklicem -OK
+* boss attack ve damage kismini degistir -ok 
   * member sayisina bagli olarak artip azalabilir
   * boss gucu level ile attirilmis olacak - start from 1000 to +100 in every level
     * 0.1 - 0.5 attack hizi
     * ne kadar army olduguna baglo
-* player can
-
 * attack miktarlari cok yuksek - can miktarlari cok yuksek  -ok 
-* zikzak yapan seyin transformlar ver
-* donatlinin rotasyon problemini yapalim
-* chest ailma hizlandir
-* kaybetme muzigi
-* ziplarkan - o ara yeni bisi alinca zort
-* 50 nin katlarinda oyunda farkli seyler dedirttirrelim
+* zikzak yapan seyin transformlar ver -ok
+* chest ailma hizlandir - ok
+* kaybetme muzigi - ok
+* ziplarkan - o ara yeni bisi alinca zort -ok
+* 50 nin katlarinda oyunda farkli seyler dedirttirrelim -ok siktir et
+* kaybet olursa farkli seyler  -ok
+* kazanma olunca farkli seyler -ok
+* chest veya boss olunca farkli seyler olacak -ok
+* donatlinin rotasyon problemini yapalim -ok siktir ettim
+
 * memberlarda adam alabilsin
+* player can canvasi
+* player can
+* star sound effect degisicek
+
+- optimizasyonlar
+* cok uzaktakilerin set activeleri kapali kalacak
+  * fog olacak
+* level arttikca - road spawn orani azalicak
+
 
 - found bugs      
   * rotate - az donuyor -ok

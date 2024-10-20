@@ -38,9 +38,11 @@ public class Recruitment : GameObjectBase
     public override void OnTriggerEnter(Collider other)
     {
         if (isHitPlayer == false)
+        {
             base.OnTriggerEnter(other);
-
-        else if (other.CompareTag("Obstacle"))
+        }
+        
+        if (other.CompareTag("Obstacle"))
         {
             gameManager.memberManager.DestroyNewMember(this);
         }
@@ -215,11 +217,15 @@ public class Recruitment : GameObjectBase
         // Move upwards
         while (elapsedTime < duration)
         {
+            if(health < 0)
+                yield break;
             currentTransform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / duration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-
+        
+        if(health < 0)
+            yield break;
         currentTransform.position = targetPosition; // Ensure it reaches the final position
 
         // Start moving downwards after reaching the top
@@ -239,11 +245,16 @@ public class Recruitment : GameObjectBase
         // Move downwards
         while (elapsedTime < duration)
         {
+            if(health < 0)
+                yield break;
             currentTransform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / duration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-
+        
+        if(health < 0)
+            yield break;
+        
         currentTransform.position = targetPosition; // Ensure it reaches the final position (original position)
     }
 

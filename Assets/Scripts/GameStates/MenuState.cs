@@ -209,8 +209,17 @@ namespace GameStates
             }
 
             var gamePropertiesInSave = GameManager.gamePropertiesInSave;
-            
-            clickToStart.text = gamePropertiesInSave.winTexts[Random.Range(0, gamePropertiesInSave.winTexts.Length)];
+
+            if (GameManager.playingState.isGameWon)
+            {
+                clickToStart.text = gamePropertiesInSave.winText[Random.Range(0, gamePropertiesInSave.winText.Length)];
+            }
+            else
+            {
+                clickToStart.text = gamePropertiesInSave.lostText[Random.Range(0, gamePropertiesInSave.lostText.Length)];
+            }
+
+            GameManager.playingState.isGameWon = false;
         }
 
         public void SetMenuStateUI()

@@ -28,6 +28,9 @@ public class GameManager : Singleton<GameManager>
     [Header("Game Save")]
     public GamePropertiesInSave gamePropertiesInSave;
 
+    public Transform targetA;
+    public Transform targetB;
+
     public void Start()
     {
         menuState.Init(this);

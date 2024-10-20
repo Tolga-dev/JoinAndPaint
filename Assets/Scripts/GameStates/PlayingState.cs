@@ -29,7 +29,7 @@ namespace GameStates
         public TextMeshProUGUI scoreText;
         public TextMeshProUGUI processLeftText;
         public TextMeshProUGUI processRightText;
-        
+
         public List<Transform> stars = new List<Transform>();
         public Slider processSlider;
         public Button reloadButton;
@@ -83,7 +83,6 @@ namespace GameStates
             }
             isGameFinished = false;
             isOnFinish = false;
-            isGameWon = false;
             
             GameManager.menuState.SetMenuStateUI();
             
@@ -109,7 +108,6 @@ namespace GameStates
             processSlider.value = 0;
             score = 0;
             isGameFinished = false;
-            isGameWon = false;
             isOnFinish = false;
             
             processLeftText.text = GameManager.gamePropertiesInSave.currenLevel.ToString();

@@ -48,10 +48,8 @@ namespace Controller.Spawners
 
         public void SpawnBossObject()
         {
-            GameObject[] bossOptions = { chestBoss, bossRoad}; // 5 turda bir chestBoss, her turda farkli sapkali boss, bazilrinda ozel chestler olacak
-            
-            var randomIndex = Random.Range(0, bossOptions.Length);
-            var selectedBoss = bossOptions[randomIndex];
+
+            var selectedBoss = gameManager.gamePropertiesInSave.currenLevel % 5 == 0 ? chestBoss : bossRoad;  
 
             var created = Object.Instantiate(selectedBoss, startAmountOfRoad * offset, selectedBoss.transform.rotation);
             

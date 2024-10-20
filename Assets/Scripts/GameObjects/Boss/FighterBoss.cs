@@ -18,9 +18,9 @@ namespace GameObjects.Boss
         public override void PlayerArrived(BossRoad bossRoadInGame)
         {
             var memberCount = gameManager.playerManager.members.Count;
-            health = 5000 + (memberCount * 100) + gameManager.gamePropertiesInSave.currenLevel * 10;
+            health = 5000 + (memberCount * 200) + gameManager.gamePropertiesInSave.currenLevel * 10;
             damageAmount = 10 + gameManager.gamePropertiesInSave.currenLevel + memberCount;
-            coolDown = Random.Range(0.1f, 0.5f);
+            coolDown = Random.Range(0.1f, 0.4f);
             
             maxHealth = health;
             base.PlayerArrived(bossRoadInGame);
@@ -65,7 +65,7 @@ namespace GameObjects.Boss
                         yield return new WaitForSeconds(coolDown); // wait for kick to play
 
                         DamageTarget(target);
-
+                        
                         if (target.IsDefeated()) // Implement `IsDefeated()` to check the target's health
                         {
                             isTargetAvailable = false;
@@ -87,6 +87,7 @@ namespace GameObjects.Boss
             {
                 animator.SetFloat(AttackMode, 3); // running kick
                 gameManager.playingState.isGameWon = false;
+                gameManager.soundManager.PlayASound(gameManager.gamePropertiesInSave.onGameLostSound);
             }
             else
             {

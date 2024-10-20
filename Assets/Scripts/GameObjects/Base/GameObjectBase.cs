@@ -37,7 +37,7 @@ namespace GameObjects.Base
                 var playerController = gameManager.playerManager;
                 SetParticlePosition(hitPlayerEffect, hitPlayerEffect.transform);
                 PlayAdditionalEffects(playerController);
-            }
+            } 
             
             CloseCollider();
             DisableGameObject();

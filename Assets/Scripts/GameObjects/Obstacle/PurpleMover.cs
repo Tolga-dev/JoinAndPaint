@@ -13,13 +13,9 @@ namespace GameObjects.Obstacle
 
         private void Start()
         {
-            // Get the starting and ending positions from the GameManager
-            /*
             _startX = gameManager.targetA.position.x;
             _endX = gameManager.targetB.position.x;
-            */
-
-            // Initialize position to start point
+            
             SetPosition(_startX);
         }
 
