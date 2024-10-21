@@ -218,10 +218,11 @@ namespace Controller.Spawners
         {
             var save = _spawnerManager.GameManager.gamePropertiesInSave;
             var maxRange = save.currenLevel + additionalPoint; // additional is just for helping -> 10 point
-            
-            prize.prizeAmount = Random.Range(maxRange - (int)(maxRange/2),maxRange);
+
+            prize.prizeAmount = Random.Range(maxRange, maxRange * 2);
             prize.prizeAmount *= factor;
             prize.gameManager = _gameManager;
+            
         }
 
         public void CreateMemberFromSelector(int prizeAmount, Transform spawnPoint)
@@ -264,7 +265,7 @@ namespace Controller.Spawners
                 var accessor = randomAccessorType.accessories[Random.Range(0, randomAccessorType.accessories.Count)];
                 
                 var currentAccessor = accessor.accessor;
-                createdRecruitment.damageAmount += accessor.power + _gameManager.gamePropertiesInSave.updateAmount;
+                createdRecruitment.damageAmount += accessor.power + Mathf.CeilToInt(_gameManager.gamePropertiesInSave.damageUpdate);
 
                 switch (randomAccessorType.accessorType)
                 {

@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using GameStates.Base;
 using TMPro;
 using UnityEngine;
@@ -25,7 +26,17 @@ namespace GameStates
         public Button buyNoAds;
         public TextMeshProUGUI description;
         public TextMeshProUGUI shopResult;
-        public Transform marketPanel;
+        public Transform marketPanel; 
+        
+        // updates
+        // damage
+        public Button damageUpdateButton;
+        public TextMeshProUGUI damagePrice;
+        public TextMeshProUGUI damageUpdateAmount;
+        // health
+        public Button healthUpdateButton;
+        public TextMeshProUGUI healthPrice;
+        public TextMeshProUGUI healthUpdateAmount;
         
         // setting
         [Header("Setting UI")]
@@ -150,6 +161,120 @@ namespace GameStates
                 });
                 GameManager.serviceManager.inAppPurchase.BuyItem(GameManager.gamePropertiesInSave.noAdsProductId,success,failed);
             }); 
+            
+            // updates
+            damageUpdateButton.onClick.AddListener((() =>
+            {
+                soundManager.ButtonClickSound();
+                UpdateDamage();
+                SetUpdateUI();
+            }));
+            
+            healthUpdateButton.onClick.AddListener((() =>
+            {
+                soundManager.ButtonClickSound();
+                UpdateHealth();
+                SetUpdateUI();
+            }));
+        }
+
+        public void UpdateDamage()
+        {
+            var save = GameManager.gamePropertiesInSave;
+            var money = save.totalMoney;
+            var price = save.damagePrice;
+
+            if (!save.damageIsNewPriceCalculated)
+            {
+                var priceMinIncreaseAmount = save.damagePriceMinIncreaseAmount * save.damagePriceLevel;
+                var priceMaxIncreaseAmount = save.damagePriceMaxIncreaseAmount * save.damagePriceLevel;
+
+                if (priceMinIncreaseAmount > 0 && priceMaxIncreaseAmount > priceMinIncreaseAmount)
+                {
+                    save.damageNewAdditionalPrice = Random.Range(priceMinIncreaseAmount, priceMaxIncreaseAmount);
+                }
+                else
+                {
+                    save.damageNewAdditionalPrice = priceMinIncreaseAmount; // Fallback to minimum increase
+                }
+
+                save.damageIsNewPriceCalculated = true;
+            }
+
+            
+            if (money >= price && save.damageIsNewPriceCalculated)
+            {
+                save.totalMoney -= price;
+                
+                var newPrice = price + save.damageNewAdditionalPrice;
+                save.damagePrice = newPrice;
+
+                save.damageUpdate += save.damageIncreaseComboAmount * Random.Range(1, 4);
+
+                save.damagePriceLevel++;
+                save.damageIsNewPriceCalculated = false;
+
+                GameManager.soundManager.PlayASound(save.purchasedSound);
+
+                // Optionally start saving and play ads
+                // GameManager.StartCoroutine(GameManager.saveManager.Save());
+                // GameManager.serviceManager.adsManager.PlayComboTransitionAds();
+
+                SetMenuStateUI();
+            }
+            else
+            {
+                GameManager.soundManager.PlayASound(save.failedClickSound);
+            }
+        }
+        
+        public void UpdateHealth()
+        {
+            var save = GameManager.gamePropertiesInSave;
+            var money = save.totalMoney;
+            var price = save.healthPrice;
+
+            if (!save.healthIsNewPriceCalculated)
+            {
+                var priceMinIncreaseAmount = save.healthPriceMinIncreaseAmount * save.healthPriceLevel;
+                var priceMaxIncreaseAmount = save.healthPriceMaxIncreaseAmount * save.healthPriceLevel;
+
+                if (priceMinIncreaseAmount > 0 && priceMaxIncreaseAmount > priceMinIncreaseAmount)
+                {
+                    save.healthNewAdditionalPrice = Random.Range(priceMinIncreaseAmount, priceMaxIncreaseAmount);
+                }
+                else
+                {
+                    save.healthNewAdditionalPrice = priceMinIncreaseAmount; // Fallback to minimum increase
+                }
+
+                save.healthIsNewPriceCalculated = true;
+            }
+
+
+            if (money >= price && save.healthIsNewPriceCalculated)
+            {
+                save.totalMoney -= price;
+                var newPrice = price + save.healthNewAdditionalPrice;
+                save.healthPrice = newPrice;
+
+                save.healthUpdate += save.healthIncreaseComboAmount * Random.Range(1, 4);
+
+                save.healthPriceLevel++;
+                save.healthIsNewPriceCalculated = false;
+
+                GameManager.soundManager.PlayASound(save.purchasedSound);
+
+                // Optionally start saving and play ads
+                // GameManager.StartCoroutine(GameManager.saveManager.Save());
+                // GameManager.serviceManager.adsManager.PlayComboTransitionAds();
+
+                SetMenuStateUI();
+            }
+            else
+            {
+                GameManager.soundManager.PlayASound(save.failedClickSound);
+            }
         }
 
         private void ToggleButtonPosition(Button button, bool isOn)
@@ -178,12 +303,9 @@ namespace GameStates
             
             SetShopUI();
             SetMoney();
+            SetUpdateUI();
         }
 
-        private void SetMoney()
-        {
-            paraAmount.text = GameManager.gamePropertiesInSave.totalMoney + "$";
-        }
 
         private void SetShopUI()
         {
@@ -224,7 +346,21 @@ namespace GameStates
 
         public void SetMenuStateUI()
         {
+            SetMoney();
+            SetUpdateUI();
+        }
+        private void SetMoney()
+        {
             paraAmount.text = GameManager.gamePropertiesInSave.totalMoney + "$";
+        }
+
+        private void SetUpdateUI()
+        {
+            damagePrice.text = GameManager.gamePropertiesInSave.damagePrice + "$";
+            damageUpdateAmount.text = "x" +GameManager.gamePropertiesInSave.damageUpdate.ToString("F1");
+            
+            healthPrice.text = GameManager.gamePropertiesInSave.healthPrice + "$";
+            healthUpdateAmount.text = "x" + GameManager.gamePropertiesInSave.healthUpdate.ToString("F1");
         }
         
     }

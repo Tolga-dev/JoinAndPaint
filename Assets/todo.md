@@ -102,11 +102,33 @@ yol ustundeki engellerden gece gece boss bolumune git ve cabuk boya!
 * oyunu kaybetsek bile level atliyor -ok
 
 - optimizasyonlar
+* satin alim shop
+  * alima gore can damage artis olacak -ok
+  * updatelerin sonuclarini goster -ok
+
+* chest para kazandirmali -ok
+  * levele gore * 25 - 100 -ok
+* selector size arttir -ok
+* trashla fiyatlarin float hatasi -ok
+* boss hasari azalt - ok
+  
 * cok uzaktakilerin set activeleri kapali kalacak
+  * spawn et - boss bolumunun ordan getir, playerin basina kadar, geldigi yerleri kapaticak
+  
   * fog olacak
     * bulut eklerim ehe
-* level arttikca - road spawn orani azalicak
 
+* level arttikca - road spawn orani azalicak
+  * level 100 olunca
+    * 5 de olan sey 20 olacak mesela
+  * level 1000 olunca
+    * 25
+    
+* recordlar
+
+* loading screen
+* reklam
+* in app purchase
 
 
   

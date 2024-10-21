@@ -65,8 +65,29 @@ namespace Save
         public AudioClip onGameLostSound;
         public List<int> levelRecords = new List<int>();
         
+        public int maxHealth;
+        public int initHealth = 100;
         // updates
-        public int updateAmount;
-        public int maxHealth = 100;
+        
+// Attributes for damage updates
+        public float damageUpdate;
+        public int damagePrice;
+        public bool damageIsNewPriceCalculated;
+        public int damagePriceMinIncreaseAmount;
+        public int damagePriceMaxIncreaseAmount;
+        public int damagePriceLevel;
+        public int damageNewAdditionalPrice;
+        public float damageIncreaseComboAmount = 0.1f;
+
+// Attributes for health updates
+        public float healthUpdate;
+        public int healthPrice;
+        public bool healthIsNewPriceCalculated;
+        public int healthPriceMinIncreaseAmount;
+        public int healthPriceMaxIncreaseAmount;
+        public int healthPriceLevel;
+        public int healthNewAdditionalPrice;
+        public float healthIncreaseComboAmount = 0.1f;
+
     }
 }

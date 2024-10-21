@@ -21,7 +21,7 @@ namespace GameObjects.Boss
             
             var memberCount = gameManager.playerManager.members.Count;
             health = 5000 + (memberCount * 200) + gameManager.gamePropertiesInSave.currenLevel * 10;
-            damageAmount = 10 + gameManager.gamePropertiesInSave.currenLevel + memberCount;
+            damageAmount = 25 + gameManager.gamePropertiesInSave.currenLevel + memberCount;
             coolDown = Random.Range(0.1f, 0.4f);
             
             maxHealth = health;

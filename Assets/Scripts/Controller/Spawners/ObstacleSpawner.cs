@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using GameObjects.Boss;
 using GameObjects.Obstacle;
 using GameObjects.Road;
+using Save.GameObjects.Obstacle;
 using Unity.Mathematics;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -82,7 +83,12 @@ namespace Controller.Spawners
             position.z = spawnPosition.z;
             
             created.transform.position = position;
-            
+
+            obstacle.enabled = false;
+            var rotatingPlatform = obstacle.GetComponent<RotatingPlatform>();
+            if(rotatingPlatform != null)
+                rotatingPlatform.enabled = false;
+
             // add additional rot to here thx
         }
 

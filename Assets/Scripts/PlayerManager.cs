@@ -127,7 +127,10 @@ public class PlayerManager : MonoBehaviour
         
         SpawnAndDestroyAccessories();
 
-        recruitment.health = gameManager.gamePropertiesInSave.maxHealth;
+        var save = gameManager.gamePropertiesInSave;
+
+        save.maxHealth = Mathf.CeilToInt(save.initHealth + save.healthUpdate * 10 + save.currenLevel); 
+        recruitment.health = save.maxHealth;
         
         PlayerUiUpdate();
         canvas.SetActive(false);
@@ -177,7 +180,7 @@ public class PlayerManager : MonoBehaviour
         var currentAccessor = accessor.accessor;
 
         var createdRecruitment = recruitment;
-        createdRecruitment.damageAmount += accessor.power + gameManager.gamePropertiesInSave.updateAmount;
+        createdRecruitment.damageAmount += accessor.power + Mathf.CeilToInt(gameManager.gamePropertiesInSave.damageUpdate);
 
         // Spawn the accessory at the appropriate position
         Transform parentTransform = null;

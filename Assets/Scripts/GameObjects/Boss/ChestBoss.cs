@@ -1,4 +1,5 @@
 using System.Collections;
+using GameObjects.Base;
 using GameObjects.Road;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ namespace GameObjects.Boss
 {
     public class ChestBoss : Boss
     {
+        
         protected static readonly int AttackMode = Animator.StringToHash("HitPlayer");
 
         public override void PlayerArrived(BossRoad bossRoadInGame)
@@ -25,7 +27,11 @@ namespace GameObjects.Boss
             
             gameManager.playingState.isGameFinished = true;
 
+            var bonus = gameManager.gamePropertiesInSave.currenLevel * 100;
+            gameManager.gamePropertiesInSave.totalMoney += bonus;
+            
             BossRoad.GameFinished();
+
         }
         public override void TakeDamage(int memberDamageAmount)
         {

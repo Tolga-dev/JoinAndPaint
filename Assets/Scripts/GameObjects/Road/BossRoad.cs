@@ -8,6 +8,7 @@ namespace GameObjects.Road
     {
         public FinishLine finishLine;
         public Boss.Boss boss;
+        public GameObject optimizer;
         
         public void StartBossMatch(GameObject recruitment)
         {

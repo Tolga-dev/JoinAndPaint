@@ -21,7 +21,7 @@ MonoBehaviour:
   gameMusicStartVolume: 0.5
   onMenuStateSound: {fileID: 8300000, guid: 92cb74aac94cb5c2893b364c7b2ccef1, type: 3}
   onMarketSound: {fileID: 8300000, guid: eca205e3b811672b19c0be824bcea394, type: 3}
-  purchasedSound: {fileID: 8300000, guid: 0076e9e3619625113ac99a1e27027937, type: 3}
+  purchasedSound: {fileID: 8300000, guid: 0850c1de0e610f4b3bcd591863ccbd7f, type: 3}
   failedClickSound: {fileID: 8300000, guid: e1b47de9c54e01d23bcfee402a099d8f, type: 3}
   gameMusic:
   - {fileID: 8300000, guid: 5014d962f7277e8f99941fdef4fc075a, type: 3}
@@ -33,7 +33,7 @@ MonoBehaviour:
   bossFightMusic: {fileID: 8300000, guid: 5e995020155a7af1da19a31a6ddf5742, type: 3}
   isNoAds: 0
   noAdsProductId: HelloWorld
-  totalMoney: 56655
+  totalMoney: 15302
   winText:
   - You did it! Great job!
   - "You\u2019re a winner!"
@@ -56,9 +56,25 @@ MonoBehaviour:
   - "You\u2019re learning! Try again!"
   - "It\u2019s just practice! You\u2019ll win next!"
   - That was close! You can do it!
-  currenLevel: 7
+  currenLevel: 81
   onGameWinSound: {fileID: 8300000, guid: 3ffa5211c2d4bbb5593beb44a0b5a81e, type: 3}
   onGameLostSound: {fileID: 8300000, guid: 68e3da0187b7e6a21848271af804c349, type: 3}
   levelRecords: 64000000
-  updateAmount: 0
-  maxHealth: 100
+  maxHealth: 1031
+  initHealth: 100
+  damageUpdate: 9.399998
+  damagePrice: 15668
+  damageIsNewPriceCalculated: 1
+  damagePriceMinIncreaseAmount: 10
+  damagePriceMaxIncreaseAmount: 25
+  damagePriceLevel: 43
+  damageNewAdditionalPrice: 931
+  damageIncreaseComboAmount: 0.1
+  healthUpdate: 85
+  healthPrice: 16088
+  healthIsNewPriceCalculated: 1
+  healthPriceMinIncreaseAmount: 10
+  healthPriceMaxIncreaseAmount: 25
+  healthPriceLevel: 43
+  healthNewAdditionalPrice: 641
+  healthIncreaseComboAmount: 1
