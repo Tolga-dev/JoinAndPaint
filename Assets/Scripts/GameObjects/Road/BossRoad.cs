@@ -62,7 +62,9 @@ namespace GameObjects.Road
 
             if (findRecord != -1)
             {
-                MadeAScore(gameManager.gamePropertiesInSave.levelRecords[findRecord]);
+                var currentScore = gameManager.gamePropertiesInSave.levelRecords[findRecord];
+                
+                MadeAScore(Random.Range(currentScore, currentScore * 100));
             }
         }
         private void MadeAScore(int recordIndexBonus)

@@ -125,6 +125,10 @@ yol ustundeki engellerden gece gece boss bolumune git ve cabuk boya!
     * 25
 
 * recordlar
+  * chest ise + chest bonus
+  * boss ise member bonus
+  * score recoru
+    * oduller fazla olacak ve aradaki random value ile olacak
 
 * loading screen
 * reklam
