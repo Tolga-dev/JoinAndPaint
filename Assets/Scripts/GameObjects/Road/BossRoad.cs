@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace GameObjects.Road
@@ -63,17 +64,17 @@ namespace GameObjects.Road
             if (findRecord != -1)
             {
                 var currentScore = gameManager.gamePropertiesInSave.levelRecords[findRecord];
+                var recordIndexBonus = Random.Range(currentScore, currentScore * 100);
+                var extraBonus = gameManager.playingState.extraBonus;
+                StartCoroutine(IncreaseBonusOverTime(recordIndexBonus, extraBonus,"WAOW Record! Bonus: ", 1f));
                 
-                MadeAScore(Random.Range(currentScore, currentScore * 100));
             }
+            var scoreText = gameManager.playingState.extraComboBonus;
+            StartCoroutine(IncreaseBonusOverTime(score, scoreText,"Extra Bonus: ", 1f));
+            
         }
-        private void MadeAScore(int recordIndexBonus)
+        private IEnumerator IncreaseBonusOverTime(int targetValue, TextMeshProUGUI meshProUGUI, string message, float duration)
         {
-            StartCoroutine(IncreaseBonusOverTime(recordIndexBonus, 1f));
-        }
-        private IEnumerator IncreaseBonusOverTime(int targetValue, float duration)
-        {
-            var playingState = gameManager.playingState;
             var elapsed = 0f;
             var startValue = 0; // Start from 0 and increase over time
 
@@ -83,10 +84,10 @@ namespace GameObjects.Road
         
                 int currentValue = (int)(Mathf.Lerp(startValue, targetValue, elapsed / duration));
 
-                playingState.extraBonus.text = $"WAOW Record! Bonus: {currentValue}";
+                meshProUGUI.text = message + currentValue;
                 yield return null;
             }
-            playingState.extraBonus.text = $"WAOW Record! Bonus: {targetValue}";
+            meshProUGUI.text = message + targetValue;
         }
 
         private void SetActiveReloadButton(bool b)

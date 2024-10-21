@@ -33,7 +33,7 @@ MonoBehaviour:
   bossFightMusic: {fileID: 8300000, guid: 5e995020155a7af1da19a31a6ddf5742, type: 3}
   isNoAds: 0
   noAdsProductId: HelloWorld
-  totalMoney: 52469
+  totalMoney: 153445
   winText:
   - You did it! Great job!
   - "You\u2019re a winner!"
@@ -56,25 +56,25 @@ MonoBehaviour:
   - "You\u2019re learning! Try again!"
   - "It\u2019s just practice! You\u2019ll win next!"
   - That was close! You can do it!
-  currenLevel: 93
+  currenLevel: 8
   onGameWinSound: {fileID: 8300000, guid: 3ffa5211c2d4bbb5593beb44a0b5a81e, type: 3}
   onGameLostSound: {fileID: 8300000, guid: 68e3da0187b7e6a21848271af804c349, type: 3}
   levelRecords: 64000000e803000010270000a086010040420f0080969800
-  maxHealth: 1043
+  maxHealth: 978
   initHealth: 100
-  damageUpdate: 9.799998
-  damagePrice: 17465
-  damageIsNewPriceCalculated: 1
+  damageUpdate: 18
+  damagePrice: 28511
+  damageIsNewPriceCalculated: 0
   damagePriceMinIncreaseAmount: 10
   damagePriceMaxIncreaseAmount: 25
-  damagePriceLevel: 45
-  damageNewAdditionalPrice: 470
-  damageIncreaseComboAmount: 0.1
-  healthUpdate: 85
-  healthPrice: 16088
+  damagePriceLevel: 57
+  damageNewAdditionalPrice: 1177
+  damageIncreaseComboAmount: 0.5
+  healthUpdate: 87
+  healthPrice: 16729
   healthIsNewPriceCalculated: 1
   healthPriceMinIncreaseAmount: 10
   healthPriceMaxIncreaseAmount: 25
-  healthPriceLevel: 43
-  healthNewAdditionalPrice: 641
+  healthPriceLevel: 44
+  healthNewAdditionalPrice: 916
   healthIncreaseComboAmount: 1

@@ -23,6 +23,8 @@ namespace GameObjects.Boss
             health = 5000 + (memberCount * 200) + gameManager.gamePropertiesInSave.currenLevel * 10;
             damageAmount = 25 + gameManager.gamePropertiesInSave.currenLevel + memberCount;
             coolDown = Random.Range(0.1f, 0.4f);
+            gameManager.playingState.score +=
+                gameManager.playerManager.members.Count * gameManager.gamePropertiesInSave.currenLevel;
             
             maxHealth = health;
             base.PlayerArrived(bossRoadInGame);

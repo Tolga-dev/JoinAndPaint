@@ -13,6 +13,10 @@ namespace GameObjects.Boss
         public override void PlayerArrived(BossRoad bossRoadInGame)
         {
             base.PlayerArrived(bossRoadInGame);
+            
+            gameManager.playingState.score +=
+                gameManager.playerManager.members.Count * gameManager.gamePropertiesInSave.currenLevel;
+            
             gameManager.playerManager.TargetToATransform(this, false);
             
         }
