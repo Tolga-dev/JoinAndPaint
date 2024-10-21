@@ -113,7 +113,22 @@ namespace Controller.Spawners
             var level = gameManager.gamePropertiesInSave.currenLevel;
             var numberOfRoadsToSpawn = spawnAmount;
 
-            numberOfRoadsToSpawn += level / 10;
+            if (level >= 1000)
+            {
+                numberOfRoadsToSpawn += level / 30; // At level 1000 or higher, add 25 roads to base amount
+            }
+            else if (level >= 500)
+            {
+                numberOfRoadsToSpawn += level / 25; // At level 1000 or higher, add 25 roads to base amount
+            }
+            else if (level >= 100)
+            {
+                numberOfRoadsToSpawn += level / 15; // At level 100 or higher, add 20 roads to base amount
+            }
+            else
+            {
+                numberOfRoadsToSpawn += level / 10; // For levels below 100, add 1 road for every 10 levels
+            }
             
             return numberOfRoadsToSpawn;
         }

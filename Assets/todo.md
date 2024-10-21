@@ -111,20 +111,20 @@ yol ustundeki engellerden gece gece boss bolumune git ve cabuk boya!
 * selector size arttir -ok
 * trashla fiyatlarin float hatasi -ok
 * boss hasari azalt - ok
+* trail -ok
   
 * cok uzaktakilerin set activeleri kapali kalacak
   * spawn et - boss bolumunun ordan getir, playerin basina kadar, geldigi yerleri kapaticak -ok
-  * fog olacak
-    * bulut eklerim ehe
+  * fog olacak - optimize omaz - ok siktir ettim 
+  *   - duvar ekledim o da iyi  - ok
   
-* level arttikca - road spawn orani azalicak
+* level arttikca - road spawn orani azalicak -ok
   * level 100 olunca
     * 5 de olan sey 20 olacak mesela
   * level 1000 olunca
     * 25
-    
+
 * recordlar
-* trail
 
 * loading screen
 * reklam
