@@ -88,6 +88,12 @@ namespace Save
         public int healthPriceLevel;
         public int healthNewAdditionalPrice;
         public float healthIncreaseComboAmount = 0.1f;
-
+        
+        
+        public int lastTimeNextLevelAdWatched;
+        public int maxTimeBetweenNextLevel;
+        
+        public int lastTimeComboAdWatched;
+        public int maxTimeBetweenComboAds;
     }
 }

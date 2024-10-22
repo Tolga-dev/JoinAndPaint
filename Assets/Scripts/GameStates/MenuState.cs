@@ -218,8 +218,9 @@ namespace GameStates
 
                 // Optionally start saving and play ads
                 // GameManager.StartCoroutine(GameManager.saveManager.Save());
-                // GameManager.serviceManager.adsManager.PlayComboTransitionAds();
-
+                
+                GameManager.serviceManager.adsManager.PlayComboTransitionAds();
+                
                 SetMenuStateUI();
             }
             else
@@ -267,8 +268,8 @@ namespace GameStates
 
                 // Optionally start saving and play ads
                 // GameManager.StartCoroutine(GameManager.saveManager.Save());
-                // GameManager.serviceManager.adsManager.PlayComboTransitionAds();
-
+                 GameManager.serviceManager.adsManager.PlayComboTransitionAds();
+                 
                 SetMenuStateUI();
             }
             else

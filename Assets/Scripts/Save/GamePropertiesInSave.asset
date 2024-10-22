@@ -18,7 +18,7 @@ MonoBehaviour:
   starSound: {fileID: 8300000, guid: 7c9bc5c233d18790c8a45322d268741c, type: 3}
   gameSoundVolume: 0.5
   gameMusicChangeDuration: 1
-  gameMusicStartVolume: 0.5
+  gameMusicStartVolume: 0.25
   onMenuStateSound: {fileID: 8300000, guid: 92cb74aac94cb5c2893b364c7b2ccef1, type: 3}
   onMarketSound: {fileID: 8300000, guid: eca205e3b811672b19c0be824bcea394, type: 3}
   purchasedSound: {fileID: 8300000, guid: 0850c1de0e610f4b3bcd591863ccbd7f, type: 3}
@@ -30,51 +30,55 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0076e9e3619625113ac99a1e27027937, type: 3}
   - {fileID: 8300000, guid: 76fecfeb77b346c3c94f5819e22cbdb5, type: 3}
   - {fileID: 8300000, guid: 5e995020155a7af1da19a31a6ddf5742, type: 3}
-  bossFightMusic: {fileID: 8300000, guid: 5e995020155a7af1da19a31a6ddf5742, type: 3}
+  bossFightMusic: {fileID: 8300000, guid: 76fecfeb77b346c3c94f5819e22cbdb5, type: 3}
   isNoAds: 0
-  noAdsProductId: HelloWorld
-  totalMoney: 153445
+  noAdsProductId: no.ads
+  totalMoney: 11039304
   winText:
   - You did it! Great job!
-  - "You\u2019re a winner!"
+  - You are a winner!
   - Hooray! You won!
-  - "You\u2019re amazing!"
-  - "Wow, you\u2019re so good at this!"
+  - You are amazing!
+  - Wow, you are so good at this!
   - Fantastic! You made it!
   - Super work! You won!
-  - You're a champion!
+  - You are a champion!
   - Great effort! You won!
-  - "You\u2019re unstoppable!"
+  - You are unstoppable!
   lostText:
   - Oops, try again!
-  - "It\u2019s okay, you can do better next time!"
-  - "Don\u2019t worry, you\u2019ll win soon!"
+  - You can do better next time!
+  - "Dontt worry, you\u2019ll win soon!"
   - "Keep going, you\u2019re getting better!"
   - Almost there! Try one more time!
   - Ouch, do more upgrade!
   - Not this time, but keep trying!
-  - "You\u2019re learning! Try again!"
-  - "It\u2019s just practice! You\u2019ll win next!"
+  - You are learning! Try again!
+  - "Its just practice! You\u2019ll win next!"
   - That was close! You can do it!
-  currenLevel: 8
+  currenLevel: 16
   onGameWinSound: {fileID: 8300000, guid: 3ffa5211c2d4bbb5593beb44a0b5a81e, type: 3}
   onGameLostSound: {fileID: 8300000, guid: 68e3da0187b7e6a21848271af804c349, type: 3}
   levelRecords: 64000000e803000010270000a086010040420f0080969800
-  maxHealth: 978
+  maxHealth: 256
   initHealth: 100
-  damageUpdate: 18
-  damagePrice: 28511
+  damageUpdate: 7.5
+  damagePrice: 674
   damageIsNewPriceCalculated: 0
   damagePriceMinIncreaseAmount: 10
   damagePriceMaxIncreaseAmount: 25
-  damagePriceLevel: 57
-  damageNewAdditionalPrice: 1177
+  damagePriceLevel: 9
+  damageNewAdditionalPrice: 123
   damageIncreaseComboAmount: 0.5
-  healthUpdate: 87
-  healthPrice: 16729
-  healthIsNewPriceCalculated: 1
+  healthUpdate: 14
+  healthPrice: 569
+  healthIsNewPriceCalculated: 0
   healthPriceMinIncreaseAmount: 10
   healthPriceMaxIncreaseAmount: 25
-  healthPriceLevel: 44
-  healthNewAdditionalPrice: 916
+  healthPriceLevel: 8
+  healthNewAdditionalPrice: 161
   healthIncreaseComboAmount: 1
+  lastTimeNextLevelAdWatched: 0
+  maxTimeBetweenNextLevel: 2
+  lastTimeComboAdWatched: 2
+  maxTimeBetweenComboAds: 2

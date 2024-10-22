@@ -175,6 +175,7 @@ namespace GameStates
             // upper ui
             reloadButton.onClick.AddListener(() =>
             {
+                Debug.Log("Reloaded!");
                 GameManager.serviceManager.adsManager.PlaySceneTransitionAds();
                 GameManager.ChangeState(GameManager.playingState);
             });

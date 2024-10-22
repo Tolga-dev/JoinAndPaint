@@ -4,7 +4,6 @@ using System.Linq;
 using Controller.Spawners;
 using GameObjects.Boss;
 using TMPro;
-using TreeEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -96,7 +95,7 @@ public class PlayerManager : MonoBehaviour
 
     private void SetDirection()
     {
-        direction.x = Mathf.Lerp(direction.x, inputController.IsMouseX(), Time.deltaTime * xSpeed);
+        direction.x = Mathf.Lerp(direction.x, inputController.IsMouseX(inputController.GetTouch()), Time.deltaTime * xSpeed);
         direction.z = 1;
 
         direction = Vector3.ClampMagnitude(direction, 1f);

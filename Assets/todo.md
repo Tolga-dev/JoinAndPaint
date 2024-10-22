@@ -124,15 +124,18 @@ yol ustundeki engellerden gece gece boss bolumune git ve cabuk boya!
   * level 1000 olunca
     * 25
 
-* recordlar
+* recordlar -ok
   * chest ise + chest bonus -ok
   * boss ise member bonus -ok
   * score recoru -ok
     * oduller fazla olacak ve aradaki random value ile olacak -ok
 
 * loading screen
+  * ok
 * reklam
+  * ok 
 * in app purchase
+* input degismeli 
 
 
   
