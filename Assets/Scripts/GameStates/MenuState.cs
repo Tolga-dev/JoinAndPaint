@@ -217,8 +217,7 @@ namespace GameStates
                 GameManager.soundManager.PlayASound(save.purchasedSound);
 
                 // Optionally start saving and play ads
-                // GameManager.StartCoroutine(GameManager.saveManager.Save());
-                
+                GameManager.StartCoroutine(GameManager.saveManager.Save());
                 GameManager.serviceManager.adsManager.PlayComboTransitionAds();
                 
                 SetMenuStateUI();
@@ -267,7 +266,7 @@ namespace GameStates
                 GameManager.soundManager.PlayASound(save.purchasedSound);
 
                 // Optionally start saving and play ads
-                // GameManager.StartCoroutine(GameManager.saveManager.Save());
+                GameManager.StartCoroutine(GameManager.saveManager.Save());
                  GameManager.serviceManager.adsManager.PlayComboTransitionAds();
                  
                 SetMenuStateUI();

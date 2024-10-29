@@ -14,26 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGameSoundOn: 1
   isGameMusicOn: 1
-  buttonClickSound: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
-  starSound: {fileID: 8300000, guid: 7c9bc5c233d18790c8a45322d268741c, type: 3}
+  buttonClickSound: {fileID: 8300000, guid: 92cb74aac94cb5c2893b364c7b2ccef1, type: 3}
+  starSound: {fileID: 8300000, guid: eca205e3b811672b19c0be824bcea394, type: 3}
   gameSoundVolume: 0.5
   gameMusicChangeDuration: 1
   gameMusicStartVolume: 0.25
-  onMenuStateSound: {fileID: 8300000, guid: 92cb74aac94cb5c2893b364c7b2ccef1, type: 3}
-  onMarketSound: {fileID: 8300000, guid: eca205e3b811672b19c0be824bcea394, type: 3}
-  purchasedSound: {fileID: 8300000, guid: 0850c1de0e610f4b3bcd591863ccbd7f, type: 3}
-  failedClickSound: {fileID: 8300000, guid: e1b47de9c54e01d23bcfee402a099d8f, type: 3}
+  onMenuStateSound: {fileID: 8300000, guid: 0850c1de0e610f4b3bcd591863ccbd7f, type: 3}
+  onMarketSound: {fileID: 8300000, guid: e1b47de9c54e01d23bcfee402a099d8f, type: 3}
+  purchasedSound: {fileID: 8300000, guid: 5014d962f7277e8f99941fdef4fc075a, type: 3}
+  failedClickSound: {fileID: 8300000, guid: 0619822bf22927bb3a4e827b8ec4bc8c, type: 3}
   gameMusic:
-  - {fileID: 8300000, guid: 5014d962f7277e8f99941fdef4fc075a, type: 3}
-  - {fileID: 8300000, guid: 0619822bf22927bb3a4e827b8ec4bc8c, type: 3}
-  - {fileID: 8300000, guid: eca205e3b811672b19c0be824bcea394, type: 3}
   - {fileID: 8300000, guid: 0076e9e3619625113ac99a1e27027937, type: 3}
   - {fileID: 8300000, guid: 76fecfeb77b346c3c94f5819e22cbdb5, type: 3}
+  - {fileID: 8300000, guid: e1b47de9c54e01d23bcfee402a099d8f, type: 3}
   - {fileID: 8300000, guid: 5e995020155a7af1da19a31a6ddf5742, type: 3}
-  bossFightMusic: {fileID: 8300000, guid: 76fecfeb77b346c3c94f5819e22cbdb5, type: 3}
+  - {fileID: 8300000, guid: 3ffa5211c2d4bbb5593beb44a0b5a81e, type: 3}
+  - {fileID: 8300000, guid: 68e3da0187b7e6a21848271af804c349, type: 3}
+  bossFightMusic: {fileID: 8300000, guid: 3ffa5211c2d4bbb5593beb44a0b5a81e, type: 3}
   isNoAds: 0
   noAdsProductId: no.ads
-  totalMoney: 11039304
+  totalMoney: 0
   winText:
   - You did it! Great job!
   - You are a winner!
@@ -56,29 +56,29 @@ MonoBehaviour:
   - You are learning! Try again!
   - "Its just practice! You\u2019ll win next!"
   - That was close! You can do it!
-  currenLevel: 16
-  onGameWinSound: {fileID: 8300000, guid: 3ffa5211c2d4bbb5593beb44a0b5a81e, type: 3}
-  onGameLostSound: {fileID: 8300000, guid: 68e3da0187b7e6a21848271af804c349, type: 3}
+  currenLevel: 1
+  onGameWinSound: {fileID: 2800000, guid: 1554c51b5f8695e448fe80eded370d3b, type: 3}
+  onGameLostSound: {fileID: 2800000, guid: f4ded2b71ce341f4aa2abcdef4c7a8d9, type: 3}
   levelRecords: 64000000e803000010270000a086010040420f0080969800
-  maxHealth: 256
+  maxHealth: 210
   initHealth: 100
-  damageUpdate: 7.5
-  damagePrice: 674
+  damageUpdate: 1
+  damagePrice: 10
   damageIsNewPriceCalculated: 0
   damagePriceMinIncreaseAmount: 10
   damagePriceMaxIncreaseAmount: 25
-  damagePriceLevel: 9
-  damageNewAdditionalPrice: 123
+  damagePriceLevel: 1
+  damageNewAdditionalPrice: 0
   damageIncreaseComboAmount: 0.5
-  healthUpdate: 14
-  healthPrice: 569
+  healthUpdate: 1
+  healthPrice: 10
   healthIsNewPriceCalculated: 0
   healthPriceMinIncreaseAmount: 10
   healthPriceMaxIncreaseAmount: 25
-  healthPriceLevel: 8
-  healthNewAdditionalPrice: 161
+  healthPriceLevel: 1
+  healthNewAdditionalPrice: 0
   healthIncreaseComboAmount: 1
   lastTimeNextLevelAdWatched: 0
   maxTimeBetweenNextLevel: 2
-  lastTimeComboAdWatched: 2
+  lastTimeComboAdWatched: 0
   maxTimeBetweenComboAds: 2

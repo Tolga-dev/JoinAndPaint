@@ -33,6 +33,8 @@ public class GameManager : Singleton<GameManager>
 
     public void Start()
     {
+        saveManager.Load();
+
         menuState.Init(this);
         playingState.Init(this);
         spawnerManager.Starter();
@@ -77,5 +79,13 @@ public class GameManager : Singleton<GameManager>
         menuState.SetNewMotivationString("Tap To Play!");
         Debug.Log("Arrived at menu state!");
     }
-
+    
+    private void OnApplicationQuit()
+    {
+        gamePropertiesInSave.lastTimeNextLevelAdWatched = 0;
+        gamePropertiesInSave.lastTimeComboAdWatched = 0;
+            
+        StartCoroutine(saveManager.Save());
+    }
+    
 }

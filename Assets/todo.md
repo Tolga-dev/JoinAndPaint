@@ -134,10 +134,12 @@ yol ustundeki engellerden gece gece boss bolumune git ve cabuk boya!
   * ok
 * reklam
   * ok 
+* input degismeli -ok
+  * belki update ~?
+  
 * in app purchase
-* input degismeli 
+  * test asamasinda ama duzenelecek ins bugun
 
+* playerin cani azalirken ses -ok
 
-  
-
-  
+* save sistemini duzenle

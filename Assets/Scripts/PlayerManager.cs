@@ -97,7 +97,6 @@ public class PlayerManager : MonoBehaviour
     {
         direction.x = Mathf.Lerp(direction.x, inputController.IsMouseX(inputController.GetTouch()), Time.deltaTime * xSpeed);
         direction.z = 1;
-
         direction = Vector3.ClampMagnitude(direction, 1f);
     }
 

@@ -8,8 +8,6 @@ public class SaveManager : MonoBehaviour
 
     public IEnumerator Save()
     {
-        yield break;
-        
         var playerData = JsonUtility.ToJson(gameManager.gamePropertiesInSave);
         SavePlayerName(playerData);
         Debug.Log(playerData);
@@ -43,6 +41,5 @@ public class SaveManager : MonoBehaviour
             return PlayerPrefs.GetString(PlayerNameKey);
         }
         return null; // Default value if
-
     }
 }

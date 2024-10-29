@@ -6,6 +6,9 @@ using UnityEngine.EventSystems;
 public class InputController
 {
     public GameManager gameManager;
+    public PlayerManager playerManager;
+    public Vector3 direction;
+
     public bool isMouseDown;
     public bool canMove;
     
@@ -22,6 +25,17 @@ public class InputController
 
     public Touch GetTouch() => Input.GetTouch(0);
 //#endif
+
+    public float roadWidth; // The total width of the road in world units
+    public float screenMiddle; // The middle of the screen in pixels
+    public float halfRoadWidth; // Half of the road width in world units
+
+    public void Start()
+    {
+        roadWidth = Vector3.Distance(gameManager.targetA.transform.position, gameManager.targetB.transform.position);
+        screenMiddle = Screen.width / 2f;
+        halfRoadWidth = roadWidth / 2f;
+    }
 
     public void HandleMouseInput()
     {
@@ -80,7 +94,8 @@ public class InputController
 // #endif
     }
 
-/*#if UNITY_EDITOR
+
+    /*#if UNITY_EDITOR
     private bool IsPointerOverUIElement()
     {
         if (gameManager.CurrentState == gameManager.playingState)
